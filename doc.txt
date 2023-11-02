@@ -1,0 +1,48 @@
+doc = """
+This is a vignette study for the project "Repugnance and Inequality"
+Participants go through the following pages:
+1. Demographics
+2. Instructions
+3. Comprehension checks
+4. Attention check 1.
+
+Then they move to Part I: Vignettes first order beliefs. 
+Here each participant sees 4 vignettes in a random order.
+    Each vignette has 2 versions and participants first see the first or
+    second versions of the 4 vignettes depending on their treatment
+    And then the other version of the 4 vignettes.
+An example order:
+5. Introductio nto Part I: First order beliefs. 
+6. Vignette 1 (version depending on treatment) repugnance measures
+7. Vignette 2 (version depending on treatment) repugnance measures
+8. Vignette 3 (version depending on treatment) repugnance measures
+9. Vignette 4 (version depending on treatment) repugnance measures
+10. Vignette 1 (the other version) repugnance measures
+11. Vignette 2 (the other version) repugnance measures
+12. Vignette 3 (the other version) repugnance measures
+13. Vignette 4 (the other version) repugnance measures
+14. Attention check 2
+
+Then they move to Part I: Second order beliefs.
+Where participants see the vignettes again but this time they give us their second order beliefs.
+Here we employ a conjoined design.
+ - Note: the reason we do not employ a conjoined design in part I is the worry of experimenter demand effect. 
+   In the second part since we are incentivizing subjects, this worry is not as strong as an issue.
+An example randomized order:
+15. Introduction to Part II: Second order beliefs.
+16. Vignette 1 both versions double-conjoined. Second-order belief measures.
+17. Vignette 2 both versions double-conjoined. Second-order belief measures.
+18. Vignette 3 both versions double-conjoined. Second-order belief measures.
+19. Vignette 4 both versions double-conjoined. Second-order belief measures.
+
+After this participants move to "Part II: Repugnance of potential lab experiments". Here participants judge the repugnance of 
+some hypothetical lab experiment transactions:
+20. Introduction to Part II: Repugnance of potential lab experiments
+21. Lab experiment transaction 1
+22. Lab experiment transaction 2
+23. Lab experiment transaction 3
+24. Lab experiment transaction 4 etc.
+
+Part III: Survey about participants confidence in their answers etc.
+Part IV: PILOT ONLY.
+"""

@@ -1,0 +1,29 @@
+{{ block title }}
+Failed Comprehension check
+{{ endblock }}
+
+{{ block content }}
+<p>
+    {{failure_message}} Because of this we cannot use your data. 
+    We do not want to reject you because of this, so we ask you to <strong>return the study on Prolific</strong>. 
+    
+    <br><br>
+    If you are not automatically directed to the completion page on Prolific, use the button below.
+    <br>
+    Thank you for your participation!  
+</p>    
+
+<script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
+<button type="button" onclick="Completion_button('{{C.Return_redirect}}')" class="otree-btn-next btn btn-primary" id="redirectButton" class="">End study</button>    
+    
+<script>  
+  window.onload = function() {
+    Completion_button('{{C.Return_redirect}}')
+  };
+</script>
+     
+
+
+{{ endblock }}
+
+
