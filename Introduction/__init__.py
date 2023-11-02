@@ -23,9 +23,12 @@ class C(BaseConstants):
     
     # Treatment quotas
     quotas = {
-    'v1_first': 0,
-    'v2_first' : 0,
+    'inequality_first': 0,
+    'equality_first' : 0,
     }
+    
+    # there are 4 vignettes with 2 versions each vignette_inequality and vignette_equality
+    Vignette_labels = ['Child', 'Kidney', 'Waste','Baby']
     
 class Subsession(BaseSubsession):
     pass
@@ -96,16 +99,32 @@ def treatment_assignment(player):
     session=player.subsession.session
     Quotas = session.Treatment_quotas
     
-    #the line below does: splits the Quotas into two halves, picks one of them randomly from the bottom half.
     '''
     Quota/Treatment assignment works as follows:
     1. get the current quotas
     2. assign a random treatment from the bottom half of the quotas (i.e. the treatment with the lowest quota)
     3. update quotas accordingly.
+    Then 
+    4. shuffle the vignettes.
+    5. depending on the treatment i.e. (inequality_first or equality_first) add the suffix _treatment to the vignette names
+    6. save the vignette order to the participant level
     '''
     treatment = random.choice([key for key, value in Quotas.items() if value in sorted(Quotas.values())[:1]])
     player.participant.Treatment = treatment
     Quotas.update({treatment: Quotas[treatment]+1})
+    
+    vignette_labels_order = C.Vignette_labels.copy() 
+    random.shuffle(vignette_labels_order)
+    if treatment == 'inequality_first':
+        player.participant.vars['Vignette_order'] = [
+            vignette_labels_order[0]+'_inequality', vignette_labels_order[1]+'_inequality', vignette_labels_order[2]+'_inequality',vignette_labels_order[3]+'_inequality',
+            vignette_labels_order[0]+'_equality',vignette_labels_order[1]+'_equality', vignette_labels_order[2]+'_equality', vignette_labels_order[3]+'_equality']
+    elif treatment == 'equality_first':
+            player.participant.vars['Vignette_order'] = [
+                vignette_labels_order[0]+'_equality',vignette_labels_order[1]+'_equality', vignette_labels_order[2]+'_equality', vignette_labels_order[3]+'_equality',
+                vignette_labels_order[0]+'_inequality', vignette_labels_order[1]+'_inequality', vignette_labels_order[2]+'_inequality',vignette_labels_order[3]+'_inequality',]
+    print(f"Player {player.id_in_group} is assigned to {treatment} treatment, his vignette order is {player.participant.vars['Vignette_order']}")
+
             
 #%% PAGES
 # Demographics, Introduction, Comprehension checks and attention check 1

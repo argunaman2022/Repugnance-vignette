@@ -1,7 +1,9 @@
 from os import environ
 #TODO: add the prolific completion link here
 SESSION_CONFIGS = [
-    dict(name='Study', app_sequence=['1_Introduction','2_Vignette', '3_Exit_Survey', '4_Results'], num_demo_participants=200,
+    dict(name='Study',
+         app_sequence=['Introduction','Vignette', 'Exit_Survey', 'Results'],
+         num_demo_participants=200,
          completionlink='prolific completion link!!!!!!'),
 ]
 
@@ -21,7 +23,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 PARTICIPANT_FIELDS = [
     'Allowed', 'Comprehension_passed', 'Attention_passed',
-    'Treatment'
+    'Treatment', 'Vignette_order',
 ]
 SESSION_FIELDS = {
                     'Treatment_quotas':{} 
