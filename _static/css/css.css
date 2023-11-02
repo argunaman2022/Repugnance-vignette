@@ -1,3 +1,39 @@
+.slider-range-labels{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+  font-size: 13px;
+  color: #aaa;
+}
+.slider-range-labels .label.bold-label {
+  font-weight: bold;
+  color: black; /* Change the text color for better visibility */
+}
+
+.slider-question{
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.slider-parent{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.slider-container {
+  text-align: center; /* Center-align the contents horizontally */
+  display: inline-block; /* Display as inline-block to make it as wide as its contents */
+  padding: 10px; /* Add padding for the box */
+  margin: 10px; /* Add some margins around the box */
+  border: 1px solid #000; /* Add a 1px black border for the box */
+  border-radius: 5px; /* Add rounded corners to the box */
+}
+
+
+/* Below are template css */
 .Continue-button {
   /* Add your otree next button styles here */
   background-color: #007BFF;

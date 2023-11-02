@@ -7,7 +7,7 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
-
+#TODO: add an exit button for players to be able to quit and return the prolific assignment (add this to template as well)
 class C(BaseConstants):
     NAME_IN_URL = 'Study_Name'
     PLAYERS_PER_GROUP = None
@@ -61,6 +61,29 @@ class C(BaseConstants):
     She lives alone and her household's annual net income is 30k USD. Person B wants to have a baby but is infertile.
     Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B one she is born.
     '''
+    Attention_check = '''
+    There is no person A or person B in this situation. It is important to us that you are reading these vignettes carefully. We use what are called "attention checks" to measure whether are paying attention. 
+    This is one such attention check. To complete this attention check all you need to do is to move all the sliders all the way to the right and click "Next" to continue.
+    Please move all the sliders below all the way to the right and continue.
+    '''
+    
+    
+    Slider_label_exploit = 'In your opinion, does this transaction <strong>benefit or exploit person A</strong>'
+    Slider_label_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
+    Slider_label_coercion = 'In your opinion, does this transaction allow the person A <strong> to make fully informed choices or does it exert undue influence</strong>?'
+    Slider_label_fairA = 'In your opinion, is this transaction <strong>fair or unfair to person A </strong>?'
+    Slider_label_fairB = 'In your opinion, is this transaction <strong>fair or unfair to person B </strong>?'
+    Slider_label_dignity = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?'
+    Slider_label_ban = 'To what extend do you agree with the following statement: <strong>"this transaction should be banned"</strong>?'
+    
+    Slider_label_country_exploit = 'In your opinion, does this transaction <strong>benefit or exploit country A</strong>'
+    Slider_label_country_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
+    Slider_label_country_coercion = 'In your opinion, does this transaction allow the country A <strong> to make fully informed choices or does it exert undue influence</strong>?'
+    Slider_label_country_fairA = 'In your opinion, is this transaction <strong>fair or unfair to country A </strong>?'
+    Slider_label_country_fairB = 'In your opinion, is this transaction <strong>fair or unfair to country B </strong>?'
+    Slider_label_country_dignity = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?'
+    Slider_label_country_ban = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?'
+    
     
     
 class Subsession(BaseSubsession):
@@ -72,235 +95,116 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):   
     # Attention check 2, 1 was in introduction 
-    Attention_2 = models.BooleanField(choices=[
-            [True, 'I disagree.'],
-            [False, 'I think both are possible.'],
-            [False, 'I agree.'],], 
-        label= 'A 20 year old man can eat 500kg meat and 2 tons of vegetables in one meal.', widget=widgets.RadioSelect)
+    Attention_2 = models.BooleanField()
             
     # Player answers
     ## Survey
     ### Child labor
-    Child_inequality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit person A (the girl)</strong>')
-    Child_inequality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Child_inequality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the girl) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Child_inequality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the girl)</strong>?')
-    Child_inequality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the woman)</strong>?')
-    Child_inequality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Child_inequality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
+    Child_inequality_exploit = models.FloatField(blank=True, min=-10)
+    Child_inequality_autonomy = models.FloatField(blank=True, min=-10)
+    Child_inequality_coercion = models.FloatField(blank=True, min=-10)
+    Child_inequality_fairA = models.FloatField(blank=True, min=-10)
+    Child_inequality_fairB = models.FloatField(blank=True, min=-10)
+    Child_inequality_dignity = models.FloatField(blank=True, min=-10)
+    Child_inequality_ban = models.FloatField(blank=True, min=-10)
     
-    Child_equality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit person A (the girl)</strong>')
-    Child_equality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Child_equality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the girl) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Child_equality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the girl)</strong>?')
-    Child_equality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the woman)</strong>?')
-    Child_equality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Child_equality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
-    ### Kidney markets
-    Kidney_inequality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit person A (the seller)</strong>')
-    Kidney_inequality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Kidney_inequality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the seller) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Kidney_inequality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the seller)</strong>?')
-    Kidney_inequality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the buyer)</strong>?')
-    Kidney_inequality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Kidney_inequality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
-     
-    Kidney_equality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit person A (the seller)</strong>')
-    Kidney_equality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Kidney_equality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the seller) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Kidney_equality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the seller)</strong>?')
-    Kidney_equality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the buyer)</strong>?')
-    Kidney_equality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Kidney_equality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
-    ### Waste trade
-    Waste_inequality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit country A (the buyer)</strong>')
-    Waste_inequality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Waste_inequality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the buyer) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Waste_inequality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the buyer)</strong>?')
-    Waste_inequality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the seller)</strong>?')
-    Waste_inequality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Waste_inequality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
+    Child_equality_exploit = models.FloatField(blank=True, min=-10)
+    Child_equality_autonomy = models.FloatField(blank=True, min=-10)
+    Child_equality_coercion = models.FloatField(blank=True, min=-10)
+    Child_equality_fairA = models.FloatField(blank=True, min=-10)
+    Child_equality_fairB = models.FloatField(blank=True, min=-10)
+    Child_equality_dignity = models.FloatField(blank=True, min=-10)
+    Child_equality_ban = models.FloatField(blank=True, min=-10)
+    ### Kidney market, min=-10s
+    Kidney_inequality_exploit = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_autonomy = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_coercion = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_fairA = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_fairB = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_dignity = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_ban = models.FloatField(blank=True, min=-10)
     
-    Waste_equality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit country A (the buyer)</strong>')
-    Waste_equality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Waste_equality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the buyer) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Waste_equality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the buyer)</strong>?')
-    Waste_equality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the seller)</strong>?')
-    Waste_equality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Waste_equality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
-    ### Selling babies
-    Baby_inequality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit person A (the seller)</strong>')
-    Baby_inequality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Baby_inequality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the seller) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Baby_inequality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the seller)</strong>?')
-    Baby_inequality_fairB = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the buyer)</strong>?')
-    Baby_inequality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Baby_inequality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
-    
-    Baby_equality_exploit = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>benefit or exploit person A (the seller)</strong>')
-    Baby_equality_autonomy = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?')
-    Baby_equality_coercion = models.FloatField(blank=True, label = 'In your opinion, does this transaction allow the person A (the seller) <strong> to make fully informed choices or does it exert undue influence</strong>?')
-    Baby_equality_fairA = models.FloatField(blank=True, label = 'In your opinion, is this transaction <strong>fair or unfair to person A (the seller)</strong>?')
-    Baby_equality_fairB = models.FloatField(blank=True,label = 'In your opinion, is this transaction <strong>fair or unfair to person B (the buyer)</strong>?')
-    Baby_equality_dignity = models.FloatField(blank=True, label = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?')
-    Baby_equality_ban = models.FloatField(blank=True, label = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?')
-    
+    Kidney_equality_exploit = models.FloatField(blank=True, min=-10)
+    Kidney_equality_autonomy = models.FloatField(blank=True, min=-10)
+    Kidney_equality_coercion = models.FloatField(blank=True, min=-10)
+    Kidney_equality_fairA = models.FloatField(blank=True, min=-10)
+    Kidney_equality_fairB = models.FloatField(blank=True, min=-10)
+    Kidney_equality_dignity = models.FloatField(blank=True, min=-10)
+    Kidney_equality_ban = models.FloatField(blank=True, min=-10)
+    ### Waste trad, min=-10e
+    Waste_inequality_exploit = models.FloatField(blank=True, min=-10)
+    Waste_inequality_autonomy = models.FloatField(blank=True, min=-10)
+    Waste_inequality_coercion = models.FloatField(blank=True, min=-10)
+    Waste_inequality_fairA = models.FloatField(blank=True, min=-10)
+    Waste_inequality_fairB = models.FloatField(blank=True, min=-10)
+    Waste_inequality_dignity = models.FloatField(blank=True, min=-10)
+    Waste_inequality_ban = models.FloatField(blank=True, min=-10)
+   
+    Waste_equality_exploit = models.FloatField(blank=True, min=-10)
+    Waste_equality_autonomy = models.FloatField(blank=True, min=-10)
+    Waste_equality_coercion = models.FloatField(blank=True, min=-10)
+    Waste_equality_fairA = models.FloatField(blank=True, min=-10)
+    Waste_equality_fairB = models.FloatField(blank=True, min=-10)
+    Waste_equality_dignity = models.FloatField(blank=True, min=-10)
+    Waste_equality_ban = models.FloatField(blank=True, min=-10)
+    ### Selling babie, min=-10s
+    Baby_inequality_exploit = models.FloatField(blank=True, min=-10)
+    Baby_inequality_autonomy = models.FloatField(blank=True, min=-10)
+    Baby_inequality_coercion = models.FloatField(blank=True, min=-10)
+    Baby_inequality_fairA = models.FloatField(blank=True, min=-10)
+    Baby_inequality_fairB = models.FloatField(blank=True, min=-10)
+    Baby_inequality_dignity = models.FloatField(blank=True, min=-10)
+    Baby_inequality_ban = models.FloatField(blank=True, min=-10)
+   
+    Baby_equality_exploit = models.FloatField(blank=True, min=-10)
+    Baby_equality_autonomy = models.FloatField(blank=True, min=-10)
+    Baby_equality_coercion = models.FloatField(blank=True, min=-10)
+    Baby_equality_fairA = models.FloatField(blank=True, min=-10)
+    Baby_equality_fairB = models.FloatField(blank=True, min=-10)
+    Baby_equality_dignity = models.FloatField(blank=True, min=-10)
+    Baby_equality_ban = models.FloatField(blank=True, min=-10)
+
+# Functions
+def variables_for_template(player, Page_number, Attention_check=False):
+    current_vignette = player.participant.Vignette_order[Page_number]
+    labels_for_sliders = {
+        'exploit': C.Slider_label_exploit, 
+        'autonomy': C.Slider_label_autonomy,
+        'coercion': C.Slider_label_coercion,
+        'fairA': C.Slider_label_fairA,
+        'fairB': C.Slider_label_fairB,
+        'dignity': C.Slider_label_dignity,
+        'ban': C.Slider_label_ban,
+    }
+        
+    if current_vignette =='Waste_inequality' or current_vignette =='Waste_equality':
+        labels_for_sliders = {
+        'exploit': C.Slider_label_country_exploit,
+        'autonomy': C.Slider_label_country_autonomy,
+        'coercion': C.Slider_label_country_coercion,
+        'fairA': C.Slider_label_country_fairA,
+        'fairB': C.Slider_label_country_fairB,
+        'dignity': C.Slider_label_country_dignity,
+        'ban': C.Slider_label_country_ban,         
+        }
+    if not Attention_check:
+        return {'Instructions': C.Instructions_path,
+                'Vignette': current_vignette,
+                'Vignette_text': f"{getattr(C, current_vignette)}",
+                'Slider_labels': labels_for_sliders,
+                }
+    else:
+        return {'Instructions': C.Instructions_path,
+                'Vignette_text': C.Attention_check,
+                'Slider_labels': labels_for_sliders,
+                }
+        
+def get_form_fields(player, Page_number):
+    current_vignette = player.participant.Vignette_order[Page_number]
+    return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
+            f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
   
 # Pages
-class Page1(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[0]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[0]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page2(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[1]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[1]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page3(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[2]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[2]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page4(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[3]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[3]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page5(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[4]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[4]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page6(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[5]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[5]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page7(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[6]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[6]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-class Page8(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        current_vignette = player.participant.Vignette_order[7]
-        return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-                f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
-
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        current_vignette = player.participant.Vignette_order[7]
-        return {'Instructions': C.Instructions_path,
-                'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
-                }
-
-
 class Attention_check_2(Page):         
     form_model = 'player'
     form_fields = ['Attention_2']
@@ -311,13 +215,163 @@ class Attention_check_2(Page):
 
     @staticmethod
     def vars_for_template(player: Player):
-        return {'Instructions': C.Instructions_path}
+        return variables_for_template(player, 0, Attention_check=True)
     
     def before_next_page(player: Player, timeout_happened=False):
         if (not player.Attention_2 and not player.participant.vars['Attention_1']):
             player.participant.vars['Allowed'] = False
             player.participant.vars['Attention_passed'] = False
+
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[0],)
   
+
+class Page1(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 0)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 0)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[0],)
+    
+class Page2(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 1)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 1)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[1],)
+
+class Page3(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 2)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 2)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[2],)
+
+class Page4(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 3)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 3)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[3],)
+
+class Page5(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 4)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 4)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[4],)
+
+class Page6(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 5)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 5)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[5],)
+
+class Page7(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 6)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 6)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[6],)
+
+class Page8(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 7)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 7)
+    
+    @staticmethod
+    def js_vars(player):
+        return dict(vignette=player.participant.Vignette_order[7],)
+        
+
 page_sequence = [
     Page1, Page2, Page3, Page4, Page5, Page6, Page7, Page8,
     Attention_check_2,

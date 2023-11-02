@@ -114,6 +114,10 @@ def treatment_assignment(player):
     Quotas.update({treatment: Quotas[treatment]+1})
     
     vignette_labels_order = C.Vignette_labels.copy() 
+    # player.participant.vars['Vignette_order'] = [
+    #         vignette_labels_order[0]+'_inequality', vignette_labels_order[1]+'_inequality', vignette_labels_order[2]+'_inequality',vignette_labels_order[3]+'_inequality',
+    #         vignette_labels_order[0]+'_equality',vignette_labels_order[1]+'_equality', vignette_labels_order[2]+'_equality', vignette_labels_order[3]+'_equality']
+    
     random.shuffle(vignette_labels_order)
     if treatment == 'inequality_first':
         player.participant.vars['Vignette_order'] = [
