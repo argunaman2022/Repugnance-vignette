@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th:first-child, td:first-child {
+    text-align: center;
+}
+
+/* Set fixed column widths */
+th:nth-child(1), td:nth-child(1) {
+    width: 15%; /* Adjust the width as needed */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 30%; /* Adjust the width as needed */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 30%; /* Adjust the width as needed */
+}

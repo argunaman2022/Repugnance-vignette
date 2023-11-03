@@ -1,5 +1,5 @@
 {{ block title }}
-    Page 9/8
+    Scenario 7/8
 {{ endblock }}
 
 {{ block content }}
@@ -26,7 +26,7 @@
             <div class="label">Somewhat benefits person A</div>
             <div class="label">Moderately benefits person A</div>
         </div>
-        <input type="range" id="exploit" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="exploit" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(exploit)"> 
     </div>
 
     <div class="slider-container"> 
@@ -41,7 +41,7 @@
             <div class="label">Somewhat respects autonomy</div>
             <div class="label">Moderately respects autonomy</div>
         </div>
-        <input type="range" id="autonomy" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="autonomy" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(autonomy)"> 
     </div>
 
     <div class="slider-container"> 
@@ -56,7 +56,7 @@
             <div class="label">Somewhat informed choices</div>
             <div class="label">Moderately informed choices</div>
         </div>
-        <input type="range" id="coercion" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="coercion" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(coercion)"> 
     </div>
 
     <div class="slider-container"> 
@@ -72,7 +72,7 @@
             <div class="label">Moderately fair</div>
         </div>
         
-        <input type="range" id="fairA" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="fairA" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(fairA)"> 
     </div>
 
     <div class="slider-container"> 
@@ -88,7 +88,7 @@
             <div class="label">Moderately fair</div>
         </div>
         
-        <input type="range" id="fairB" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="fairB" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(fairB)"> 
     </div>
 
     <div class="slider-container"> 
@@ -104,7 +104,7 @@
             <div class="label">Moderately respects dignity</div>
         </div>
         
-        <input type="range" id="dignity" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="dignity" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(dignity)"> 
     </div>
 
     <div class="slider-container"> 
@@ -120,12 +120,12 @@
             <div class="label">Strongly agree</div>
         </div>
         
-        <input type="range" id="ban" min="-10" max="10" value="0" step="0.01" class="form-range" > 
+        <input type="range" id="ban" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(ban)"> 
     </div>
 </div>
 
     
-    <div style="display: inline;"> 
+    <div style="display: none;"> 
         {{ formfields }}
     </div>
 
@@ -133,7 +133,7 @@
 
     <div class="buttons-container">
         <a id="myBtn"  onclick="button_click(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        <a id="myBtn"  onclick="check_attention()"  class="otree-btn-next btn btn-primary">Next</a>
+        <a id="myBtn"  onclick="next_button()"  class="otree-btn-next btn btn-primary">Next</a>
         <button id="submit_button" style="display: none"></button>
     </div>
     

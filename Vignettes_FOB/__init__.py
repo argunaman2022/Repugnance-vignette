@@ -9,7 +9,7 @@ This is the main survey app. It contains
 '''
 #TODO: add an exit button for players to be able to quit and return the prolific assignment (add this to template as well)
 class C(BaseConstants):
-    NAME_IN_URL = 'Study_Name'
+    NAME_IN_URL = 'Scenarios'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
@@ -28,13 +28,13 @@ class C(BaseConstants):
     Kidney_inequality = '''
     Person A is a 40 year old man. He lives together with his wife and one kid in a household of 3 people.
     Their household's annual income is 31k USD.  Person B is a 40 year old man.
-    She lives together with her husband in a household of 2 people. Their annual income is 75k USD.
+    He lives together with her wife and one kid in a household of 3 people. Their annual income is 75k USD.
     Due to a final-stage kidney disease, person A is in desperate need of a replacement kidney.
     Person A sells one of his kidneys to person B.'''
     Kidney_equality = '''
     Person A is a 40 year old man. He lives together with his wife and one kid in a household of 3 people.
     Their household's annual income is 31k USD.  Person B is a 40 year old man.
-    She lives together with her husband in a household of 2 people. Their annual income is 31k USD.
+    He lives together with her wife and one kid in a household of 3 people. Their annual income is 31k USD.
     Due to a final-stage kidney disease, person A is in desperate need of a replacement kidney.
     Person A sells one of his kidneys to person B.'''
     
@@ -42,11 +42,13 @@ class C(BaseConstants):
     Country A is a medium-sized nation with an average annual wage of $32,000.
     Country B, a medium-sized country with an average annual wage of $73,000, generates a substantial volume of consumer-products waste.
     Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price.
+    This waste will be burnt in Country A's incinerators.
     '''
     Waste_equality = '''
     Country A is a medium-sized nation with an average annual wage of $30,000.
     Country B, a medium-sized country with an average annual wage of $32,000, generates a substantial volume of consumer-products waste.
-    Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price.
+    Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price. 
+    This waste will be burnt in Country A's incinerators.
     '''
     
     Baby_inequality = '''
@@ -100,69 +102,77 @@ class Player(BasePlayer):
     # Player answers
     ## Survey
     ### Child labor
-    Child_inequality_exploit = models.FloatField(blank=True, min=-10)
-    Child_inequality_autonomy = models.FloatField(blank=True, min=-10)
-    Child_inequality_coercion = models.FloatField(blank=True, min=-10)
-    Child_inequality_fairA = models.FloatField(blank=True, min=-10)
-    Child_inequality_fairB = models.FloatField(blank=True, min=-10)
-    Child_inequality_dignity = models.FloatField(blank=True, min=-10)
-    Child_inequality_ban = models.FloatField(blank=True, min=-10)
+    Child_inequality_exploit = models.FloatField(blank=False, min=-10)
+    Child_inequality_autonomy = models.FloatField(blank=False, min=-10)
+    Child_inequality_coercion = models.FloatField(blank=False, min=-10)
+    Child_inequality_fairA = models.FloatField(blank=False, min=-10)
+    Child_inequality_fairB = models.FloatField(blank=False, min=-10)
+    Child_inequality_dignity = models.FloatField(blank=False, min=-10)
+    Child_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
     
-    Child_equality_exploit = models.FloatField(blank=True, min=-10)
-    Child_equality_autonomy = models.FloatField(blank=True, min=-10)
-    Child_equality_coercion = models.FloatField(blank=True, min=-10)
-    Child_equality_fairA = models.FloatField(blank=True, min=-10)
-    Child_equality_fairB = models.FloatField(blank=True, min=-10)
-    Child_equality_dignity = models.FloatField(blank=True, min=-10)
-    Child_equality_ban = models.FloatField(blank=True, min=-10)
+    Child_equality_exploit = models.FloatField(blank=False, min=-10)
+    Child_equality_autonomy = models.FloatField(blank=False, min=-10)
+    Child_equality_coercion = models.FloatField(blank=False, min=-10)
+    Child_equality_fairA = models.FloatField(blank=False, min=-10)
+    Child_equality_fairB = models.FloatField(blank=False, min=-10)
+    Child_equality_dignity = models.FloatField(blank=False, min=-10)
+    Child_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
     ### Kidney market, min=-10s
-    Kidney_inequality_exploit = models.FloatField(blank=True, min=-10)
-    Kidney_inequality_autonomy = models.FloatField(blank=True, min=-10)
-    Kidney_inequality_coercion = models.FloatField(blank=True, min=-10)
-    Kidney_inequality_fairA = models.FloatField(blank=True, min=-10)
-    Kidney_inequality_fairB = models.FloatField(blank=True, min=-10)
-    Kidney_inequality_dignity = models.FloatField(blank=True, min=-10)
-    Kidney_inequality_ban = models.FloatField(blank=True, min=-10)
+    Kidney_inequality_exploit = models.FloatField(blank=False, min=-10)
+    Kidney_inequality_autonomy = models.FloatField(blank=False, min=-10)
+    Kidney_inequality_coercion = models.FloatField(blank=False, min=-10)
+    Kidney_inequality_fairA = models.FloatField(blank=False, min=-10)
+    Kidney_inequality_fairB = models.FloatField(blank=False, min=-10)
+    Kidney_inequality_dignity = models.FloatField(blank=False, min=-10)
+    Kidney_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
     
-    Kidney_equality_exploit = models.FloatField(blank=True, min=-10)
-    Kidney_equality_autonomy = models.FloatField(blank=True, min=-10)
-    Kidney_equality_coercion = models.FloatField(blank=True, min=-10)
-    Kidney_equality_fairA = models.FloatField(blank=True, min=-10)
-    Kidney_equality_fairB = models.FloatField(blank=True, min=-10)
-    Kidney_equality_dignity = models.FloatField(blank=True, min=-10)
-    Kidney_equality_ban = models.FloatField(blank=True, min=-10)
+    Kidney_equality_exploit = models.FloatField(blank=False, min=-10)
+    Kidney_equality_autonomy = models.FloatField(blank=False, min=-10)
+    Kidney_equality_coercion = models.FloatField(blank=False, min=-10)
+    Kidney_equality_fairA = models.FloatField(blank=False, min=-10)
+    Kidney_equality_fairB = models.FloatField(blank=False, min=-10)
+    Kidney_equality_dignity = models.FloatField(blank=False, min=-10)
+    Kidney_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
     ### Waste trad, min=-10e
-    Waste_inequality_exploit = models.FloatField(blank=True, min=-10)
-    Waste_inequality_autonomy = models.FloatField(blank=True, min=-10)
-    Waste_inequality_coercion = models.FloatField(blank=True, min=-10)
-    Waste_inequality_fairA = models.FloatField(blank=True, min=-10)
-    Waste_inequality_fairB = models.FloatField(blank=True, min=-10)
-    Waste_inequality_dignity = models.FloatField(blank=True, min=-10)
-    Waste_inequality_ban = models.FloatField(blank=True, min=-10)
+    Waste_inequality_exploit = models.FloatField(blank=False, min=-10)
+    Waste_inequality_autonomy = models.FloatField(blank=False, min=-10)
+    Waste_inequality_coercion = models.FloatField(blank=False, min=-10)
+    Waste_inequality_fairA = models.FloatField(blank=False, min=-10)
+    Waste_inequality_fairB = models.FloatField(blank=False, min=-10)
+    Waste_inequality_dignity = models.FloatField(blank=False, min=-10)
+    Waste_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
    
-    Waste_equality_exploit = models.FloatField(blank=True, min=-10)
-    Waste_equality_autonomy = models.FloatField(blank=True, min=-10)
-    Waste_equality_coercion = models.FloatField(blank=True, min=-10)
-    Waste_equality_fairA = models.FloatField(blank=True, min=-10)
-    Waste_equality_fairB = models.FloatField(blank=True, min=-10)
-    Waste_equality_dignity = models.FloatField(blank=True, min=-10)
-    Waste_equality_ban = models.FloatField(blank=True, min=-10)
+    Waste_equality_exploit = models.FloatField(blank=False, min=-10)
+    Waste_equality_autonomy = models.FloatField(blank=False, min=-10)
+    Waste_equality_coercion = models.FloatField(blank=False, min=-10)
+    Waste_equality_fairA = models.FloatField(blank=False, min=-10)
+    Waste_equality_fairB = models.FloatField(blank=False, min=-10)
+    Waste_equality_dignity = models.FloatField(blank=False, min=-10)
+    Waste_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
     ### Selling babie, min=-10s
-    Baby_inequality_exploit = models.FloatField(blank=True, min=-10)
-    Baby_inequality_autonomy = models.FloatField(blank=True, min=-10)
-    Baby_inequality_coercion = models.FloatField(blank=True, min=-10)
-    Baby_inequality_fairA = models.FloatField(blank=True, min=-10)
-    Baby_inequality_fairB = models.FloatField(blank=True, min=-10)
-    Baby_inequality_dignity = models.FloatField(blank=True, min=-10)
-    Baby_inequality_ban = models.FloatField(blank=True, min=-10)
+    Baby_inequality_exploit = models.FloatField(blank=False, min=-10)
+    Baby_inequality_autonomy = models.FloatField(blank=False, min=-10)
+    Baby_inequality_coercion = models.FloatField(blank=False, min=-10)
+    Baby_inequality_fairA = models.FloatField(blank=False, min=-10)
+    Baby_inequality_fairB = models.FloatField(blank=False, min=-10)
+    Baby_inequality_dignity = models.FloatField(blank=False, min=-10)
+    Baby_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
    
-    Baby_equality_exploit = models.FloatField(blank=True, min=-10)
-    Baby_equality_autonomy = models.FloatField(blank=True, min=-10)
-    Baby_equality_coercion = models.FloatField(blank=True, min=-10)
-    Baby_equality_fairA = models.FloatField(blank=True, min=-10)
-    Baby_equality_fairB = models.FloatField(blank=True, min=-10)
-    Baby_equality_dignity = models.FloatField(blank=True, min=-10)
-    Baby_equality_ban = models.FloatField(blank=True, min=-10)
+    Baby_equality_exploit = models.FloatField(blank=False, min=-10)
+    Baby_equality_autonomy = models.FloatField(blank=False, min=-10)
+    Baby_equality_coercion = models.FloatField(blank=False, min=-10)
+    Baby_equality_fairA = models.FloatField(blank=False, min=-10)
+    Baby_equality_fairB = models.FloatField(blank=False, min=-10)
+    Baby_equality_dignity = models.FloatField(blank=False, min=-10)
+    Baby_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
+                                            choices=[[True, 'Yes'], [False,'No']])
 
 # Functions
 def variables_for_template(player, Page_number, Attention_check=False):

@@ -1,5 +1,5 @@
 {{ block title }}
-    Page 3/8
+    Scenario 1/8
 {{ endblock }}
 
 {{ block content }}
@@ -8,11 +8,29 @@
 
 
     <p>
-       Please <strong>read carefully</strong> the following situation and <strong>evaluate</strong> it using the sliders below.<br><br>
+       Please <strong>read carefully</strong> the following situation and <strong>evaluate</strong> it.<br><br>
        <i>"{{Vignette_text}}"</i>
     </p>
     <br><br>
+
+
+
+
+      
+      
+
 <div class="slider-parent">
+    <div class="ban-container">
+        <label for="yes_no_radio">In your opinion, should such transactions be banned?</label>
+      <div style="display: flex;  justify-content: space-evenly; padding: 10px;">
+        <p>
+            <input type="radio" name="yes_no">No</input>
+            </p>
+            <p>
+            <input type="radio" name="yes_no">Yes </input>
+        </p>
+      </div>
+    </div>
 
     <div class="slider-container"> 
         <label class="slider-question" for="exploit">{{Slider_labels.exploit}}</label>
@@ -107,7 +125,7 @@
         <input type="range" id="dignity" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(dignity)"> 
     </div>
 
-    <div class="slider-container"> 
+    <!-- <div class="slider-container"> 
         <label class="slider-question" for="ban">{{Slider_labels.ban}}</label>
         <br>
         <div class="slider-range-labels">
@@ -121,7 +139,7 @@
         </div>
         
         <input type="range" id="ban" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(ban)"> 
-    </div>
+    </div> -->
 </div>
 
     
@@ -133,7 +151,8 @@
 
     <div class="buttons-container">
         <a id="myBtn"  onclick="button_click(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        {{ next_button }}
+        <a id="myBtn"  onclick="next_button()"  class="otree-btn-next btn btn-primary">Next</a>
+        <button id="submit_button" style="display: none"></button>
     </div>
     
     <div id="myModal1" class="modal">

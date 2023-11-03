@@ -2,7 +2,7 @@ from os import environ
 #TODO: add the prolific completion link here
 SESSION_CONFIGS = [
     dict(name='Study',
-         app_sequence=['Introduction','Vignette', 'Exit_Survey', 'Results'],
+         app_sequence=['Introduction','Vignettes_FOB','Vignettes_SOB', 'Exit_Survey', 'Results'],
          num_demo_participants=200,
          completionlink='prolific completion link!!!!!!'),
 ]
