@@ -71,7 +71,7 @@ class C(BaseConstants):
     '''
     
     
-    Slider_label_exploit = 'In your opinion, does this transaction <strong>benefit or exploit person A</strong>'
+    Slider_label_exploit = 'In your opinion, does this transaction <strong>benefit or exploit person A</strong>?'
     Slider_label_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
     Slider_label_coercion = 'In your opinion, does this transaction allow the person A <strong> to make fully informed choices or does it exert undue influence</strong>?'
     Slider_label_fairA = 'In your opinion, is this transaction <strong>fair or unfair to person A </strong>?'
@@ -79,7 +79,7 @@ class C(BaseConstants):
     Slider_label_dignity = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?'
     Slider_label_ban = 'To what extend do you agree with the following statement: <strong>"this transaction should be banned"</strong>?'
     
-    Slider_label_country_exploit = 'In your opinion, does this transaction <strong>benefit or exploit country A</strong>'
+    Slider_label_country_exploit = 'In your opinion, does this transaction <strong>benefit or exploit country A</strong>?'
     Slider_label_country_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
     Slider_label_country_coercion = 'In your opinion, does this transaction allow the country A <strong> to make fully informed choices or does it exert undue influence</strong>?'
     Slider_label_country_fairA = 'In your opinion, is this transaction <strong>fair or unfair to country A </strong>?'
