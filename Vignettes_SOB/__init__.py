@@ -34,16 +34,37 @@ class Player(BasePlayer):
     # Player answers
     ## Survey
     ### Child labor
-    Child_inequality_SOB = models.IntegerField(
-        label='What percentage of people chose to ban the transaction in Version 1?',
+    Child_equality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 1?</strong>',
         min=0, max=100)
-    Child_equality_SOB = models.IntegerField(
-        label='What percentage of people chose to ban the transaction in Version 2?',
+    Child_inequality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 2?</strong>',
         min=0, max=100)
+    Kidney_equality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 1?</strong>',
+        min=0, max=100)
+    Kidney_inequality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 2?</strong>',
+        min=0, max=100)
+    Waste_equality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 1?</strong>',
+        min=0, max=100)
+    Waste_inequality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 2?</strong>',
+        min=0, max=100)
+    Baby_equality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 1?</strong>',
+        min=0, max=100)
+    Baby_inequality_SOB = models.FloatField(
+        label='What percentage of people chose to ban the transaction in <strong>Version 2?</strong>',
+        min=0, max=100)
+    
 # Functions
 def variables_for_template(player, Page_number, Attention_check=False):
     current_vignette_full_name = player.participant.Vignette_order[Page_number] #e.g. Baby_inequality
     current_vignette = current_vignette_full_name.split("_")[0] #e.g. Baby
+    current_vignette_inequality = current_vignette + '_inequality' #e.g. Baby_inequality
+    current_vignette_equality = current_vignette + '_equality' #e.g. Baby_equality
     
     vignette_characteristics = C.vignette_characteristics.copy().transpose()
     vignette_characteristics = vignette_characteristics[vignette_characteristics.iloc[:,0] == current_vignette]
@@ -55,16 +76,15 @@ def variables_for_template(player, Page_number, Attention_check=False):
         'seller_incomev1': vignette_characteristics.loc[current_vignette_full_name,'Sellers household income'], 
         'seller_incomev2': vignette_characteristics.loc[current_vignette_full_name,'Sellers household income'], 
         'buyer': vignette_characteristics.loc[current_vignette_full_name,'Buyer'], 
-        'buyer_incomev1': vignette_characteristics.loc[current_vignette_full_name,'Buyers household income'],  
-        'buyer_incomev2': vignette_characteristics.loc[current_vignette_full_name,'Buyers household income'],  
+        'buyer_incomev1': vignette_characteristics.loc[current_vignette_equality,'Buyers household income'],  
+        'buyer_incomev2': vignette_characteristics.loc[current_vignette_inequality,'Buyers household income'],  
     }
+    print(vignette_characteristics)
         
     return {'Instructions': C.Instructions_path,
             'Vignette': current_vignette,
             'labels_for_table': labels_for_table,
             }
-   
-
 # Pages
 class Introduction_SOB(Page):            
     @staticmethod
@@ -77,7 +97,7 @@ class Introduction_SOB(Page):
 
 class Page1(Page):
     form_model = 'player'
-    form_fields = ['Child_inequality_SOB', 'Child_equality_SOB'] #TODO: make this dynamic and randomize.
+    form_fields = ['Waste_inequality_SOB', 'Waste_equality_SOB'] #TODO: make this dynamic and randomize. currently doesnt work
         
     @staticmethod
     def is_displayed(player: Player):
@@ -89,136 +109,11 @@ class Page1(Page):
     
     @staticmethod
     def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[0],)
-    
-class Page2(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 1)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 1)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[1],)
-
-class Page3(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 2)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 2)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[2],)
-
-class Page4(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 3)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 3)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[3],)
-
-class Page5(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 4)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 4)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[4],)
-
-class Page6(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 5)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 5)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[5],)
-
-class Page7(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 6)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 6)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[6],)
-
-class Page8(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 7)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 7)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[7],)
-        
-
+        vignette=player.participant.Vignette_order[0] #e.g. Baby_inequality
+        current_vignette = vignette.split("_")[0] #e.g. Baby
+        return dict(vignette=vignette,current_vignette=current_vignette)
+   
 page_sequence = [
     Introduction_SOB,
-    Page1, Page2, Page3, Page4, Page5, Page6, Page7, Page8,
+    Page1, 
     ]

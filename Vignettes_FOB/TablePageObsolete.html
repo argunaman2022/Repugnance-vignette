@@ -1,5 +1,5 @@
 {{ block title }}
-    Scenario 6/8
+    Scenario 1/4
 {{ endblock }}
 
 {{ block content }}
@@ -30,6 +30,7 @@
       </div>
     </div>
 </div>
+
 <div class="hidden">
     <div class="slider-parent">
         <div class="slider-container"> 
@@ -40,9 +41,9 @@
                 <div class="label">Somewhat exploits person A</div>
                 <div class="label">Moderately exploits person A</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately benefits person A</div>
-                <div class="label">Somewhat benefits person A</div>
                 <div class="label">Greatly benefits person A</div>
+                <div class="label">Somewhat benefits person A</div>
+                <div class="label">Moderately benefits person A</div>
             </div>
             <input type="range" id="exploit" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(exploit)"> 
         </div>
@@ -55,9 +56,9 @@
                 <div class="label">Somewhat limits autonomy</div>
                 <div class="label">Moderately limits autonomy</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately respects autonomy</div>
-                <div class="label">Somewhat respects autonomy</div>
                 <div class="label">Greatly respects autonomy</div>
+                <div class="label">Somewhat respects autonomy</div>
+                <div class="label">Moderately respects autonomy</div>
             </div>
             <input type="range" id="autonomy" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(autonomy)"> 
         </div>
@@ -70,9 +71,9 @@
                 <div class="label">Somewhat undue influence</div>
                 <div class="label">Moderately undue influence</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately informed choices</div>
-                <div class="label">Somewhat informed choices</div>
                 <div class="label">Greatly informed choices</div>
+                <div class="label">Somewhat informed choices</div>
+                <div class="label">Moderately informed choices</div>
             </div>
             <input type="range" id="coercion" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(coercion)"> 
         </div>
@@ -85,9 +86,9 @@
                 <div class="label">Somewhat unfair </div>
                 <div class="label">Moderately unfair</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately fair</div>
-                <div class="label">Somewhat fair</div>
                 <div class="label">Very fair</div>
+                <div class="label">Somewhat fair</div>
+                <div class="label">Moderately fair</div>
             </div>
             
             <input type="range" id="fairA" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairA)"> 
@@ -101,9 +102,9 @@
                 <div class="label">Somewhat unfair </div>
                 <div class="label">Moderately unfair</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately fair</div>
-                <div class="label">Somewhat fair</div>
                 <div class="label">Very fair</div>
+                <div class="label">Somewhat fair</div>
+                <div class="label">Moderately fair</div>
             </div>
             
             <input type="range" id="fairB" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairB)"> 
@@ -117,9 +118,9 @@
                 <div class="label">Somewhat violates dignity</div>
                 <div class="label">Moderately violates dignity</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately respects dignity</div>
-                <div class="label">Somewhat respects dignity</div>
                 <div class="label">Greatly respects dignity</div>
+                <div class="label">Somewhat respects dignity</div>
+                <div class="label">Moderately respects dignity</div>
             </div>
             
             <input type="range" id="dignity" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(dignity)"> 
@@ -151,6 +152,8 @@
     <br><br>
 
     <div class="buttons-container">
+        <!-- TODO: make the exit survey return the user to prolific -->
+        <a id="myBtn"  onclick=""  class="otree-btn-next btn btn-primary">Exit Survey (Return task)</a>
         <a id="myBtn"  onclick="button_click(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
         <div class="hidden">
              <a id="myBtn"  onclick="next_button()"  class="otree-btn-next btn btn-primary">Next</a>

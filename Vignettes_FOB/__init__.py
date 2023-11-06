@@ -8,6 +8,7 @@ This is the main survey app. It contains
 - You can additionally calculate payoffs and save them at a participant field.
 '''
 #TODO: add an exit button for players to be able to quit and return the prolific assignment (add this to template as well)
+#TODO : only 4 vignettes for each person ?
 class C(BaseConstants):
     NAME_IN_URL = 'Scenarios'
     PLAYERS_PER_GROUP = None
@@ -55,13 +56,13 @@ class C(BaseConstants):
     Person A is a 25 year old single, pregnant woman. She lives alone and works at a retail shop. 
     Her annual net income is 30k USD. Person B is a 40 year old single woman. 
     She lives alone and her household's annual net income is 75k USD. Person B wants to have a baby but is infertile.
-    Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B one she is born.
+    Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B once she is born.
     '''
     Baby_equality = '''
     Person A is a 25 year old single, pregnant woman. She lives alone and works at a retail shop. 
     Her annual net income is 30k USD. Person B is a 40 year old single woman. 
     She lives alone and her household's annual net income is 30k USD. Person B wants to have a baby but is infertile.
-    Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B one she is born.
+    Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B once she is born.
     '''
     Attention_check = '''
     There is no person A or person B in this situation. It is important to us that you are reading these vignettes carefully. We use what are called "attention checks" to measure whether are paying attention. 
@@ -108,8 +109,7 @@ class Player(BasePlayer):
     Child_inequality_fairA = models.FloatField(blank=False, min=-10)
     Child_inequality_fairB = models.FloatField(blank=False, min=-10)
     Child_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Child_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Child_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     
     Child_equality_exploit = models.FloatField(blank=False, min=-10)
     Child_equality_autonomy = models.FloatField(blank=False, min=-10)
@@ -117,8 +117,7 @@ class Player(BasePlayer):
     Child_equality_fairA = models.FloatField(blank=False, min=-10)
     Child_equality_fairB = models.FloatField(blank=False, min=-10)
     Child_equality_dignity = models.FloatField(blank=False, min=-10)
-    Child_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Child_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Kidney market, min=-10s
     Kidney_inequality_exploit = models.FloatField(blank=False, min=-10)
     Kidney_inequality_autonomy = models.FloatField(blank=False, min=-10)
@@ -126,8 +125,7 @@ class Player(BasePlayer):
     Kidney_inequality_fairA = models.FloatField(blank=False, min=-10)
     Kidney_inequality_fairB = models.FloatField(blank=False, min=-10)
     Kidney_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Kidney_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     
     Kidney_equality_exploit = models.FloatField(blank=False, min=-10)
     Kidney_equality_autonomy = models.FloatField(blank=False, min=-10)
@@ -135,8 +133,7 @@ class Player(BasePlayer):
     Kidney_equality_fairA = models.FloatField(blank=False, min=-10)
     Kidney_equality_fairB = models.FloatField(blank=False, min=-10)
     Kidney_equality_dignity = models.FloatField(blank=False, min=-10)
-    Kidney_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Kidney_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Waste trad, min=-10e
     Waste_inequality_exploit = models.FloatField(blank=False, min=-10)
     Waste_inequality_autonomy = models.FloatField(blank=False, min=-10)
@@ -144,8 +141,7 @@ class Player(BasePlayer):
     Waste_inequality_fairA = models.FloatField(blank=False, min=-10)
     Waste_inequality_fairB = models.FloatField(blank=False, min=-10)
     Waste_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Waste_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Waste_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
     Waste_equality_exploit = models.FloatField(blank=False, min=-10)
     Waste_equality_autonomy = models.FloatField(blank=False, min=-10)
@@ -153,8 +149,7 @@ class Player(BasePlayer):
     Waste_equality_fairA = models.FloatField(blank=False, min=-10)
     Waste_equality_fairB = models.FloatField(blank=False, min=-10)
     Waste_equality_dignity = models.FloatField(blank=False, min=-10)
-    Waste_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Waste_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Selling babie, min=-10s
     Baby_inequality_exploit = models.FloatField(blank=False, min=-10)
     Baby_inequality_autonomy = models.FloatField(blank=False, min=-10)
@@ -162,8 +157,7 @@ class Player(BasePlayer):
     Baby_inequality_fairA = models.FloatField(blank=False, min=-10)
     Baby_inequality_fairB = models.FloatField(blank=False, min=-10)
     Baby_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Baby_inequality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Baby_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
     Baby_equality_exploit = models.FloatField(blank=False, min=-10)
     Baby_equality_autonomy = models.FloatField(blank=False, min=-10)
@@ -171,8 +165,7 @@ class Player(BasePlayer):
     Baby_equality_fairA = models.FloatField(blank=False, min=-10)
     Baby_equality_fairB = models.FloatField(blank=False, min=-10)
     Baby_equality_dignity = models.FloatField(blank=False, min=-10)
-    Baby_equality_ban = models.BooleanField(label='In your opinion, should such transactions be banned?',
-                                            choices=[[True, 'Yes'], [False,'No']])
+    Baby_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
 
 # Functions
 def variables_for_template(player, Page_number, Attention_check=False):
@@ -381,8 +374,8 @@ class Page8(Page):
     def js_vars(player):
         return dict(vignette=player.participant.Vignette_order[7],)
         
-
+# ADD back page Page2, Page3, Page4, Page5, Page6, Page7, Page8,
 page_sequence = [
-    Page1, Page2, Page3, Page4, Page5, Page6, Page7, Page8,
+    Page1, 
     Attention_check_2,
     ]
