@@ -1,5 +1,5 @@
 {{ block title }}
-    Scenario 3/8
+    Scenario 3/4. Beliefs of others.
 {{ endblock }}
 
 {{ block content }}
@@ -8,133 +8,143 @@
 
 
     <p>
-       Please <strong>read carefully</strong> the following situation and <strong>evaluate</strong> it using the sliders below.<br><br>
+       Please <strong>read carefully</strong> the following situation again and try to <strong>guess other participant's choices</strong>.<br><br>
        <i>"{{Vignette_text}}"</i>
     </p>
-    <br><br>
+    <br><br>      
+
+<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
+        To continue, you must answer all questions by moving each slider.
+</div>
+
+
+
 <div class="slider-parent">
-
-    <div class="slider-container"> 
-        <label class="slider-question" for="exploit">{{Slider_labels.exploit}}</label>
-        <br>
+    <div class="slider-container" id="ban-div"> 
+        <label class="slider-question" for="equality">What percentage of participants have answered <strong>"Yes"</strong> to banning this transaction?</label>
         <div class="slider-range-labels">
-            <div class="label">Greatly exploits person A</div>
-            <div class="label">Somewhat exploits person A</div>
-            <div class="label">Moderately exploits person A</div>
-            <div class="label">Neutral</div>
-            <div class="label">Greatly benefits person A</div>
-            <div class="label">Somewhat benefits person A</div>
-            <div class="label">Moderately benefits person A</div>
+            <div class="label-percentage">0%</div>
+            <div class="label-percentage">25%</div>
+            <div class="label-percentage">50%</div>
+            <div class="label-percentage">75%</div>
+            <div class="label-percentage">100%</div>
         </div>
-        <input type="range" id="exploit" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(exploit)"> 
-    </div>
+        <input type="range" id="equality" min="0" max="100" value="50" step="1" class="form-range" oninput="percentsliderChange(ban=true, equality)"> 
+        <div id="equality_answer" class="percentage_answer_box"></div>
+     </div>
+</div>
 
-    <div class="slider-container"> 
-        <label class="slider-question" for="autonomy">{{Slider_labels.autonomy}}</label>
-        <br>
-        <div class="slider-range-labels">
-            <div class="label">Greatly limits autonomy</div>
-            <div class="label">Somewhat limits autonomy</div>
-            <div class="label">Moderately limits autonomy</div>
-            <div class="label">Neutral</div>
-            <div class="label">Greatly respects autonomy</div>
-            <div class="label">Somewhat respects autonomy</div>
-            <div class="label">Moderately respects autonomy</div>
+<div class="hidden">
+    <strong>In the six questions below, try to guess your partner's choice. The closer you place your slider to your partner's the more bonus payment you will earn.</strong>
+    <div class="slider-parent">
+        <div class="slider-container"> 
+            <label class="slider-question" for="exploit">{{Slider_labels.exploit}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Greatly exploits person A</div>
+                <div class="label">Somewhat exploits person A</div>
+                <div class="label">Moderately exploits person A</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately benefits person A</div>
+                <div class="label">Somewhat benefits person A</div>
+                <div class="label">Greatly benefits person A</div>
+            </div>
+            <input type="range" id="exploit" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(exploit, SOB=true)"> 
         </div>
-        <input type="range" id="autonomy" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(autonomy)"> 
-    </div>
-
-    <div class="slider-container"> 
-        <label class="slider-question" for="coercion">{{Slider_labels.coercion}}</label>
-        <br>
-        <div class="slider-range-labels">
-            <div class="label">Severe undue influence</div>
-            <div class="label">Somewhat undue influence</div>
-            <div class="label">Moderately undue influence</div>
-            <div class="label">Neutral</div>
-            <div class="label">Greatly informed choices</div>
-            <div class="label">Somewhat informed choices</div>
-            <div class="label">Moderately informed choices</div>
+    
+        <div class="slider-container"> 
+            <label class="slider-question" for="autonomy">{{Slider_labels.autonomy}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Greatly limits autonomy</div>
+                <div class="label">Somewhat limits autonomy</div>
+                <div class="label">Moderately limits autonomy</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately respects autonomy</div>
+                <div class="label">Somewhat respects autonomy</div>
+                <div class="label">Greatly respects autonomy</div>
+            </div>
+            <input type="range" id="autonomy" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(autonomy, SOB=true)"> 
         </div>
-        <input type="range" id="coercion" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(coercion)"> 
-    </div>
-
-    <div class="slider-container"> 
-        <label class="slider-question" for="fairA">{{Slider_labels.fairA}}</label>
-        <br>
-        <div class="slider-range-labels">
-            <div class="label">Very unfair</div>
-            <div class="label">Somewhat unfair </div>
-            <div class="label">Moderately unfair</div>
-            <div class="label">Neutral</div>
-            <div class="label">Very fair</div>
-            <div class="label">Somewhat fair</div>
-            <div class="label">Moderately fair</div>
+    
+        <div class="slider-container"> 
+            <label class="slider-question" for="coercion">{{Slider_labels.coercion}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Severe undue influence</div>
+                <div class="label">Somewhat undue influence</div>
+                <div class="label">Moderately undue influence</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately informed choices</div>
+                <div class="label">Somewhat informed choices</div>
+                <div class="label">Greatly informed choices</div>
+            </div>
+            <input type="range" id="coercion" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(coercion, SOB=true)"> 
         </div>
-        
-        <input type="range" id="fairA" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(fairA)"> 
-    </div>
-
-    <div class="slider-container"> 
-        <label class="slider-question" for="fairB">{{Slider_labels.fairB}}</label>
-        <br>
-        <div class="slider-range-labels">
-            <div class="label">Very unfair</div>
-            <div class="label">Somewhat unfair </div>
-            <div class="label">Moderately unfair</div>
-            <div class="label">Neutral</div>
-            <div class="label">Very fair</div>
-            <div class="label">Somewhat fair</div>
-            <div class="label">Moderately fair</div>
+    
+        <div class="slider-container"> 
+            <label class="slider-question" for="fairA">{{Slider_labels.fairA}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Very unfair</div>
+                <div class="label">Somewhat unfair </div>
+                <div class="label">Moderately unfair</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately fair</div>
+                <div class="label">Somewhat fair</div>
+                <div class="label">Very fair</div>
+            </div>
+            
+            <input type="range" id="fairA" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairA, SOB=true)"> 
         </div>
-        
-        <input type="range" id="fairB" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(fairB)"> 
-    </div>
-
-    <div class="slider-container"> 
-        <label class="slider-question" for="dignity">{{Slider_labels.dignity}}</label>
-        <br>
-        <div class="slider-range-labels">
-            <div class="label">Greatly violates dignity</div>
-            <div class="label">Somewhat violates dignity</div>
-            <div class="label">Moderately violates dignity</div>
-            <div class="label">Neutral</div>
-            <div class="label">Greatly respects dignity</div>
-            <div class="label">Somewhat respects dignity</div>
-            <div class="label">Moderately respects dignity</div>
+    
+        <div class="slider-container"> 
+            <label class="slider-question" for="fairB">{{Slider_labels.fairB}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Very unfair</div>
+                <div class="label">Somewhat unfair </div>
+                <div class="label">Moderately unfair</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately fair</div>
+                <div class="label">Somewhat fair</div>
+                <div class="label">Very fair</div>
+            </div>
+            
+            <input type="range" id="fairB" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairB, SOB=true)"> 
         </div>
-        
-        <input type="range" id="dignity" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(dignity)"> 
-    </div>
-
-    <div class="slider-container"> 
-        <label class="slider-question" for="ban">{{Slider_labels.ban}}</label>
-        <br>
-        <div class="slider-range-labels">
-            <div class="label">Strongly disagree</div>
-            <div class="label">Somewhat disagree</div>
-            <div class="label">Moderately disagree</div>
-            <div class="label">Neutral</div>
-            <div class="label">Moderately agree</div>
-            <div class="label">Somewhat agree</div>
-            <div class="label">Strongly agree</div>
+    
+        <div class="slider-container"> 
+            <label class="slider-question" for="dignity">{{Slider_labels.dignity}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Greatly violates dignity</div>
+                <div class="label">Somewhat violates dignity</div>
+                <div class="label">Moderately violates dignity</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately respects dignity</div>
+                <div class="label">Somewhat respects dignity</div>
+                <div class="label">Greatly respects dignity</div>
+            </div>
+            
+            <input type="range" id="dignity" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(dignity, SOB=true)"> 
         </div>
-        
-        <input type="range" id="ban" min="-10" max="10" value="0" step="0.01" class="form-range" oninput="sliderChange(ban)"> 
     </div>
 </div>
 
     
-    <div style="display: none;"> 
-        {{ formfields }}
-    </div>
+
+<div style="display: inline;"> 
+    {{ formfields }}
+</div>
 
     <br><br>
 
-    <div class="buttons-container">
-        <a id="myBtn"  onclick="button_click(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        {{ next_button }}
-    </div>
+<div class="buttons-container">
+    <a id="myBtn"  onclick="button_click(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+            <a id="myBtn"  onclick="next_button(check_attention = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</a>
+    <button id="submit_button" style="display: none"></button>
+</div>
     
     <div id="myModal1" class="modal">
         <div class="modal-content">

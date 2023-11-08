@@ -18,50 +18,50 @@ class C(BaseConstants):
     
     # vignette texts
     Child_inequality = '''
-    Person A is a 13 year old girl. She lives together with her parents in a household of 3 people. Their household's annual income is 31k USD.
+    Person A is a 13 year old girl. She lives together with her parents in a household of 3 people. Their household's annual income is <strong>31k USD</strong>.
     Person B is a 50 year old woman. She lives together with her husband and mother in a household of 3 people.
-    Their annual income is 75k USD. Person A works 5 hours every Saturday cleaning person B's 2 story-house. A's hourly wage is 15 USD/hour.'''
+    Their annual income is <strong>75k USD</strong>. Person A works 5 hours every Saturday cleaning person B's 2 story-house. A's hourly wage is 15 USD/hour.'''
     Child_equality = '''
-    Person A is a 13 year old girl. She lives together with her parents in a household of 3 people. Their household's annual income is 31k USD.
+    Person A is a 13 year old girl. She lives together with her parents in a household of 3 people. Their household's annual income is <strong>31k USD</strong>.
     Person B is a 50 year old woman. She lives together with her husband and mother in a household of 3 people.
-    Their annual income is 31k USD. Person A works 5 hours every Saturday cleaning person B's 2 story-house. A's hourly wage is 15 USD/hour.'''
+    Their annual income is <strong>31k USD</strong>. Person A works 5 hours every Saturday cleaning person B's 2 story-house. A's hourly wage is 15 USD/hour.'''
     
     Kidney_inequality = '''
     Person A is a 40 year old man. He lives together with his wife and one kid in a household of 3 people.
-    Their household's annual income is 31k USD.  Person B is a 40 year old man.
-    He lives together with her wife and one kid in a household of 3 people. Their annual income is 75k USD.
+    Their household's annual income is <strong>31k USD</strong>.  Person B is a 40 year old man.
+    He lives together with her wife and one kid in a household of 3 people. Their annual income is <strong>75k USD</strong>.
     Due to a final-stage kidney disease, person A is in desperate need of a replacement kidney.
     Person A sells one of his kidneys to person B.'''
     Kidney_equality = '''
     Person A is a 40 year old man. He lives together with his wife and one kid in a household of 3 people.
-    Their household's annual income is 31k USD.  Person B is a 40 year old man.
-    He lives together with her wife and one kid in a household of 3 people. Their annual income is 31k USD.
+    Their household's annual income is <strong>31k USD</strong>.  Person B is a 40 year old man.
+    He lives together with her wife and one kid in a household of 3 people. Their annual income is <strong>31k USD</strong>.
     Due to a final-stage kidney disease, person A is in desperate need of a replacement kidney.
     Person A sells one of his kidneys to person B.'''
     
     Waste_inequality = '''
-    Country A is a medium-sized nation with an average annual wage of $32,000.
-    Country B, a medium-sized country with an average annual wage of $73,000, generates a substantial volume of consumer-products waste.
+    Country A is a medium-sized nation with an average annual wage of <strong>31k USD</strong>.
+    Country B, a medium-sized country with an average annual wage of <strong>75k USD</strong>, generates a substantial volume of consumer-products waste.
     Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price.
     This waste will be burnt in Country A's incinerators.
     '''
     Waste_equality = '''
-    Country A is a medium-sized nation with an average annual wage of $30,000.
-    Country B, a medium-sized country with an average annual wage of $32,000, generates a substantial volume of consumer-products waste.
+    Country A is a medium-sized nation with an average annual wage of <strong>31k USD</strong>.
+    Country B, a medium-sized country with an average annual wage of <strong>31k USD</strong>, generates a substantial volume of consumer-products waste.
     Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price. 
     This waste will be burnt in Country A's incinerators.
     '''
     
     Baby_inequality = '''
     Person A is a 25 year old single, pregnant woman. She lives alone and works at a retail shop. 
-    Her annual net income is 30k USD. Person B is a 40 year old single woman. 
-    She lives alone and her household's annual net income is 75k USD. Person B wants to have a baby but is infertile.
+    Her annual net income is <strong>31k USD</strong>. Person B is a 40 year old single woman. 
+    She lives alone and her household's annual net income is <strong>75k USD</strong>. Person B wants to have a baby but is infertile.
     Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B once she is born.
     '''
     Baby_equality = '''
     Person A is a 25 year old single, pregnant woman. She lives alone and works at a retail shop. 
-    Her annual net income is 30k USD. Person B is a 40 year old single woman. 
-    She lives alone and her household's annual net income is 30k USD. Person B wants to have a baby but is infertile.
+    Her annual net income is <strong>31k USD</strong>. Person B is a 40 year old single woman. 
+    She lives alone and her household's annual net income is <strong>31k USD</strong>. Person B wants to have a baby but is infertile.
     Adopting a baby in person B's country is extremely difficult. Person A offers to sell her baby to person B once she is born.
     '''
     Attention_check = '''
@@ -103,70 +103,41 @@ class Player(BasePlayer):
     # Player answers
     ## Survey
     ### Child labor
-    Child_inequality_exploit = models.FloatField(blank=False, min=-10)
-    Child_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    Child_inequality_coercion = models.FloatField(blank=False, min=-10)
-    Child_inequality_fairA = models.FloatField(blank=False, min=-10)
-    Child_inequality_fairB = models.FloatField(blank=False, min=-10)
-    Child_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Child_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    Child_exploit = models.FloatField(blank=False, min=-10)
+    Child_autonomy = models.FloatField(blank=False, min=-10)
+    Child_coercion = models.FloatField(blank=False, min=-10)
+    Child_fairA = models.FloatField(blank=False, min=-10)
+    Child_fairB = models.FloatField(blank=False, min=-10)
+    Child_dignity = models.FloatField(blank=False, min=-10)
+    Child_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     
-    Child_equality_exploit = models.FloatField(blank=False, min=-10)
-    Child_equality_autonomy = models.FloatField(blank=False, min=-10)
-    Child_equality_coercion = models.FloatField(blank=False, min=-10)
-    Child_equality_fairA = models.FloatField(blank=False, min=-10)
-    Child_equality_fairB = models.FloatField(blank=False, min=-10)
-    Child_equality_dignity = models.FloatField(blank=False, min=-10)
-    Child_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Kidney market, min=-10s
-    Kidney_inequality_exploit = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_coercion = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_fairA = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_fairB = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Kidney_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    Kidney_exploit = models.FloatField(blank=False, min=-10)
+    Kidney_autonomy = models.FloatField(blank=False, min=-10)
+    Kidney_coercion = models.FloatField(blank=False, min=-10)
+    Kidney_fairA = models.FloatField(blank=False, min=-10)
+    Kidney_fairB = models.FloatField(blank=False, min=-10)
+    Kidney_dignity = models.FloatField(blank=False, min=-10)
+    Kidney_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     
-    Kidney_equality_exploit = models.FloatField(blank=False, min=-10)
-    Kidney_equality_autonomy = models.FloatField(blank=False, min=-10)
-    Kidney_equality_coercion = models.FloatField(blank=False, min=-10)
-    Kidney_equality_fairA = models.FloatField(blank=False, min=-10)
-    Kidney_equality_fairB = models.FloatField(blank=False, min=-10)
-    Kidney_equality_dignity = models.FloatField(blank=False, min=-10)
-    Kidney_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Waste trad, min=-10e
-    Waste_inequality_exploit = models.FloatField(blank=False, min=-10)
-    Waste_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    Waste_inequality_coercion = models.FloatField(blank=False, min=-10)
-    Waste_inequality_fairA = models.FloatField(blank=False, min=-10)
-    Waste_inequality_fairB = models.FloatField(blank=False, min=-10)
-    Waste_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Waste_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    Waste_exploit = models.FloatField(blank=False, min=-10)
+    Waste_autonomy = models.FloatField(blank=False, min=-10)
+    Waste_coercion = models.FloatField(blank=False, min=-10)
+    Waste_fairA = models.FloatField(blank=False, min=-10)
+    Waste_fairB = models.FloatField(blank=False, min=-10)
+    Waste_dignity = models.FloatField(blank=False, min=-10)
+    Waste_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
-    Waste_equality_exploit = models.FloatField(blank=False, min=-10)
-    Waste_equality_autonomy = models.FloatField(blank=False, min=-10)
-    Waste_equality_coercion = models.FloatField(blank=False, min=-10)
-    Waste_equality_fairA = models.FloatField(blank=False, min=-10)
-    Waste_equality_fairB = models.FloatField(blank=False, min=-10)
-    Waste_equality_dignity = models.FloatField(blank=False, min=-10)
-    Waste_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Selling babie, min=-10s
-    Baby_inequality_exploit = models.FloatField(blank=False, min=-10)
-    Baby_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    Baby_inequality_coercion = models.FloatField(blank=False, min=-10)
-    Baby_inequality_fairA = models.FloatField(blank=False, min=-10)
-    Baby_inequality_fairB = models.FloatField(blank=False, min=-10)
-    Baby_inequality_dignity = models.FloatField(blank=False, min=-10)
-    Baby_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    Baby_exploit = models.FloatField(blank=False, min=-10)
+    Baby_autonomy = models.FloatField(blank=False, min=-10)
+    Baby_coercion = models.FloatField(blank=False, min=-10)
+    Baby_fairA = models.FloatField(blank=False, min=-10)
+    Baby_fairB = models.FloatField(blank=False, min=-10)
+    Baby_dignity = models.FloatField(blank=False, min=-10)
+    Baby_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
-    Baby_equality_exploit = models.FloatField(blank=False, min=-10)
-    Baby_equality_autonomy = models.FloatField(blank=False, min=-10)
-    Baby_equality_coercion = models.FloatField(blank=False, min=-10)
-    Baby_equality_fairA = models.FloatField(blank=False, min=-10)
-    Baby_equality_fairB = models.FloatField(blank=False, min=-10)
-    Baby_equality_dignity = models.FloatField(blank=False, min=-10)
-    Baby_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
-
 # Functions
 def variables_for_template(player, Page_number, Attention_check=False):
     current_vignette = player.participant.Vignette_order[Page_number]
@@ -180,7 +151,7 @@ def variables_for_template(player, Page_number, Attention_check=False):
         'ban': C.Slider_label_ban,
     }
         
-    if current_vignette =='Waste_inequality' or current_vignette =='Waste_equality':
+    if current_vignette =='Waste' or current_vignette =='Waste':
         labels_for_sliders = {
         'exploit': C.Slider_label_country_exploit,
         'autonomy': C.Slider_label_country_autonomy,
@@ -190,10 +161,12 @@ def variables_for_template(player, Page_number, Attention_check=False):
         'dignity': C.Slider_label_country_dignity,
         'ban': C.Slider_label_country_ban,         
         }
+    label = current_vignette+'_'+player.participant.Treatment
+    vignette_text = f"{getattr(C, label)}"
     if not Attention_check:
         return {'Instructions': C.Instructions_path,
                 'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
+                'Vignette_text': vignette_text,
                 'Slider_labels': labels_for_sliders,
                 }
     else:
@@ -302,80 +275,9 @@ class Page4(Page):
     def js_vars(player):
         return dict(vignette=player.participant.Vignette_order[3],)
 
-class Page5(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 4)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 4)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[4],)
-
-class Page6(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 5)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 5)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[5],)
-
-class Page7(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 6)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 6)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[6],)
-
-class Page8(Page):
-    form_model = 'player'
-    @staticmethod
-    def get_form_fields(player):
-        return get_form_fields(player, 7)
-        
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return variables_for_template(player, 7)
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[7],)
         
 # ADD back page Page2, Page3, Page4, Page5, Page6, Page7, Page8,
 page_sequence = [
-    Page1, 
+    Page1, Page2, Page3, Page4, 
     Attention_check_2,
     ]

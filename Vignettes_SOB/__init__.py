@@ -1,3 +1,4 @@
+#TODO: delete all print statements
 from otree.api import *
 import random
 import pandas as pd
@@ -104,69 +105,40 @@ class Player(BasePlayer):
     # Player answers
     ## Survey
     ### Child labor
-    SOB_Child_inequality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Child_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Child_inequality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Child_inequality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Child_inequality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Child_inequality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Child_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
-    
-    SOB_Child_equality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Child_equality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Child_equality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Child_equality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Child_equality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Child_equality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Child_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    SOB_Child_exploit = models.FloatField(blank=False, min=-10)
+    SOB_Child_autonomy = models.FloatField(blank=False, min=-10)
+    SOB_Child_coercion = models.FloatField(blank=False, min=-10)
+    SOB_Child_fairA = models.FloatField(blank=False, min=-10)
+    SOB_Child_fairB = models.FloatField(blank=False, min=-10)
+    SOB_Child_dignity = models.FloatField(blank=False, min=-10)
+    SOB_Child_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Kidney market, min=-10s
-    SOB_Kidney_inequality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_inequality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_inequality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_inequality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_inequality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
-    
-    SOB_Kidney_equality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_equality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_equality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_equality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_equality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_equality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Kidney_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+   
+    SOB_Kidney_exploit = models.FloatField(blank=False, min=-10)
+    SOB_Kidney_autonomy = models.FloatField(blank=False, min=-10)
+    SOB_Kidney_coercion = models.FloatField(blank=False, min=-10)
+    SOB_Kidney_fairA = models.FloatField(blank=False, min=-10)
+    SOB_Kidney_fairB = models.FloatField(blank=False, min=-10)
+    SOB_Kidney_dignity = models.FloatField(blank=False, min=-10)
+    SOB_Kidney_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Waste trad, min=-10e
-    SOB_Waste_inequality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Waste_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Waste_inequality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Waste_inequality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Waste_inequality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Waste_inequality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Waste_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
-   
-    SOB_Waste_equality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Waste_equality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Waste_equality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Waste_equality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Waste_equality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Waste_equality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Waste_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    
+    SOB_Waste_exploit = models.FloatField(blank=False, min=-10)
+    SOB_Waste_autonomy = models.FloatField(blank=False, min=-10)
+    SOB_Waste_coercion = models.FloatField(blank=False, min=-10)
+    SOB_Waste_fairA = models.FloatField(blank=False, min=-10)
+    SOB_Waste_fairB = models.FloatField(blank=False, min=-10)
+    SOB_Waste_dignity = models.FloatField(blank=False, min=-10)
+    SOB_Waste_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     ### Selling babie, min=-10s
-    SOB_Baby_inequality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Baby_inequality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Baby_inequality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Baby_inequality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Baby_inequality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Baby_inequality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Baby_inequality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
-    SOB_Baby_equality_exploit = models.FloatField(blank=False, min=-10)
-    SOB_Baby_equality_autonomy = models.FloatField(blank=False, min=-10)
-    SOB_Baby_equality_coercion = models.FloatField(blank=False, min=-10)
-    SOB_Baby_equality_fairA = models.FloatField(blank=False, min=-10)
-    SOB_Baby_equality_fairB = models.FloatField(blank=False, min=-10)
-    SOB_Baby_equality_dignity = models.FloatField(blank=False, min=-10)
-    SOB_Baby_equality_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    SOB_Baby_exploit = models.FloatField(blank=False, min=-10)
+    SOB_Baby_autonomy = models.FloatField(blank=False, min=-10)
+    SOB_Baby_coercion = models.FloatField(blank=False, min=-10)
+    SOB_Baby_fairA = models.FloatField(blank=False, min=-10)
+    SOB_Baby_fairB = models.FloatField(blank=False, min=-10)
+    SOB_Baby_dignity = models.FloatField(blank=False, min=-10)
+    SOB_Baby_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
 
 # Functions
 def variables_for_template(player, Page_number, Attention_check=False):
@@ -189,10 +161,12 @@ def variables_for_template(player, Page_number, Attention_check=False):
         'fairB': C.Slider_label_country_fairB,
         'dignity': C.Slider_label_country_dignity,
         }
+    label = current_vignette+'_'+player.participant.Treatment
+    vignette_text = f"{getattr(C, label)}"
     if not Attention_check:
         return {'Instructions': C.Instructions_path,
                 'Vignette': current_vignette,
-                'Vignette_text': f"{getattr(C, current_vignette)}",
+                'Vignette_text': vignette_text,
                 'Slider_labels': labels_for_sliders,
                 }
     else:
@@ -234,12 +208,77 @@ class Page1(Page):
     @staticmethod
     def js_vars(player):
         vignette=player.participant.Vignette_order[0]
-        current_vignette = vignette.split('_')[0]
+        print(vignette)
+        current_vignette = vignette #Redundant code, too lazy to hunt for fixes.
+        return dict(vignette=vignette,
+                    current_vignette=current_vignette,)
+
+class Page2(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 1)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 1)
+    
+    @staticmethod
+    def js_vars(player):
+        vignette=player.participant.Vignette_order[1]
+        print(vignette)
+        current_vignette = vignette #Redundant code, too lazy to hunt for fixes.
+        return dict(vignette=vignette,
+                    current_vignette=current_vignette,)
+
+class Page3(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 2)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 2)
+    
+    @staticmethod
+    def js_vars(player):
+        vignette=player.participant.Vignette_order[2]
+        current_vignette = vignette #Redundant code, too lazy to hunt for fixes.
+        return dict(vignette=vignette,
+                    current_vignette=current_vignette,)
+
+class Page4(Page):
+    form_model = 'player'
+    @staticmethod
+    def get_form_fields(player):
+        return get_form_fields(player, 3)
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return variables_for_template(player, 3)
+    
+    @staticmethod
+    def js_vars(player):
+        vignette=player.participant.Vignette_order[3]
+        current_vignette = vignette #Redundant code, too lazy to hunt for fixes.
         return dict(vignette=vignette,
                     current_vignette=current_vignette,)
 
    
 page_sequence = [
     Introduction_SOB,
-    Page1, 
+    Page1, Page2, Page3, Page4,
     ]

@@ -23,8 +23,8 @@ class C(BaseConstants):
     
     # Treatment quotas
     quotas = {
-    'inequality_first': 0,
-    'equality_first' : 0,
+    'inequality': 0,
+    'equality' : 0,
     }
     
     # there are 4 vignettes with 2 versions each vignette_inequality and vignette_equality
@@ -108,27 +108,18 @@ def treatment_assignment(player):
     3. update quotas accordingly.
     Then 
     4. shuffle the vignettes.
-    5. depending on the treatment i.e. (inequality_first or equality_first) add the suffix _treatment to the vignette names
+    5. depending on the treatment i.e. (inequality or equality) add the suffix _treatment to the vignette names
     6. save the vignette order to the participant level
     '''
     treatment = random.choice([key for key, value in Quotas.items() if value in sorted(Quotas.values())[:1]])
     player.participant.Treatment = treatment
     Quotas.update({treatment: Quotas[treatment]+1})
     
-    vignette_labels_order = C.Vignette_labels.copy() 
-    # player.participant.vars['Vignette_order'] = [
-    #         vignette_labels_order[0]+'_inequality', vignette_labels_order[1]+'_inequality', vignette_labels_order[2]+'_inequality',vignette_labels_order[3]+'_inequality',
-    #         vignette_labels_order[0]+'_equality',vignette_labels_order[1]+'_equality', vignette_labels_order[2]+'_equality', vignette_labels_order[3]+'_equality']
-    
+    vignette_labels_order = C.Vignette_labels.copy()  #i.e. ['Child', 'Kidney', 'Waste','Baby']
+
     random.shuffle(vignette_labels_order)
-    if treatment == 'inequality_first':
-        player.participant.vars['Vignette_order'] = [
-            vignette_labels_order[0]+'_inequality', vignette_labels_order[1]+'_inequality', vignette_labels_order[2]+'_inequality',vignette_labels_order[3]+'_inequality',
-            vignette_labels_order[0]+'_equality',vignette_labels_order[1]+'_equality', vignette_labels_order[2]+'_equality', vignette_labels_order[3]+'_equality']
-    elif treatment == 'equality_first':
-            player.participant.vars['Vignette_order'] = [
-                vignette_labels_order[0]+'_equality',vignette_labels_order[1]+'_equality', vignette_labels_order[2]+'_equality', vignette_labels_order[3]+'_equality',
-                vignette_labels_order[0]+'_inequality', vignette_labels_order[1]+'_inequality', vignette_labels_order[2]+'_inequality',vignette_labels_order[3]+'_inequality',]
+    player.participant.vars['Vignette_order'] = vignette_labels_order
+    
     print(f"Player {player.id_in_group} is assigned to {treatment} treatment, his vignette order is {player.participant.vars['Vignette_order']}")
 
             

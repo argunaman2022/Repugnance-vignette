@@ -88,6 +88,18 @@
   }
 }
 
+.percentage_answer_box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+
+
+
 /* Below are template css */
 .Continue-button {
   /* Add your otree next button styles here */

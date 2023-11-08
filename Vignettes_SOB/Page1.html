@@ -21,7 +21,7 @@
 
 <div class="slider-parent">
     <div class="slider-container" id="ban-div"> 
-        <label class="slider-question" for="equality">What percentage of people answered <strong>"Yes"</strong> to banning this transaction?</label>
+        <label class="slider-question" for="equality">What percentage of participants have answered <strong>"Yes"</strong> to banning this transaction?</label>
         <div class="slider-range-labels">
             <div class="label-percentage">0%</div>
             <div class="label-percentage">25%</div>
@@ -30,7 +30,7 @@
             <div class="label-percentage">100%</div>
         </div>
         <input type="range" id="equality" min="0" max="100" value="50" step="1" class="form-range" oninput="percentsliderChange(ban=true, equality)"> 
-        <p id="equality_answer"></p>
+        <div id="equality_answer" class="percentage_answer_box"></div>
      </div>
 </div>
 
