@@ -36,13 +36,21 @@
             <label class="slider-question" for="exploit">{{Slider_labels.exploit}}</label>
             <br>
             <div class="slider-range-labels">
-                <div class="label">Greatly exploits person A</div>
+                <!-- TODO: i have changed the exploit question and the associated response-labels -->
+                <!-- <div class="label">Greatly exploits person A</div>
                 <div class="label">Somewhat exploits person A</div>
                 <div class="label">Moderately exploits person A</div>
                 <div class="label">Neutral</div>
                 <div class="label">Moderately benefits person A</div>
                 <div class="label">Somewhat benefits person A</div>
-                <div class="label">Greatly benefits person A</div>
+                <div class="label">Greatly benefits person A</div> -->
+                <div class="label">Strongly agree</div>
+                <div class="label">Somewhat agree</div>
+                <div class="label">Moderately agree</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately disagree</div>
+                <div class="label">Somewhat disagree</div>
+                <div class="label">Strongly disagree</div>
             </div>
             <input type="range" id="exploit" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(exploit)"> 
         </div>

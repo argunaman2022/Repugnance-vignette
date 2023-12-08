@@ -7,8 +7,11 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
+
 #TODO: add an exit button for players to be able to quit and return the prolific assignment (add this to template as well)
 #TODO : only 4 vignettes for each person ?
+#TODO: remove the fairness to person B.
+#TODO: change the wording of the dimensions.
 class C(BaseConstants):
     NAME_IN_URL = 'Scenarios'
     PLAYERS_PER_GROUP = None
@@ -43,13 +46,13 @@ class C(BaseConstants):
     Country A is a medium-sized nation with an average annual wage of <strong>31k USD</strong>.
     Country B, a medium-sized country with an average annual wage of <strong>75k USD</strong>, generates a substantial volume of consumer-products waste.
     Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price.
-    This waste will be burnt in Country A's incinerators.
+    This waste is non-recyclable and will be burnt in Country A's incinerators.
     '''
     Waste_equality = '''
     Country A is a medium-sized nation with an average annual wage of <strong>31k USD</strong>.
     Country B, a medium-sized country with an average annual wage of <strong>31k USD</strong>, generates a substantial volume of consumer-products waste.
     Country B offers to sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price. 
-    This waste will be burnt in Country A's incinerators.
+    This waste is non-recyclable and will be burnt in Country A's incinerators.
     '''
     
     Baby_inequality = '''
@@ -70,20 +73,23 @@ class C(BaseConstants):
     Please move all the sliders below all the way to the right and continue.
     '''
     
-    
-    Slider_label_exploit = 'In your opinion, does this transaction <strong>benefit or exploit person A</strong>?'
+    #TODO: i have changed the exploit question, check if it is ok.
+    #Slider_label_exploit = 'In your opinion, does this transaction <strong>benefit or exploit person A</strong>?'
+    Slider_label_exploit = 'What do you think about the following statement: "<strong>this transaction exploits person A</strong>"?'
     Slider_label_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
     Slider_label_coercion = 'In your opinion, does this transaction allow the person A <strong> to make fully informed choices or does it exert undue influence</strong>?'
     Slider_label_fairA = 'In your opinion, is this transaction <strong>fair or unfair to person A </strong>?'
-    Slider_label_fairB = 'In your opinion, is this transaction <strong>fair or unfair to person B </strong>?'
+    # Slider_label_fairB = 'In your opinion, is this transaction <strong>fair or unfair to person B </strong>?'
     Slider_label_dignity = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?'
     Slider_label_ban = 'To what extend do you agree with the following statement: <strong>"this transaction should be banned"</strong>?'
     
-    Slider_label_country_exploit = 'In your opinion, does this transaction <strong>benefit or exploit country A</strong>?'
+    #TODO: same as above
+    #Slider_label_country_exploit = 'In your opinion, does this transaction <strong>benefit or exploit country A</strong>?'
+    Slider_label_country_exploit = 'What do you think about the following statement: "<strong>this transaction exploits country A</strong>"?'
     Slider_label_country_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
     Slider_label_country_coercion = 'In your opinion, does this transaction allow the country A <strong> to make fully informed choices or does it exert undue influence</strong>?'
     Slider_label_country_fairA = 'In your opinion, is this transaction <strong>fair or unfair to country A </strong>?'
-    Slider_label_country_fairB = 'In your opinion, is this transaction <strong>fair or unfair to country B </strong>?'
+    # Slider_label_country_fairB = 'In your opinion, is this transaction <strong>fair or unfair to country B </strong>?'
     Slider_label_country_dignity = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?'
     Slider_label_country_ban = 'In your opinion, should this transaction be <strong>banned or allowed</strong>?'
     
@@ -107,7 +113,7 @@ class Player(BasePlayer):
     Child_autonomy = models.FloatField(blank=False, min=-10)
     Child_coercion = models.FloatField(blank=False, min=-10)
     Child_fairA = models.FloatField(blank=False, min=-10)
-    Child_fairB = models.FloatField(blank=False, min=-10)
+    # Child_fairB = models.FloatField(blank=False, min=-10)
     Child_dignity = models.FloatField(blank=False, min=-10)
     Child_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     
@@ -116,7 +122,7 @@ class Player(BasePlayer):
     Kidney_autonomy = models.FloatField(blank=False, min=-10)
     Kidney_coercion = models.FloatField(blank=False, min=-10)
     Kidney_fairA = models.FloatField(blank=False, min=-10)
-    Kidney_fairB = models.FloatField(blank=False, min=-10)
+    # Kidney_fairB = models.FloatField(blank=False, min=-10)
     Kidney_dignity = models.FloatField(blank=False, min=-10)
     Kidney_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
     
@@ -125,7 +131,7 @@ class Player(BasePlayer):
     Waste_autonomy = models.FloatField(blank=False, min=-10)
     Waste_coercion = models.FloatField(blank=False, min=-10)
     Waste_fairA = models.FloatField(blank=False, min=-10)
-    Waste_fairB = models.FloatField(blank=False, min=-10)
+    # Waste_fairB = models.FloatField(blank=False, min=-10)
     Waste_dignity = models.FloatField(blank=False, min=-10)
     Waste_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
@@ -134,7 +140,7 @@ class Player(BasePlayer):
     Baby_autonomy = models.FloatField(blank=False, min=-10)
     Baby_coercion = models.FloatField(blank=False, min=-10)
     Baby_fairA = models.FloatField(blank=False, min=-10)
-    Baby_fairB = models.FloatField(blank=False, min=-10)
+    # Baby_fairB = models.FloatField(blank=False, min=-10)
     Baby_dignity = models.FloatField(blank=False, min=-10)
     Baby_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
    
@@ -146,7 +152,7 @@ def variables_for_template(player, Page_number, Attention_check=False):
         'autonomy': C.Slider_label_autonomy,
         'coercion': C.Slider_label_coercion,
         'fairA': C.Slider_label_fairA,
-        'fairB': C.Slider_label_fairB,
+        # 'fairB': C.Slider_label_fairB,
         'dignity': C.Slider_label_dignity,
         'ban': C.Slider_label_ban,
     }
@@ -157,7 +163,7 @@ def variables_for_template(player, Page_number, Attention_check=False):
         'autonomy': C.Slider_label_country_autonomy,
         'coercion': C.Slider_label_country_coercion,
         'fairA': C.Slider_label_country_fairA,
-        'fairB': C.Slider_label_country_fairB,
+        # 'fairB': C.Slider_label_country_fairB,
         'dignity': C.Slider_label_country_dignity,
         'ban': C.Slider_label_country_ban,         
         }
@@ -178,7 +184,9 @@ def variables_for_template(player, Page_number, Attention_check=False):
 def get_form_fields(player, Page_number):
     current_vignette = player.participant.Vignette_order[Page_number]
     return [f"{current_vignette}_exploit", f"{current_vignette}_autonomy", f"{current_vignette}_coercion",
-            f"{current_vignette}_fairA", f"{current_vignette}_fairB", f"{current_vignette}_dignity", f"{current_vignette}_ban"]
+            f"{current_vignette}_fairA", 
+            # f"{current_vignette}_fairB",
+            f"{current_vignette}_dignity", f"{current_vignette}_ban"]
   
 # Pages
 class Attention_check_2(Page):         
