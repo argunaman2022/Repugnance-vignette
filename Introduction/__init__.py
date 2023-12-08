@@ -1,3 +1,4 @@
+#TODO: create app: lab transactions
 from otree.api import *
 import random
 

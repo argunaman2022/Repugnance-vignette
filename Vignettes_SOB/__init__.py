@@ -1,4 +1,5 @@
 #TODO: delete all print statements
+#TODO: the red error message persists after you click the next button on button
 from otree.api import *
 import random
 import pandas as pd
@@ -9,6 +10,7 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
+#TODO: think about adding a third attention check in the SOB section
 #TODO: add an exit button for players to be able to quit and return the prolific assignment (add this to template as well)
 class C(BaseConstants):
     NAME_IN_URL = 'BeliefsOfOthers'

@@ -7,8 +7,11 @@ This is the main survey app. It contains
 2. One attention check.
 - You can additionally calculate payoffs and save them at a participant field.
 '''
+
 #TODO: add an exit button for players to be able to quit and return the prolific assignment (add this to template as well)
 #TODO : only 4 vignettes for each person ?
+#TODO: remove the fairness to person B.
+#TODO: change the wording of the dimensions.
 class C(BaseConstants):
     NAME_IN_URL = 'Scenarios'
     PLAYERS_PER_GROUP = None
