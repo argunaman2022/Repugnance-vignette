@@ -86,6 +86,7 @@ class C(BaseConstants):
     #TODO: same as above
     #Slider_label_country_exploit = 'In your opinion, does this transaction <strong>benefit or exploit country A</strong>?'
     Slider_label_country_exploit = 'What do you think about the following statement: "<strong>this transaction exploits country A</strong>"?'
+    #TODO: does the following question make sense? Individual autonomy is not a country level concept. Idea: remove it from thsi question.
     Slider_label_country_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
     Slider_label_country_coercion = 'In your opinion, does this transaction allow the country A <strong> to make fully informed choices or does it exert undue influence</strong>?'
     Slider_label_country_fairA = 'In your opinion, is this transaction <strong>fair or unfair to country A </strong>?'
