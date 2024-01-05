@@ -29,7 +29,7 @@ class C(BaseConstants):
     }
     
     # there are 4 vignettes with 2 versions each vignette_inequality and vignette_equality
-    Vignette_labels = ['Child', 'Kidney', 'Waste','Baby']
+    Vignette_labels = ['Child', 'Kidney', 'Waste','Baby', 'Collector']
     
 class Subsession(BaseSubsession):
     pass

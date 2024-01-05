@@ -40,13 +40,13 @@ function next_button(check_attention = false, SOB=false){
     var slider2 = document.getElementById("autonomy").value;
     var slider3 = document.getElementById("coercion").value;
     var slider4 = document.getElementById("fairA").value;
-    var slider5 = document.getElementById("fairB").value;
+    // var slider5 = document.getElementById("fairB").value;
     var slider6 = document.getElementById("dignity").value;
 
     var attention_check_yes = document.getElementById("id_Attention_2-0");
     var attention_check_no = document.getElementById("id_Attention_2-1");
     // IF ALL OF THE SLIDER VALUES ARE GREATER THAN 0.9 THEN THE USER IS NOT PAYING ATTENTION
-    if (slider1 > 0.9 && slider2 > 0.9 && slider3 > 0.9 && slider4 > 0.9 && slider5 > 0.9 && slider6 > 0.9 && slider7 > 0.9){
+    if (slider1 > 0.9 && slider2 > 0.9 && slider3 > 0.9 && slider4 > 0.9  && slider6 > 0.9 && slider7 > 0.9){
       attention_check_yes.click();
     } 
     else {
@@ -67,11 +67,11 @@ function next_button(check_attention = false, SOB=false){
     var slider2 = document.getElementById("id_SOB_" + vignette + "_autonomy").value;
     var slider3 = document.getElementById("id_SOB_" + vignette + "_coercion").value;
     var slider4 = document.getElementById("id_SOB_" + vignette + "_fairA").value;
-    var slider5 = document.getElementById("id_SOB_" + vignette + "_fairB").value;
+    // var slider5 = document.getElementById("id_SOB_" + vignette + "_fairB").value;
     var slider6 = document.getElementById("id_SOB_" + vignette + "_dignity").value;
     var slider7 = document.getElementById("id_SOB_" + vignette + "_ban").value;
     if (slider1 == "" || slider2 == "" || slider3 == "" || slider4 == "" ||
-        slider5 == "" || slider6 == "" || slider7 == ""){
+        slider6 == "" || slider7 == ""){
             // if the ban div is hidden get the alert div and display it  
             if (ban_div.style.display == "none"){
             var targetDiv = document.getElementById("alert-move-sliders");
@@ -108,11 +108,11 @@ function next_button(check_attention = false, SOB=false){
     var slider2 = document.getElementById("id_" + vignette + "_autonomy").value;
     var slider3 = document.getElementById("id_" + vignette + "_coercion").value;
     var slider4 = document.getElementById("id_" + vignette + "_fairA").value;
-    var slider5 = document.getElementById("id_" + vignette + "_fairB").value;
+    // var slider5 = document.getElementById("id_" + vignette + "_fairB").value;
     var slider6 = document.getElementById("id_" + vignette + "_dignity").value;
     var slider7 = document.getElementById("id_" + vignette + "_ban").value;
     if (slider1 == "" || slider2 == "" || slider3 == "" || slider4 == "" ||
-        slider5 == "" || slider6 == "" || slider7 == ""){
+        slider6 == "" || slider7 == ""){
             // get the alert div and display it              
             var targetDiv = document.getElementById("alert-move-sliders");
             move_to_alert(targetDiv)
