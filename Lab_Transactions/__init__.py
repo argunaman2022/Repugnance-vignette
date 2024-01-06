@@ -11,6 +11,7 @@ class C(BaseConstants):
     
     Instructions_path = "_templates/global/Instructions.html"
     Instructions_LAB_path = "_templates/global/Instructions.html" #TODO: create
+    Quit_study_text_path = "_templates/global/Quit_study_text.html"
     
     # Lab transaction texts
     Bug_eating = '''

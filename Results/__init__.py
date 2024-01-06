@@ -15,6 +15,7 @@ class C(BaseConstants):
     Return_redirect = 'https://www.wikipedia.org/'
 
     Instructions_path = "_templates/global/Instructions.html"
+    Quit_study_text_path = "_templates/global/Quit_study_text.html"
 
 
 class Subsession(BaseSubsession):

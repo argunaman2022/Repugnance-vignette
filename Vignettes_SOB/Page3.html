@@ -4,8 +4,9 @@
 
 {{ block content }}
 <link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
 <script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
-
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
     <p>
        Please <strong>read carefully</strong> the following situation again and try to <strong>guess other participants' choices</strong>.<br><br>
@@ -126,11 +127,26 @@
 
     <br><br>
 
-<div class="buttons-container">
-    <a id="myBtn"  onclick="button_click(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-            <a id="myBtn"  onclick="next_button(check_attention = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</a>
-    <button id="submit_button" style="display: none"></button>
-</div>
+    <br><br>
+    <div class="buttons-container">
+        <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Exit Survey (Return task)</a>
+        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+    </div>
+    
+    
+    <div id="myModal2" class="modal quit-modal">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h2>You are about to quit the study</h2>
+          </div>
+{{include C.Quit_study_text_path}}
+        <div class="buttons-container">
+            <a id="myBtn" onclick="span_click(2)"  class="otree-btn-next btn btn-primary">Cancel</a>
+            <a href="{{C.Return_redirect}}" class="otree-btn-next btn btn-primary">OK</a>
+      </div>
+      </div>
+    </div>
     
     <div id="myModal1" class="modal">
         <div class="modal-content">
@@ -139,7 +155,7 @@
               <span class="close" onclick="span_click(1)">&times;</span>
             </div>
           <p style="padding: 0px">
-              {{include Instructions}}
+         {{include C.Instructions_path}}
           </p>
         </div>
     </div>

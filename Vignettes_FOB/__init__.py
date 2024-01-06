@@ -18,6 +18,9 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Instructions_path = "_templates/global/Instructions.html"
+    Quit_study_text_path = "_templates/global/Quit_study_text.html"
+    Return_redirect = "https://www.wikipedia.org/" #TODO: adjust
+
     
     # vignette texts
     #TODO: in these texts how important is it to explicity state "household of 3 people" once you've given whom they live with.
@@ -46,13 +49,13 @@ class C(BaseConstants):
     Waste_inequality = '''
     Country A is a medium-sized nation with an average annual wage of <strong>31k USD</strong>.
     Country B, a medium-sized country with an average annual wage of <strong>75k USD</strong>, generates a substantial volume of consumer-products waste.
-    Country B will sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price.
+    Country B will sell 20 million tons (approximately 22 billion pounds) of this waste to Country A at the prevailing market price.
     This waste is non-recyclable and will be burnt in Country A's incinerators.
     '''
     Waste_equality = '''
     Country A is a medium-sized nation with an average annual wage of <strong>31k USD</strong>.
     Country B, a medium-sized country with an average annual wage of <strong>31k USD</strong>, generates a substantial volume of consumer-products waste.
-    Country B will sell 20 million tonnes (approximately 22 billion pounds) of this waste to Country A at the prevailing market price. 
+    Country B will sell 20 million tons (approximately 22 billion pounds) of this waste to Country A at the prevailing market price. 
     This waste is non-recyclable and will be burnt in Country A's incinerators.
     '''
     Baby_inequality = '''

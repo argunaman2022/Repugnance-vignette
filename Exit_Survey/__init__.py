@@ -11,6 +11,8 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Instructions_path = "_templates/global/Instructions.html"
+    Quit_study_text_path = "_templates/global/Quit_study_text.html"
+
 
 class Subsession(BaseSubsession):
     pass

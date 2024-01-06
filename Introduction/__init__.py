@@ -15,12 +15,21 @@ Following are saved to the participant level
 - Treatment: which treatment they are assigned to
 '''
 
+#TODO: there is a problem with Attention check 2
+
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
+    # Prolific links:
+    Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
+    Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust
+    Return_redirect = "https://www.wikipedia.org/" #TODO: adjust
+    
+    
     Instructions_path = "_templates/global/Instructions.html"
+    Quit_study_text_path = "_templates/global/Quit_study_text.html"
     
     # Treatment quotas
     quotas = {
@@ -125,15 +134,17 @@ def treatment_assignment(player):
 
             
 #%% PAGES
-# Demographics, Introduction, Comprehension checks and attention check 1
-class Demographics(Page):
-    form_model = 'player'
-    form_fields = ['age', 'gender', 'education', 'income']
-    
+# Consent, Demographics, Introduction, Comprehension checks and attention check 1
+class Consent(Page):   
     @staticmethod
     def before_next_page(player: Player, timeout_happened=False):
         player.prolific_id = player.participant.label #save prolific id
         treatment_assignment(player) #assign treatment and update quotas 
+    
+class Demographics(Page):
+    form_model = 'player'
+    form_fields = ['age', 'gender', 'education', 'income']
+    
     
 class Instructions(Page):
     @staticmethod
@@ -224,6 +235,6 @@ class Attention_check_1(Page):
         player.participant.vars['Attention_1'] = player.Attention_1
 
 
-page_sequence = [Demographics, Instructions,
+page_sequence = [Consent, Demographics, Instructions,
                  Comprehension_check_1, Comprehension_check_2,
                  Attention_check_1]
