@@ -1,5 +1,5 @@
 {{ block title }}
-    Scenario 1/5. Beliefs of others.
+ Scenario 1. Beliefs of others. 
 {{ endblock }}
 
 {{ block content }}
@@ -23,7 +23,10 @@
 
 <div class="slider-parent">
     <div class="slider-container" id="ban-div"> 
-        <label class="slider-question" for="equality">What percentage of participants, do you believe, have answered <strong>"Yes"</strong> to banning this transaction?</label>
+        <label class="slider-question" for="equality">
+            What percentage of participants, do you believe, have answered <strong>"Yes"</strong> to the following question? <br>
+            <i>"In your opinion, should this transaction be prevented?"</i>
+        </label>
         <div class="slider-range-labels">
             <div class="label-percentage">0%</div>
             <div class="label-percentage">25%</div>
@@ -37,7 +40,7 @@
 </div>
 
 <div class="hidden">
-    <strong>In the 5 questions below, try to guess your partner's choice by moving the slider where you think your partner placed theirs. The closer you place your slider to your partner's the more bonus payment you will earn.</strong>
+    <strong>In the 5 questions below, try to guess the average answer of others by moving the slider where you think the average person placed theirs. If one of these questions is randomly chosen for payment, the closer you place your slider to the average answer the higher your bonus payment will be.</strong>
     <div class="slider-parent">
         <div class="slider-container"> 
             <label class="slider-question" for="exploit">{{Slider_labels.exploit}}</label>
@@ -120,7 +123,7 @@
 
     
 
-<div style="display: inline;"> 
+<div style="display: none;"> 
     {{ formfields }}
 </div>
 
@@ -130,7 +133,7 @@
     <div class="buttons-container">
         <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Exit Survey (Return task)</a>
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+        <button id="submit_button"  onclick="next_button(attention_check = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</button>
     </div>
     
     

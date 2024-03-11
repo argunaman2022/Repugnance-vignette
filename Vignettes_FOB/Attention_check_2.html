@@ -1,5 +1,5 @@
 {{ block title }}
-    Page 5/5
+    Page 9
 {{ endblock }}
 
 {{ block content }}
@@ -12,7 +12,7 @@
 
     <p>
        Please <strong>read carefully</strong> the following situation and <strong>evaluate</strong> it using the sliders below.<br><br>
-       <i>"{{Vignette_text}}"</i>
+       <i>{{Vignette_text}}</i>
     </p>
     <br><br>
 
@@ -29,7 +29,7 @@
                 <div class="label">Somewhat disagree</div>
                 <div class="label">Strongly disagree</div>
             </div>
-            <input type="range" id="exploit" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(exploit, attention_check=true)"> 
+            <input type="range" id="exploit" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(exploit, SOB=false, attention_check=true)"> 
         </div>
     
         <div class="slider-container"> 
@@ -44,7 +44,7 @@
                 <div class="label">Somewhat respects autonomy</div>
                 <div class="label">Greatly respects autonomy</div>
             </div>
-            <input type="range" id="autonomy" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(autonomy, attention_check=true)"> 
+            <input type="range" id="autonomy" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(autonomy, SOB=false, attention_check=true)"> 
         </div>
     
         <div class="slider-container"> 
@@ -59,7 +59,7 @@
                 <div class="label">Somewhat informed choices</div>
                 <div class="label">Fully informed choices</div>
             </div>
-            <input type="range" id="coercion" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(coercion, attention_check=true)"> 
+            <input type="range" id="coercion" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(coercion, SOB=false, attention_check=true)"> 
         </div>
     
         <div class="slider-container"> 
@@ -75,7 +75,7 @@
                 <div class="label">Very fair</div>
             </div>
             
-            <input type="range" id="fairA" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairA, attention_check=true)"> 
+            <input type="range" id="fairA" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairA, SOB=false, attention_check=true)"> 
         </div>
     
 
@@ -93,13 +93,13 @@
                 <div class="label">Greatly promotes dignity</div>
             </div>
             
-            <input type="range" id="dignity" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(dignity, attention_check=true)"> 
+            <input type="range" id="dignity" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(dignity, SOB=false, attention_check=true)"> 
         </div>
 
     </div>
 
     
-    <div style="display: none;"> 
+    <div style="display: inline;"> 
         {{ formfields }}
     </div>
 

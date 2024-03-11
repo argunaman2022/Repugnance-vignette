@@ -34,6 +34,7 @@ function move_to_alert(targetDiv){
 
 
 function next_button(check_attention = false, SOB=false){
+  console.log("next button clicked")
   // If this is an attention check
   if (check_attention){
     var slider1 = document.getElementById("exploit").value;
@@ -42,7 +43,7 @@ function next_button(check_attention = false, SOB=false){
     var slider4 = document.getElementById("fairA").value;
     // var slider5 = document.getElementById("fairB").value;
     var slider6 = document.getElementById("dignity").value;
-
+    console.log(slider1, slider2, slider3, slider4, slider6)
     var attention_check_yes = document.getElementById("id_Attention_2-0");
     var attention_check_no = document.getElementById("id_Attention_2-1");
     // IF ALL OF THE SLIDER VALUES ARE GREATER THAN 0.9 THEN THE USER IS NOT PAYING ATTENTION
@@ -128,19 +129,40 @@ function Completion_button(href) {
   window.open(href, "_blank");
 }
 
-function sliderChange(dimension, SOB=false){
+function sliderChange(dimension, SOB=false, attention_check=false){
   let vignette = js_vars.vignette;
   val = dimension.value;
-  if (SOB==true){
-    var inputFieldId = "id_SOB_" + vignette + "_" + dimension.id;
+  if (attention_check==false){
+    if (SOB==true){
+      var inputFieldId = "id_SOB_" + vignette + "_" + dimension.id;
+    }
+    else{
+      var inputFieldId = "id_" + vignette + "_" + dimension.id;
+    }
+    console.log(inputFieldId, dimension)
+
+    var inputField = document.getElementById(inputFieldId);
+    inputField.value = val;
   }
   else{
-    var inputFieldId = "id_" + vignette + "_" + dimension.id;
-  }
-  console.log(inputFieldId, dimension)
+    var slider1 = document.getElementById("exploit").value;
+    var slider2 = document.getElementById("autonomy").value;
+    var slider3 = document.getElementById("coercion").value;
+    var slider4 = document.getElementById("fairA").value;
+    var slider6 = document.getElementById("dignity").value;
+    console.log(slider1, slider2, slider3, slider4, slider6)
+    var attention_check_yes = document.getElementById("id_Attention_2-0");
+    var attention_check_no = document.getElementById("id_Attention_2-1");
+    // IF ALL OF THE SLIDER VALUES ARE GREATER THAN 0.9 THEN THE USER IS NOT PAYING ATTENTION
+    if (slider1 > 0.9 && slider2 > 0.9 && slider3 > 0.9 && slider4 > 0.9  && slider6 > 0.9 ){
+      attention_check_yes.click();
+    } 
+    else {
+      attention_check_no.click();
+    }
 
-  var inputField = document.getElementById(inputFieldId);
-  inputField.value = val;
+
+  }
 
   const labels = dimension.parentElement.querySelector(".slider-range-labels").querySelectorAll(".label");
 

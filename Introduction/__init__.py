@@ -14,6 +14,47 @@ Following are saved to the participant level
 - Attention_1: whether they passed the first attention check
 - Treatment: which treatment they are assigned to
 '''
+#TODO; use these as education:
+
+'''
+– Haven’t graduated high school.
+– GED
+– High school graduate
+– Currently in college
+– Bachelors
+– Masters
+– Professional degree (JD, MD, MBA)
+– Doctorate
+
+
+employment:
+
+– Employed full-time
+– Employed part-time
+– Independent, or business owner
+– Out of work, or seeking work
+– Student
+– Out of labor force (e.g. retired or parent raising one or more children)
+
+
+• How high was your total household income, before taxes, last year (2019)?
+– $0 - $9,999
+– $10,000 - $14,999
+– $15,000 - $19,999
+– $20,000 - $29,999
+– $30,000 - $39,999
+– $40,000 - $49,999
+– $50,000 - $74,999
+– $75,000 - $99,999
+– $100,000 - $124,999
+– $125,000 - $149,999
+– $150,000 - $199,999
+– $200,000+
+
+• How many hours per week do you spend online doing tasks for money?
+
+'''
+
 
 #TODO: there is a problem with Attention check 2
 
@@ -21,6 +62,9 @@ class C(BaseConstants):
     NAME_IN_URL = 'Introduction'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
+    
+    Max_bonus = 'PALCEHOLDER' #TODO: adjust
+    Base_payment = 'PALCEHOLDER' #TODO: adjust
     
     # Prolific links:
     Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
@@ -33,12 +77,14 @@ class C(BaseConstants):
     
     # Treatment quotas
     quotas = {
-    'inequality': 0,
-    'equality' : 0,
+    'poor_poor': 0,
+    'poor_rich' : 0,
+    'rich_rich' : 0,
     }
     
     # there are 4 vignettes with 2 versions each vignette_inequality and vignette_equality
-    Vignette_labels = ['Child', 'Kidney', 'Waste','Baby', 'Collector']
+    Vignette_labels = ['loan_shark', 'kidney', 'surrogate', 'queue_jump', 'prostitute', 'dwarf_tossing', 'waste_trade', 'coin_collector']
+
     
 class Subsession(BaseSubsession):
     pass
@@ -58,14 +104,22 @@ def creating_session(subsession):
 class Group(BaseGroup):
     pass
 
+
 class Player(BasePlayer):
     # Demographics
     prolific_id = models.StringField(default=str("None")) #prolific id, will be fetched automatically.
     age = models.IntegerField(label="Age", min=18, max=100)
-    gender = models.StringField(label='Gender',
-                                choices=['Male', 'Female', 'Transgender male','Transgender female', 'Other/Prefer not to say'], widget=widgets.RadioSelect)
+    gender = models.StringField(label='Gender at birth',
+                                choices=['Male', 'Female', 'Other/Prefer not to say'], widget=widgets.RadioSelect)
     education = models.StringField(label = 'Education level',
-                                   choices=['High school or lower','Bachelors degree','Masters degree','PhD','Other'], widget=widgets.RadioSelect) 
+                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate'], widget=widgets.RadioSelect) 
+    # education = models.StringField(label = 'Education level',
+    #                                choices=['High school or lower','Bachelors degree','Masters degree','PhD','Other'], widget=widgets.RadioSelect) 
+    
+    employment = models.StringField(label='Employment status',
+                                    choices=['Employed full-time', 'Employed part-time', 'Independent, or business owner', 'Out of work, or seeking work',
+                                             'Student', 'Out of labor force (e.g. retired or parent raising one or more children)'], widget=widgets.RadioSelect)
+    
     income = models.StringField(label='Approximately, what was your <strong>total household income</strong> in the last year, before taxes?',
                             choices=['$0-$10.000', '$10.000-$20.000','$20.000-$30.000','$30.000-$40.000','$40.000-$50.000','$50.000-$60.000',
                                      '$50.000-$75.000', '$75.000-$100.000', '$100.000-$150.000', '$150.000-$200.000', '$200.000+', 'Prefer not to answer',
@@ -79,22 +133,22 @@ class Player(BasePlayer):
     Comprehension_2 = models.BooleanField(initial=True) 
     
     Comprehension_question_1 = models.BooleanField(choices=[
-            [True,'Correct answer'], # Correct answer here
-            [False, 'False answer'],
-            [False, 'False answer'],],
-        label = 'Comprehension question 1',
+            [True,f'I will receive a fixed payment of {C.Base_payment} and a bonus payment that will be determined only by my answers in Part II.'], # Correct answer here
+            [False, f'I will receive a fixed payment of {C.Base_payment} and a bonus payment that will be determined by my answers in Part I and Part II.'],
+            [False, f'I will receive a fixed payment of {C.Base_payment} only. '],],
+        label = 'How is your <strong>Payment</strong> determined?',
         widget=widgets.RadioSelect)
     Comprehension_question_2 = models.BooleanField(choices=[
-            [True,'Correct answer'], 
-            [False, 'False answer'],
-            [False, 'False answer'],],
-        label = 'Comprehension question 1',
+            [False, 'In Part I, there are correct and incorrect answers. My bonus in this part depends on the correctness of my answer.'],
+            [True,'In Part I, there is no right or wrong answer. I need to answer with my honest opinions. '], 
+            [False, 'In Part I, there are correct and incorrect answers. My bonus in this part does not depend on correctness of my answer.'],],
+        label = f'Which of the following is true for <strong>Part I</strong>?',
         widget=widgets.RadioSelect)
     Comprehension_question_3 = models.BooleanField(choices=[
-            [True,'Correct answer'], 
-            [False, 'False answer'],
-            [False, 'False answer'],],
-        label = 'Comprehension question 1',
+            [True,'In Part II, I will see the same situations as in Part I. Here my bonus is determined by the correctness  of my answer.'], 
+            [False, 'In Part II, there is no right or wrong answer. I need to answer with my honest opinions. '],
+            [False, 'In Part II, I will see situations I have not seen in Part I. My bonus in this part depends on the correctness of my answers.'],],
+        label = f'Which of the following is true for <strong>Part I</strong>?',
         widget=widgets.RadioSelect)
     
     Attention_1 = models.BooleanField(choices=[
@@ -143,7 +197,7 @@ class Consent(Page):
     
 class Demographics(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'education', 'income']
+    form_fields = ['age', 'gender', 'education', 'employment', 'income']
     
     
 class Instructions(Page):

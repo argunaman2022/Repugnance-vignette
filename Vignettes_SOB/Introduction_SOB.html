@@ -1,5 +1,5 @@
 {{ block title }}
-    Second part - instructions
+    Part II
 {{ endblock }}
 {{ block content }}
 <link rel="stylesheet" href="{{static 'css/css.css'}}">
@@ -7,7 +7,7 @@
 <script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
-{{ include Instructions}}
+{{ include C.Instructions_PartII_path}}
 
     {{ formfields }}
     <br><br>
@@ -38,7 +38,7 @@
               <span class="close" onclick="span_click(1)">&times;</span>
             </div>
           <p style="padding: 0px">
-         {{include C.Instructions_path}}
+         {{include C.Instructions_PartII_path}}
           </p>
         </div>
     </div>
