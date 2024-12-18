@@ -1,4 +1,3 @@
-// TODO: turn off wheel scrolling in the sliders
 // When the user clicks the button, open the modal.
 function button_click(index, keepTrack = false) {
   var modal = document.getElementById("myModal" + index);

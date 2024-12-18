@@ -1,0 +1,42 @@
+{{ block title }}
+ Part II
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+
+
+<p>
+    Thank you for completing Part I. In the next part, you will only see more questions about the "Kidney transplant" scenario. 
+</p>
+
+
+    <br><br>
+    <div class="buttons-container">
+        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+        <button id="submit_button"   class="otree-btn-next btn btn-primary">Next</button>
+    </div>
+
+
+
+
+    
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Instructions</h2>
+              <span class="close" onclick="span_click(1)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+         {{include C.Instructions_path}}
+          </p>
+        </div>
+    </div>
+
+    <br><br>
+{{ endblock }}
+
+

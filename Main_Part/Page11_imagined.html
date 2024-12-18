@@ -1,5 +1,5 @@
 {{ block title }}
- Part I: Imagined health and price
+ Part II: Imagined health and price
 {{ endblock }}
 
 {{ block content }}
@@ -22,7 +22,9 @@
 
 
 <br>
-
+<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
+    To continue, you must answer all questions.
+</div>
 
 {{ formfield 'kidney_imagined_price'}}
 
@@ -31,9 +33,7 @@
 </div>
 
 
-<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
-    To continue, you must answer all questions.
-</div>
+
 
 
 <div>
@@ -42,13 +42,13 @@
             <label class="slider-question" for="imagined_health">{{Slider_labels.health}}</label>
             <br>
             <div class="slider-range-labels">
-                <div class="label">Strongly agree</div>
-                <div class="label">Somewhat agree</div>
-                <div class="label">Moderately agree</div>
+                <div class="label">Very healthy</div>
+                <div class="label">Somewhat healthy</div>
+                <div class="label">Moderately healthy</div>
                 <div class="label">Neutral</div>
-                <div class="label">Moderately disagree</div>
-                <div class="label">Somewhat disagree</div>
-                <div class="label">Strongly disagree</div>
+                <div class="label">Moderately unhealthy</div>
+                <div class="label">Somewhat unhealthy</div>
+                <div class="label">Very unhealthy</div>
             </div>
             <input type="range" id="imagined_health" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(imagined_health)"> 
         </div>

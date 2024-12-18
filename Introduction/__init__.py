@@ -4,7 +4,6 @@ import random
 
 
 
-#TODO: there is a problem with Attention check 2
 
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'

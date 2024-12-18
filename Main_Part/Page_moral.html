@@ -1,5 +1,5 @@
 {{ block title }}
- PLACEHOLDER
+ Moral dimensions 
 {{ endblock }}
 
 {{ block content }}
@@ -9,9 +9,6 @@
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
 
-<p>
-    Please answer the questions below by moving the sliders. <br><br>
-</p>
 <div class="attention-box">
     <div style="text-align: center;">
         <h5>Background: {{vignette_name}}</h5>
@@ -30,6 +27,10 @@
     To continue, you must answer all questions by moving each slider.
 </div>
 
+
+<p>
+    Please answer the questions below by moving the sliders. <br>
+</p>
 
 <div>
     <div class="slider-parent">
@@ -139,7 +140,7 @@
         <button id="submit_button" type="button" onclick="next_button(attention_check = false, SOB=false)"  class="otree-btn-next btn btn-primary">Next</button>
     </div>
 
-    <div style="display:inline;">
+    <div style="display:none;">
         <button id='true_next_button'>True button</button>
     </div>
 
