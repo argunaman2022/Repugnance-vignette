@@ -1,0 +1,73 @@
+{{ block title }}
+Scenario 2: Your opinion
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+
+
+<p>
+    Please <strong>read carefully</strong> the following situation and <strong>evaluate</strong> it.
+</p>
+<div class="attention-box">
+    <div style="text-align: center;">
+        <h5>Background: {{vignette_name}}</h5>
+    </div>
+    {{Vignette_text}}
+</div>
+
+<br>
+
+<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
+        To continue, you must answer all questions by moving each slider.
+</div>
+
+<div class="centered">
+    <div class="ban-container">
+        <label for="yes_no_radio"><strong>In your opinion, should this transaction be prevented?</strong></label>
+      <div style="display: flex;  justify-content: space-evenly; padding: 10px;">
+        <p>
+            <a id="myBtn"  onclick="ban_button(0)"  class="otree-btn-next btn btn-primary">No</a>
+            </p>
+            <p>
+            <a id="myBtn"  onclick="ban_button(1)"  class="otree-btn-next btn btn-primary">Yes</a>
+            </p>
+      </div>
+    </div>
+</div>
+
+
+</div>    
+    <div style="display: none;"> 
+        {{ formfields }}
+    </div>
+
+    <br><br>
+    <div class="buttons-container">
+        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+    </div>
+    <div style="display:none">
+        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+    </div>
+    
+ 
+    
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Instructions</h2>
+              <span class="close" onclick="span_click(1)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+         {{include C.Instructions_path}}
+          </p>
+        </div>
+    </div>
+
+    <br><br>
+{{ endblock }}
+
+

@@ -34,7 +34,6 @@ function move_to_alert(targetDiv){
 
 
 function next_button(check_attention = false, SOB=false){
-  console.log("next button clicked")
   // If this is an attention check
   if (check_attention){
     var slider1 = document.getElementById("exploit").value;
@@ -43,7 +42,6 @@ function next_button(check_attention = false, SOB=false){
     var slider4 = document.getElementById("fairA").value;
     // var slider5 = document.getElementById("fairB").value;
     var slider6 = document.getElementById("dignity").value;
-    console.log(slider1, slider2, slider3, slider4, slider6)
     var attention_check_yes = document.getElementById("id_Attention_2-0");
     var attention_check_no = document.getElementById("id_Attention_2-1");
     // IF ALL OF THE SLIDER VALUES ARE GREATER THAN 0.9 THEN THE USER IS NOT PAYING ATTENTION
@@ -56,28 +54,15 @@ function next_button(check_attention = false, SOB=false){
     document.getElementById("submit_button").click();
   }
   // if this is the SOB question then check if the two fields are filled
-  else if (SOB==true){
+  else if (SOB){
     let vignette = js_vars.vignette;
-    inputField  = "id_SOB_" + vignette + "_ban";
+    inputField  = "id_" + vignette + "_beliefs";
     var inputFieldVal = document.getElementById(inputField).value
-    var ban_div = document.getElementById("ban-div");
 
-
-    // get the sliders and check if theyre empty
-    var slider1 = document.getElementById("id_SOB_" + vignette + "_exploit").value;
-    var slider2 = document.getElementById("id_SOB_" + vignette + "_autonomy").value;
-    var slider3 = document.getElementById("id_SOB_" + vignette + "_coercion").value;
-    var slider4 = document.getElementById("id_SOB_" + vignette + "_fairA").value;
-    // var slider5 = document.getElementById("id_SOB_" + vignette + "_fairB").value;
-    var slider6 = document.getElementById("id_SOB_" + vignette + "_dignity").value;
-    var slider7 = document.getElementById("id_SOB_" + vignette + "_ban").value;
-    if (slider1 == "" || slider2 == "" || slider3 == "" || slider4 == "" ||
-        slider6 == "" || slider7 == ""){
-            // if the ban div is hidden get the alert div and display it  
-            if (ban_div.style.display == "none"){
-            var targetDiv = document.getElementById("alert-move-sliders");
-            move_to_alert(targetDiv)
-            }
+    // check if the input field is empty
+    if (inputFieldVal == "") {
+      var targetDiv = document.getElementById("alert-move-sliders");
+      move_to_alert(targetDiv)
     }
     else{
       document.getElementById("submit_button").click();
@@ -104,24 +89,79 @@ function next_button(check_attention = false, SOB=false){
   // if this is a standard round, check if the sliders have been moved.
   else{
     let vignette = js_vars.vignette;
-    // TODO: add code to save the result of the ban choice to the formfield.
     var slider1 = document.getElementById("id_" + vignette + "_exploit").value;
     var slider2 = document.getElementById("id_" + vignette + "_autonomy").value;
     var slider3 = document.getElementById("id_" + vignette + "_coercion").value;
     var slider4 = document.getElementById("id_" + vignette + "_fairA").value;
-    // var slider5 = document.getElementById("id_" + vignette + "_fairB").value;
-    var slider6 = document.getElementById("id_" + vignette + "_dignity").value;
-    var slider7 = document.getElementById("id_" + vignette + "_ban").value;
+    var slider5 = document.getElementById("id_" + vignette + "_dignity").value;
+    var slider6 = document.getElementById("id_" + vignette + "_harm").value;
     if (slider1 == "" || slider2 == "" || slider3 == "" || slider4 == "" ||
-        slider6 == "" || slider7 == ""){
+        slider5 == "" || slider6 == ""){
             // get the alert div and display it              
             var targetDiv = document.getElementById("alert-move-sliders");
             move_to_alert(targetDiv)
     }
     else{
-      document.getElementById("submit_button").click();
+      document.getElementById("true_next_button").click();
+      console.log('submit')
     }
   }
+}
+
+function next_button_2(){
+    let vignette = js_vars.vignette;
+    var slider1 = document.getElementById("id_" + vignette + "_imagined_health").value;
+    var slider2 = document.getElementById("id_" + vignette + "_imagined_price").value;
+    if (slider1 == "" || slider2 == ""){
+            // get the alert div and display it              
+            var targetDiv = document.getElementById("alert-move-sliders");
+            move_to_alert(targetDiv)
+    }
+    else{
+      document.getElementById("true_next_button").click();
+      console.log('submit')
+    }
+}
+function next_button_3(){
+    let vignette = js_vars.vignette;
+    var slider1 = document.querySelector('input[name="scenario_directionality_1_ban"]:checked');
+    var slider2 = document.querySelector('input[name="scenario_directionality_2_ban"]:checked');
+    var slider3 = document.getElementById("id_scenario_directionality_1_realism").value;
+    var slider4 = document.getElementById("id_scenario_directionality_2_realism").value;
+    
+    var slider5 = document.getElementById("id_scenario_directionality_1_realism_free_text").value;
+    var slider6 = document.getElementById("id_scenario_directionality_2_realism_free_text").value;
+    
+    
+
+    if (slider1 == "" || slider2 == "", slider3 == "" || slider4 == "", slider5 == "" || slider6 == ""){
+            // get the alert div and display it              
+            var targetDiv = document.getElementById("alert-move-sliders");
+            move_to_alert(targetDiv)
+    }
+    else{
+      document.getElementById("true_next_button").click();
+      console.log('submit')
+    }
+}
+function next_button_4(){
+    let vignette = js_vars.vignette;
+    var slider1 = document.querySelector('input[name="scenario_donation_1_ban"]:checked');
+    var slider2 = document.querySelector('input[name="scenario_donation_2_ban"]:checked');
+    var slider3 = document.getElementById("id_scenario_donation_1_realism").value;
+    var slider4 = document.getElementById("id_scenario_donation_2_realism").value;
+
+    
+
+    if (slider1 == "" || slider2 == "", slider3 == "" || slider4 == "" ){
+            // get the alert div and display it              
+            var targetDiv = document.getElementById("alert-move-sliders");
+            move_to_alert(targetDiv)
+    }
+    else{
+      document.getElementById("true_next_button").click();
+      console.log('submit')
+    }
 }
 
 // For redirecting to the completion page
@@ -129,17 +169,11 @@ function Completion_button(href) {
   window.open(href, "_blank");
 }
 
-function sliderChange(dimension, SOB=false, attention_check=false){
+function sliderChange(dimension, attention_check=false){
   let vignette = js_vars.vignette;
   val = dimension.value;
   if (attention_check==false){
-    if (SOB==true){
-      var inputFieldId = "id_SOB_" + vignette + "_" + dimension.id;
-    }
-    else{
       var inputFieldId = "id_" + vignette + "_" + dimension.id;
-    }
-    console.log(inputFieldId, dimension)
 
     var inputField = document.getElementById(inputFieldId);
     inputField.value = val;
@@ -150,7 +184,6 @@ function sliderChange(dimension, SOB=false, attention_check=false){
     var slider3 = document.getElementById("coercion").value;
     var slider4 = document.getElementById("fairA").value;
     var slider6 = document.getElementById("dignity").value;
-    console.log(slider1, slider2, slider3, slider4, slider6)
     var attention_check_yes = document.getElementById("id_Attention_2-0");
     var attention_check_no = document.getElementById("id_Attention_2-1");
     // IF ALL OF THE SLIDER VALUES ARE GREATER THAN 0.9 THEN THE USER IS NOT PAYING ATTENTION
@@ -182,32 +215,57 @@ function sliderChange(dimension, SOB=false, attention_check=false){
     }
 }
 
+function sliderChange_2(dimension){
+  val = dimension.value;
+
+  var inputFieldId = "id_" + dimension.id.replace(/_slider$/, '');;
+
+  var inputField = document.getElementById(inputFieldId);
+  inputField.value = val;
+
+  const labels = dimension.parentElement.querySelector(".slider-range-labels").querySelectorAll(".label");
+
+  // Determine the position of the slider value
+  const sliderValue = parseFloat(val);
+  const thresholds = [-7, -2, 2, 4, 10]; // Adjust these thresholds as needed
+
+    // Remove the "bold-label" class from all labels
+    labels.forEach((label) => label.classList.remove("bold-label"));
+
+    // Check which label's threshold the slider value falls under and add the "bold-label" class accordingly
+    for (let i = 0; i < thresholds.length; i++) {
+        if (sliderValue <= thresholds[i]) {
+            labels[i].classList.add("bold-label");
+            break;
+        }
+    }
+}
+
 function percentsliderChange(ban=false, dimension){
   let vignette = js_vars.vignette;
   let current_vignette = js_vars.current_vignette;
 
   if (ban==true){
-    var inputFieldId = "id_SOB_" + vignette + "_ban";
+    var inputFieldId = "id_" + vignette + "_beliefs";
   }
   else {
     val = dimension.value;
-    var inputFieldId = "id_SOB_" + vignette + "_" + dimension.id
+    var inputFieldId = "id_" + vignette + "_" + dimension.id
 }
   val=dimension.value;
   var inputField = document.getElementById(inputFieldId);
-  console.log(inputFieldId)
   inputField.value = val;
 
   // Determine the position of the slider value
   const sliderValue = parseFloat(val);
   // const thresholds = [-7.15, -4.3, -0.95, 0.95, 3.43, 6.7, 10]; // Adjust these thresholds as needed
   // get the element whose id is "version1answer" and set its value to the val
-  displayVal = 'Your answer: ' + val + "%";
+  displayVal = 'Your answer: ' + val + "% of participants chose 'Yes'";
   tag = dimension.id + "_answer"
   document.getElementById(tag).textContent = displayVal;
 }
 
-function ban_button(answer, SOB=false){
+function ban_button(answer, SOB=false, next=true){
   let vignette = js_vars.vignette;
   
   if (SOB==true){
@@ -225,10 +283,16 @@ function ban_button(answer, SOB=false){
     document.getElementById(formField).value = 0;
   }
 
+  if (next==true){
+    document.getElementById("NextButton").click();
+  }
+  else{
+
   var initiallyHidden = document.querySelectorAll('.hidden'); // Get all the elements that are hidden
   var banContainer = document.querySelector('.ban-container'); // Get the container that holds the ban button
   // Remove the hidden class from all the elements that are hidden and add the hidden class to the ban container
   initiallyHidden.forEach(function(element) {
     element.classList.remove('hidden');});
   banContainer.classList.add('hidden');
+}
 }

@@ -1,59 +1,7 @@
-#TODO: create app: lab transactions
 from otree.api import *
 import random
 
-doc = '''
-This is the first app - the Introduction app. It contains
-1. Demgraphics page
-2. Instructions that participants can always access
-3. Comprehension checks 
-4. and the first attention checks
-Following are saved to the participant level
-- Allowed: if they didnt fail the comprehension checks
-- Comprehension_passed: whether they passed the comprehension checks
-- Attention_1: whether they passed the first attention check
-- Treatment: which treatment they are assigned to
-'''
-#TODO; use these as education:
 
-'''
-– Haven’t graduated high school.
-– GED
-– High school graduate
-– Currently in college
-– Bachelors
-– Masters
-– Professional degree (JD, MD, MBA)
-– Doctorate
-
-
-employment:
-
-– Employed full-time
-– Employed part-time
-– Independent, or business owner
-– Out of work, or seeking work
-– Student
-– Out of labor force (e.g. retired or parent raising one or more children)
-
-
-• How high was your total household income, before taxes, last year (2019)?
-– $0 - $9,999
-– $10,000 - $14,999
-– $15,000 - $19,999
-– $20,000 - $29,999
-– $30,000 - $39,999
-– $40,000 - $49,999
-– $50,000 - $74,999
-– $75,000 - $99,999
-– $100,000 - $124,999
-– $125,000 - $149,999
-– $150,000 - $199,999
-– $200,000+
-
-• How many hours per week do you spend online doing tasks for money?
-
-'''
 
 
 #TODO: there is a problem with Attention check 2
@@ -83,7 +31,7 @@ class C(BaseConstants):
     }
     
     # there are 4 vignettes with 2 versions each vignette_inequality and vignette_equality
-    Vignette_labels = ['loan_shark', 'kidney', 'surrogate', 'queue_jump', 'prostitute', 'dwarf_tossing', 'waste_trade', 'coin_collector']
+    Vignette_labels = ['loan_shark', 'surrogate', 'queue_jump', 'prostitute', 'dwarf_tossing', 'waste_trade', 'coin_collector', 'apple_seller']
 
     
 class Subsession(BaseSubsession):
@@ -108,22 +56,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # Demographics
     prolific_id = models.StringField(default=str("None")) #prolific id, will be fetched automatically.
-    age = models.IntegerField(label="Age", min=18, max=100)
-    gender = models.StringField(label='Gender at birth',
-                                choices=['Male', 'Female', 'Other/Prefer not to say'], widget=widgets.RadioSelect)
-    education = models.StringField(label = 'Education level',
-                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate'], widget=widgets.RadioSelect) 
-    # education = models.StringField(label = 'Education level',
-    #                                choices=['High school or lower','Bachelors degree','Masters degree','PhD','Other'], widget=widgets.RadioSelect) 
-    
-    employment = models.StringField(label='Employment status',
-                                    choices=['Employed full-time', 'Employed part-time', 'Independent, or business owner', 'Out of work, or seeking work',
-                                             'Student', 'Out of labor force (e.g. retired or parent raising one or more children)'], widget=widgets.RadioSelect)
-    
-    income = models.StringField(label='Approximately, what was your <strong>total household income</strong> in the last year, before taxes?',
-                            choices=['$0-$10.000', '$10.000-$20.000','$20.000-$30.000','$30.000-$40.000','$40.000-$50.000','$50.000-$60.000',
-                                     '$50.000-$75.000', '$75.000-$100.000', '$100.000-$150.000', '$150.000-$200.000', '$200.000+', 'Prefer not to answer',
-                                     ],)
+   
 
     'Comprehension and attention checks'
     #whether the player got the comprehension questions rigt at the first try
@@ -137,28 +70,35 @@ class Player(BasePlayer):
             [False, f'I will receive a fixed payment of {C.Base_payment} and a bonus payment that will be determined by my answers in Part I and Part II.'],
             [False, f'I will receive a fixed payment of {C.Base_payment} only. '],],
         label = 'How is your <strong>Payment</strong> determined?',
-        widget=widgets.RadioSelect)
+        widget=widgets.RadioSelect,
+        initial=True) #TODO: remove initial=True
     Comprehension_question_2 = models.BooleanField(choices=[
             [False, 'In Part I, there are correct and incorrect answers. My bonus in this part depends on the correctness of my answer.'],
             [True,'In Part I, there is no right or wrong answer. I need to answer with my honest opinions. '], 
             [False, 'In Part I, there are correct and incorrect answers. My bonus in this part does not depend on correctness of my answer.'],],
         label = f'Which of the following is true for <strong>Part I</strong>?',
-        widget=widgets.RadioSelect)
+        widget=widgets.RadioSelect,
+        initial=True) #TODO: remove initial=True)
     Comprehension_question_3 = models.BooleanField(choices=[
             [True,'In Part II, I will see the same situations as in Part I. Here my bonus is determined by the correctness  of my answer.'], 
             [False, 'In Part II, there is no right or wrong answer. I need to answer with my honest opinions. '],
             [False, 'In Part II, I will see situations I have not seen in Part I. My bonus in this part depends on the correctness of my answers.'],],
-        label = f'Which of the following is true for <strong>Part I</strong>?',
-        widget=widgets.RadioSelect)
+        label = f'Which of the following is true for <strong>Part II</strong>?',
+        widget=widgets.RadioSelect,
+        initial=True) #TODO: remove initial=True)
     
     Attention_1 = models.BooleanField(choices=[
+            [False, 'USA'],
+            [False, 'Canada'],
+            [False, 'Mexico'],
             [False, 'Austria'],
             [False, 'Germany'],
             [False, 'Switzerland'],
             [True, 'Russia'], 
-            [False, 'India'] ],
-        label='<strong>Choose the country that was described in the instructions.</strong>',
-        widget=widgets.RadioSelect)
+            [False, 'India'], ],
+        label='Choose the country that was described in the instructions.',
+        widget=widgets.RadioSelect,
+        initial=True) #TODO: remove initial=True)
     
 #%% Functions
 def treatment_assignment(player):
@@ -182,7 +122,7 @@ def treatment_assignment(player):
     vignette_labels_order = C.Vignette_labels.copy()  #i.e. ['Child', 'Kidney', 'Waste','Baby']
 
     random.shuffle(vignette_labels_order)
-    player.participant.vars['Vignette_order'] = vignette_labels_order
+    player.participant.vars['Vignette_order'] = ['kidney'] + vignette_labels_order
     
     print(f"Player {player.id_in_group} is assigned to {treatment} treatment, his vignette order is {player.participant.vars['Vignette_order']}")
 
@@ -195,11 +135,7 @@ class Consent(Page):
         player.prolific_id = player.participant.label #save prolific id
         treatment_assignment(player) #assign treatment and update quotas 
     
-class Demographics(Page):
-    form_model = 'player'
-    form_fields = ['age', 'gender', 'education', 'employment', 'income']
-    
-    
+
 class Instructions(Page):
     @staticmethod
     def vars_for_template(self):
@@ -289,6 +225,6 @@ class Attention_check_1(Page):
         player.participant.vars['Attention_1'] = player.Attention_1
 
 
-page_sequence = [Consent, Demographics, Instructions,
+page_sequence = [Consent, Instructions,
                  Comprehension_check_1, Comprehension_check_2,
                  Attention_check_1]

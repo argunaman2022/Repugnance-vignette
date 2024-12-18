@@ -1,0 +1,90 @@
+{{ block title }}
+ Part I: Imagined health and price
+{{ endblock }}
+
+{{ block content }}
+<link rel="stylesheet" href="{{static 'css/css.css'}}">
+<link rel="stylesheet" href="{{static 'css/modal.css'}}">
+<script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
+<script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
+
+
+<p>
+    Please answer the questions below. <br><br>
+</p>
+
+<div class="attention-box">
+    <div style="text-align: center;">
+        <h5>Background: {{vignette_name}}</h5>
+    </div>
+    {{Vignette_text}}
+</div>
+
+
+<br>
+
+
+{{ formfield 'kidney_imagined_price'}}
+
+<div style='display:none;'>
+    {{ formfield 'kidney_imagined_health'}}
+</div>
+
+
+<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
+    To continue, you must answer all questions.
+</div>
+
+
+<div>
+    <div class="slider-parent">
+        <div class="slider-container"> 
+            <label class="slider-question" for="imagined_health">{{Slider_labels.health}}</label>
+            <br>
+            <div class="slider-range-labels">
+                <div class="label">Strongly agree</div>
+                <div class="label">Somewhat agree</div>
+                <div class="label">Moderately agree</div>
+                <div class="label">Neutral</div>
+                <div class="label">Moderately disagree</div>
+                <div class="label">Somewhat disagree</div>
+                <div class="label">Strongly disagree</div>
+            </div>
+            <input type="range" id="imagined_health" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(imagined_health)"> 
+        </div>
+    </div>
+</div>
+
+    
+
+
+    <br><br>
+
+    <br><br>
+    <div class="buttons-container">
+        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+        <button id="submit_button" type="button" onclick="next_button_2()"  class="otree-btn-next btn btn-primary">Next</button>
+    </div>
+
+    <div style="display:none;">
+        <button id='true_next_button'>True button</button>
+    </div>
+
+
+    
+    <div id="myModal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Instructions</h2>
+              <span class="close" onclick="span_click(1)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+         {{include C.Instructions_path}}
+          </p>
+        </div>
+    </div>
+
+    <br><br>
+{{ endblock }}
+
+

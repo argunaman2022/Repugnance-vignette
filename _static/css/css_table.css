@@ -1,0 +1,18 @@
+
+table.scenario-table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse; /* Remove spacing between borders */
+    margin: 20px auto; /* Center table horizontally */
+}
+
+.scenario-table th, 
+.scenario-table td {
+    border: 1px solid #ccc; /* Add border to cells */
+    padding: 10px; /* Add padding inside cells */
+    text-align: center; /* Center text inside cells */
+}
+
+.scenario-table .merged-header {
+    background-color: #f0f0f0; /* Light grey background for merged rows */
+    font-weight: bold; /* Make text bold */
+}

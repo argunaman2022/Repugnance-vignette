@@ -9,6 +9,9 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
+    Max_bonus = 'PALCEHOLDER' #TODO: adjust
+    Base_payment = 'PALCEHOLDER' #TODO: adjust
+    
     # Prolific links, gotten from the study page on prolific
     Completion_redirect = 'https://www.wikipedia.org/' #TODO: change these
     Failure_redirect = 'https://www.wikipedia.org/'
