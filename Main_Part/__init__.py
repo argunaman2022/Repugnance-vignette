@@ -143,7 +143,6 @@ def draw_and_round(lower, upper):
 # vignettes
 def return_vignette(vignette, treatment, income_seller=False, income_buyer=False,):
     assert treatment in ['poor_poor', 'poor_rich', 'rich_rich'], 'treatment not found'
-    assert vignette in C.all_vignettes, 'vignette not found'
 
     vignette = vignette.lower()
     treatment = treatment.lower()
@@ -192,6 +191,36 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
         </div>
         '''
 
+    elif vignette == 'kidney_2':
+        name = 'Kidney transplant'
+        vignette_picture = C.kidney_picture
+
+        text = f''' 
+        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <div style="flex: 1; padding-right: 20px; text-align: justify;">
+                Advances in surgery and medication make living kidney donation a successful treatment for end-stage kidney disease.
+                In this process, an individual with two healthy kidneys undergoes surgical removal of one kidney.
+                This kidney is then transplanted into the recipient, restoring kidney function.
+                Individuals can live healthy and fulfilling lives with a single kidney.
+                In the USA, more than 90,000 people are on the waiting list for a kidney donation.
+            </div>
+            <div style="flex: 0 0 40%; text-align: center;">
+                <img src="{vignette_picture}" alt="Kidney transplant" style="max-width: 100%; height: 300px; margin-left: 0px;">
+            </div>
+        </div>
+
+        <div style="text-align: justify; margin-top: 20px;">
+            <div style="text-align: center;">
+                <h5>Scenario</h5>
+            </div>
+            Sam is a 40-year-old man. He lives in a medium-sized city and has a desk job at a logistics company. 
+            Bob is a 40-year-old man. He also lives in a medium-sized but different city. He is employed at a small firm.
+            Due to final-stage kidney disease, <strong>Bob urgently needs a replacement kidney</strong>. 
+            Although he is on the waiting list for a kidney donation, his doctors tell him that he is not high enough 
+            on the list to receive a donation in time. Sam hears about Bob's situation through word of mouth. They come to 
+            the agreement that Sam will sell one of his kidneys to Bob at an agreed price.
+        </div>
+        '''
     elif vignette == 'kidney':
         name = 'Kidney transplant'
         vignette_picture = C.kidney_picture
@@ -290,16 +319,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
         vignette_picture = C.prostitute_picture
 
         text = f'''
-        <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <div style="flex: 1; padding-right: 20px; text-align: justify;">
                 Prostitution is the exchange of sexual services for money, goods, or other forms of compensation. 
                 It is a profession practiced worldwide, though its legality, regulation, and social perception vary greatly by country and culture.
-            </div>
-
-            <div style="flex: 0 0 40%; text-align: center;">
-                <img src="{vignette_picture}" alt="Prostitution" style="max-width: 100%; height: 300px; margin-left: 0px;">
-            </div>
-        </div>
 
         <div style="text-align: justify; margin-top: 20px;">
             <div style="text-align: center;">
@@ -319,17 +340,10 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
         vignette_picture = C.dwarf_tossing_picture
 
         text = f'''
-        <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <div style="flex: 1; padding-right: 20px; text-align: justify;">
                 Dwarf tossing is an activity in which individuals with dwarfism are thrown onto mattresses or at Velcro-coated walls. 
                 They wear special padded clothing or Velcro costumes, and participants compete to throw them the farthest. 
                 This practice has sparked significant ethical debate due to its exploitative nature.
-            </div>
 
-            <div style="flex: 0 0 40%; text-align: center;">
-                <img src="{vignette_picture}" alt="Dwarf Tossing" style="max-width: 100%; height: 300px; margin-left: 0px;">
-            </div>
-        </div>
 
         <div style="text-align: justify; margin-top: 20px;">
             <div style="text-align: center;">
@@ -637,19 +651,49 @@ class BasePage_Table(Page):
                 'label': label,
                 'Slider_labels': labels_for_sliders,
                 }
+class BasePage_Table_2(Page):
+    form_model = 'player'
+    form_fields = []
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+
+    @staticmethod
+    def js_vars(player: Player):
+        return dict(vignette='kidney')
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        current_vignette = 'kidney_2'
+        
+        label = current_vignette+'_'+player.participant.Treatment
+        vignette_text, vignette_name= return_vignette(current_vignette, player.participant.Treatment)
+        labels_for_sliders = {
+        'health': C.Slider_label_health, 
+        }
+      
+        return {'Instructions': C.Instructions_path,
+                'Vignette': current_vignette,
+                'Vignette_text': vignette_text,
+                'vignette_name': vignette_name,
+                'label': label,
+                'Slider_labels': labels_for_sliders,
+                }
         
 class Page11_imagined(BasePage_Table):
     extra_fields = ['kidney_imagined_health','kidney_imagined_price'] 
     form_fields = BasePage_Table.form_fields + extra_fields
 
 
-class Part_IV_table_1(BasePage_Table):
+class Part_IV_table_1(BasePage_Table_2):
     extra_fields = ['scenario_directionality_1_ban', 'scenario_directionality_2_ban',
                     'scenario_directionality_1_realism','scenario_directionality_2_realism',
                     'scenario_directionality_1_realism_free_text', 'scenario_directionality_2_realism_free_text']
     form_fields = BasePage_Table.form_fields + extra_fields
-        
-class Part_IV_table_2(BasePage_Table):
+    
+    
+class Part_IV_table_2(BasePage_Table_2):
     extra_fields = ['scenario_rich_1_ban', 'scenario_rich_2_ban']
     form_fields = BasePage_Table.form_fields + extra_fields
     
