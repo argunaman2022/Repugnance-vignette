@@ -1,5 +1,5 @@
 {{ block title }}
-    Page 9
+    Page 10
 {{ endblock }}
 
 {{ block content }}
@@ -8,101 +8,22 @@
 <script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
-<!-- TODO: please fix: the dimensions arent becoming bold -->
-
+<div class="attention-box">
+    <div style="text-align: center;">
+    </div>
+    Please answer the following final question. <br>
+    The subsequent part is about the following:: <br>
+    In order to analyze your attitudes and opinions, data quality is very important. 
+    We would thus like to know whether you are still paying attention and reading the text, rather than just checking one of the options and clicking "Next".
+    If you are still paying attention, please in the question below choose the second option from the left (twenty-one to forty percent), and ignore the question below.
+</div>
     <p>
-       Please <strong>read carefully</strong> the following situation and <strong>evaluate</strong> it using the sliders below.<br><br>
-       <i>{{Vignette_text}}</i>
+       
     </p>
-    <br><br>
-
-    <div class="slider-parent">
-        <div class="slider-container"> 
-            <label class="slider-question" for="exploit">{{Slider_labels.exploit}}</label>
-            <br>
-            <div class="slider-range-labels">
-                <div class="label">Strongly agree</div>
-                <div class="label">Somewhat agree</div>
-                <div class="label">Moderately agree</div>
-                <div class="label">Neutral</div>
-                <div class="label">Moderately disagree</div>
-                <div class="label">Somewhat disagree</div>
-                <div class="label">Strongly disagree</div>
-            </div>
-            <input type="range" id="exploit" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(exploit, SOB=false, attention_check=true)"> 
-        </div>
     
-        <div class="slider-container"> 
-            <label class="slider-question" for="autonomy">{{Slider_labels.autonomy}}</label>
-            <br>
-            <div class="slider-range-labels">
-                <div class="label">Greatly limits autonomy</div>
-                <div class="label">Somewhat limits autonomy</div>
-                <div class="label">Moderately limits autonomy</div>
-                <div class="label">Neutral</div>
-                <div class="label">Moderately respects autonomy</div>
-                <div class="label">Somewhat respects autonomy</div>
-                <div class="label">Greatly respects autonomy</div>
-            </div>
-            <input type="range" id="autonomy" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(autonomy, SOB=false, attention_check=true)"> 
-        </div>
-    
-        <div class="slider-container"> 
-            <label class="slider-question" for="coercion">{{Slider_labels.coercion}}</label>
-            <br>
-            <div class="slider-range-labels">
-                <div class="label">Severe undue influence</div>
-                <div class="label">Somewhat undue influence</div>
-                <div class="label">Moderate undue influence</div>
-                <div class="label">Neutral</div>
-                <div class="label">Moderately informed choices</div>
-                <div class="label">Somewhat informed choices</div>
-                <div class="label">Fully informed choices</div>
-            </div>
-            <input type="range" id="coercion" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(coercion, SOB=false, attention_check=true)"> 
-        </div>
-    
-        <div class="slider-container"> 
-            <label class="slider-question" for="fairA">{{Slider_labels.fairA}}</label>
-            <br>
-            <div class="slider-range-labels">
-                <div class="label">Very unfair</div>
-                <div class="label">Somewhat unfair </div>
-                <div class="label">Moderately unfair</div>
-                <div class="label">Neutral</div>
-                <div class="label">Moderately fair</div>
-                <div class="label">Somewhat fair</div>
-                <div class="label">Very fair</div>
-            </div>
-            
-            <input type="range" id="fairA" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(fairA, SOB=false, attention_check=true)"> 
-        </div>
-    
+    {{ formfields }}
 
     
-        <div class="slider-container"> 
-            <label class="slider-question" for="dignity">{{Slider_labels.dignity}}</label>
-            <br>
-            <div class="slider-range-labels">
-                <div class="label">Greatly violates dignity</div>
-                <div class="label">Somewhat violates dignity</div>
-                <div class="label">Moderately violates dignity</div>
-                <div class="label">Neutral</div>
-                <div class="label">Moderately promotes dignity</div>
-                <div class="label">Somewhat promotes dignity</div>
-                <div class="label">Greatly promotes dignity</div>
-            </div>
-            
-            <input type="range" id="dignity" min="-10" max="10" value="0" step="1" class="form-range" oninput="sliderChange(dignity, SOB=false, attention_check=true)"> 
-        </div>
-
-    </div>
-
-    
-    <div style="display: inline;"> 
-        {{ formfields }}
-    </div>
-
     <br><br>
 
     <div class="buttons-container">

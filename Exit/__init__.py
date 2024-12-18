@@ -82,7 +82,7 @@ class Player(BasePlayer):
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
     Religion_intensity = models.StringField(label='How religious are you?',
-                                          choices=['Very religious', 'Somewhat religious', 'Slightly religious', 'Not religious at all', "Don't know"
+                                          choices=['Very religious', 'Somewhat religious', 'Slightly religious', 'Not religious at all', "Don't want to answer"
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
     
@@ -100,5 +100,22 @@ class Political_leaning(Page):
 class Religiosity(Page):
     form_model = 'player'
     form_fields = ['Religion_category', 'Religion_intensity']
+    
+class Attention_check_1(Page):
+    form_model = 'player'
+    form_fields = ['Attention_1']
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return {'Instructions': C.Instructions_path}
+    
+    #save at  the participant level
+    @staticmethod   
+    def before_next_page(player: Player, timeout_happened=False):
+        player.participant.vars['Attention_1'] = player.Attention_1
 
-page_sequence = [ Political_leaning, Religiosity, Demographics]
+page_sequence = [ Political_leaning, Religiosity, Demographics, Attention_check_1]

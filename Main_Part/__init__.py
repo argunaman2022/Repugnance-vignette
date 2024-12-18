@@ -22,15 +22,15 @@ class C(BaseConstants):
     all_vignettes = ['loan_shark', 'kidney', 'surrogate', 'queue_jump', 'prostitute', 'dwarf_tossing', 'waste_trade', 'coin_collector', 'apple_seller']
     
     # pictures
-    loan_shark_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/loan_shark.jpg?token=GHSAT0AAAAAAC3RHEJJPNLNEICOZPBZLENOZ3CU6VQ"
-    kidney_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/kidney.png?token=GHSAT0AAAAAAC3RHEJI6G2MXS4GA6YEORDKZ3CU6TQ"
-    surrogate_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
-    queue_jump_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/queue_jump.jpg?token=GHSAT0AAAAAAC3RHEJIGF3ZWSGIQSXRBL46Z3CU6XQ"
+    loan_shark_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/loan_shark.jpg"
+    kidney_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/kidney.png"
+    surrogate_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png"
+    queue_jump_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/queue_jump.jpg"
     prostitute_picture = ''#"https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
     dwarf_tossing_picture = ''#"https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
     waste_trade_picture = ''#"https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
-    coin_collector_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/coin_seller.png?token=GHSAT0AAAAAAC3RHEJJ6DKVZ7V5CHPGSCAAZ3CU6QA"
-    apple_seller_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/apple_seller.jpg?token=GHSAT0AAAAAAC3RHEJIFQFNERTN5M775BEQZ3CU5SA"
+    coin_collector_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/coin_seller.png"
+    apple_seller_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/apple_seller.jpg"
     
     
     # slider labels    
@@ -61,9 +61,14 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):   
-    # Attention check 2, 1 was in introduction 
-    Attention_2 = models.BooleanField()
-            
+    Attention_2 = models.BooleanField(label='What do you think: In which range is the proportion located?',
+                                      choices=[[False, '0-20%'],
+                                        [True,'21-40%'], 
+                                        [False, '41-60%'],
+                                        [False, '61-80%'],
+                                        [False, '81-100%'],],
+                                      widget=widgets.RadioSelectHorizontal)
+                                        
     # Player answers
     ## ban and beliefs
     kidney_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
@@ -661,5 +666,5 @@ class Part_IV_table_5(BasePage_Table):
     form_fields = BasePage_Table.form_fields + extra_fields
 
         
-page_sequence = generated_pages + [PartII_instructions, Page_moral, 
+page_sequence = generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]

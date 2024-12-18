@@ -206,24 +206,8 @@ class Comprehension_check_2(Page):
             player.participant.vars['Allowed']=False
             player.participant.vars['Comprehension_passed'] = False
 
-class Attention_check_1(Page):
-    form_model = 'player'
-    form_fields = ['Attention_1']
-    
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.participant.Allowed == True
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return {'Instructions': C.Instructions_path}
-    
-    #save at  the participant level
-    @staticmethod   
-    def before_next_page(player: Player, timeout_happened=False):
-        player.participant.vars['Attention_1'] = player.Attention_1
 
 
 page_sequence = [Consent, Instructions,
                  Comprehension_check_1, Comprehension_check_2,
-                 Attention_check_1]
+                 ]
