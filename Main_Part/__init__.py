@@ -19,6 +19,10 @@ class C(BaseConstants):
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     Return_redirect = "https://www.wikipedia.org/" 
     
+    Max_bonus = 'PALCEHOLDER' #TODO: adjust
+    Base_payment = 'PALCEHOLDER' #TODO: adjust
+    Bonus = 'Placeholder' #TODO: adjust
+    
     all_vignettes = ['loan_shark', 'kidney', 'surrogate', 'queue_jump', 'prostitute', 'dwarf_tossing', 'waste_trade', 'coin_collector', 'apple_seller']
     
     # pictures
@@ -28,7 +32,7 @@ class C(BaseConstants):
     queue_jump_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/queue_jump.jpg"
     prostitute_picture = ''#"https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
     dwarf_tossing_picture = ''#"https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
-    waste_trade_picture = ''#"https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/Surrogacy.png?token=GHSAT0AAAAAAC3RHEJI55UNQG6IA3KK5O56Z3CUSXQ"
+    waste_trade_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/waste_trade.jpg"
     coin_collector_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/coin_seller.png"
     apple_seller_picture = "https://raw.githubusercontent.com/argunaman2022/Repugnance-vignette/refs/heads/master/_static/pictures/apple_seller.jpg"
     
@@ -71,23 +75,32 @@ class Player(BasePlayer):
                                         
     # Player answers
     ## ban and beliefs
-    kidney_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    kidney_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     kidney_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    surrogate_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    surrogate_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     surrogate_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    queue_jump_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    queue_jump_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     queue_jump_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    prostitute_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    prostitute_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     prostitute_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    dwarf_tossing_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    dwarf_tossing_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     dwarf_tossing_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    waste_trade_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    waste_trade_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     waste_trade_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    coin_collector_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    coin_collector_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     coin_collector_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    loan_shark_ban = models.IntegerField() #1 yes/ban 0 no/dont ban
+    loan_shark_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     loan_shark_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    apple_seller_ban = models.IntegerField() #1 yes/ban 0 no/dont ban      
+    apple_seller_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     apple_seller_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban     
     
     ## moral dims
@@ -104,33 +117,33 @@ class Player(BasePlayer):
     
     
     ## Scenarios
-    scenario_directionality_1_ban = models.StringField(label='',
+    scenario_directionality_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_directionality_2_ban = models.StringField(label='',
+    scenario_directionality_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_directionality_1_realism = models.FloatField( min=-10) 
     scenario_directionality_2_realism = models.FloatField( min=-10) 
     scenario_directionality_1_realism_free_text = models.LongStringField(label='(Please write 2 sentences)',) 
     scenario_directionality_2_realism_free_text = models.LongStringField(label='(Please write 2 sentences)',) 
     
-    scenario_rich_1_ban = models.StringField(label='',
+    scenario_rich_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_rich_2_ban = models.StringField(label='',
-                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    
-    scenario_equality_1_ban = models.StringField(label='',
-                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_equality_2_ban = models.StringField(label='',
+    scenario_rich_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     
-    scenario_price_1_ban = models.StringField(label='',
+    scenario_equality_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_price_2_ban = models.StringField(label='',
+    scenario_equality_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     
-    scenario_donation_1_ban = models.StringField(label='',
+    scenario_price_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_donation_2_ban = models.StringField(label='',
+    scenario_price_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
+    
+    scenario_donation_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
+    scenario_donation_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_donation_1_realism = models.FloatField(min=-10)
     scenario_donation_2_realism = models.FloatField(min=-10)
@@ -179,8 +192,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Paul is a 45-year-old man. His annual income is <strong>{income_seller}$</strong>.
-            Peter is a 30-year-old man. His income is <strong>{income_buyer}$</strong>.
+            Paul is a 45-year-old man. His annual income is {income_seller}$.
+            Peter is a 30-year-old man. His income is {income_buyer}$.
             Paul's son is diagnosed with a life-threatening tumor. 
             While surgery offers a chance to save his life, it must be performed immediately.
             The only available surgeon capable of performing the procedure on short notice requires an upfront payment.
@@ -215,7 +228,7 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             </div>
             Sam is a 40-year-old man. He lives in a medium-sized city and has a desk job at a logistics company. 
             Bob is a 40-year-old man. He also lives in a medium-sized but different city. He is employed at a small firm.
-            Due to final-stage kidney disease, <strong>Bob urgently needs a replacement kidney</strong>. 
+            Due to final-stage kidney disease, Bob urgently needs a replacement kidney. 
             Although he is on the waiting list for a kidney donation, his doctors tell him that he is not high enough 
             on the list to receive a donation in time. Sam hears about Bob's situation through word of mouth. They come to 
             the agreement that Sam will sell one of his kidneys to Bob at an agreed price.
@@ -244,10 +257,10 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
                 <h5>Scenario</h5>
             </div>
             Sam is a 40-year-old man. He lives in a medium-sized city and has a desk job at a logistics company. He earns 
-            <strong>{income_seller}$</strong> annually. 
+            {income_seller}$ annually. 
             Bob is a 40-year-old man. He also lives in a medium-sized but different city. He is employed at a small firm 
-            where he earns <strong>{income_buyer}$</strong> annually.
-            Due to final-stage kidney disease, <strong>Bob urgently needs a replacement kidney</strong>. 
+            where he earns {income_buyer}$ annually.
+            Due to final-stage kidney disease, Bob urgently needs a replacement kidney. 
             Although he is on the waiting list for a kidney donation, his doctors tell him that he is not high enough 
             on the list to receive a donation in time. Sam hears about Bob's situation through word of mouth. They come to 
             the agreement that Sam will sell one of his kidneys to Bob at an agreed price.
@@ -275,8 +288,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Samantha is a 29-year-old single woman. She is employed at a firm close to where she lives. Her annual income is <strong>{income_seller}$</strong>. 
-            Beth is a 42-year-old single woman, and she lives in a city 500 miles away from Samantha. Her annual income is <strong>{income_buyer}$</strong>.
+            Samantha is a 29-year-old single woman. She is employed at a firm close to where she lives. Her annual income is {income_seller}$. 
+            Beth is a 42-year-old single woman, and she lives in a city 500 miles away from Samantha. Her annual income is {income_buyer}$.
             Beth wants to have a baby but she is infertile. She does not want to adopt because she wants to be the genetic mother of her child. 
             She has already acquired donor sperm and is looking for a surrogate mother.
             Samantha and Beth meet on an online platform where they come to the following agreement: 
@@ -298,7 +311,7 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             </div>
 
             <div style="flex: 0 0 40%; text-align: center;">
-                <img src="{vignette_picture}" alt="Line Stander" style="max-width: 100%; height: 300px; margin-left: 0px;">
+                <img src="{vignette_picture}" alt="Line Stander" style="max-width: 100%; height: 200px; margin-left: 0px;">
             </div>
         </div>
 
@@ -306,8 +319,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Philip is a 35-year-old man. His annual income from working at a start-up is <strong>{income_seller}$</strong>.
-            Bruce is a 42-year-old man. His annual income is <strong>{income_buyer}$</strong>.
+            Philip is a 35-year-old man. His annual income from working at a start-up is {income_seller}$.
+            Bruce is a 42-year-old man. His annual income is {income_buyer}$.
             Bruce wants to attend an important congressional hearing that has garnered significant public interest. 
             With limited seating available, a large crowd is expected to queue for hours. 
             To secure a spot, Bruce and Philip reach an agreement: Bruce will pay Philip to stand in line for 20 hours. 
@@ -327,8 +340,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
                 <h5>Scenario</h5>
             </div>
             Sarah is a 31-year-old woman. She lives in the countryside and works at a company in a nearby large city. 
-            She commutes to her job with her private car. Her annual income is <strong>{income_seller}$</strong>.
-            Benjamin is a 45-year-old man. He lives and works in the city where Sarah works. His annual income is <strong>{income_buyer}$</strong>.
+            She commutes to her job with her private car. Her annual income is {income_seller}$.
+            Benjamin is a 45-year-old man. He lives and works in the city where Sarah works. His annual income is {income_buyer}$.
             Although Benjamin and Sarah have never met, he has noticed her on several occasions in public spaces.
             While Benjamin is not interested in dating, he finds the idea of a one-time, no-strings-attached sexual encounter appealing. 
             By chance, the two cross paths in a park and strike up a conversation. 
@@ -349,8 +362,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Casey is a 28-year-old man with dwarfism. His annual income from working a desk job is <strong>{income_seller}$</strong>.
-            Jonathan is a 45-year-old man. His annual income at a large company is <strong>{income_buyer}$</strong>.
+            Casey is a 28-year-old man with dwarfism. His annual income from working a desk job is {income_seller}$.
+            Jonathan is a 45-year-old man. His annual income at a large company is {income_buyer}$.
             On the internet, Jonathan reads about the concept of "dwarf tossing" and decides to organize such a competition for a friend's birthday party.
             Jonathan and Casey come to the following agreement: Jonathan will pay Casey to be the dwarf who will be tossed in the competition.
         </div>
@@ -376,8 +389,8 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Country A is a medium-sized nation with an average annual income of <strong>{income_seller}$</strong> per person.
-            Country B is a medium-sized country with an average annual income of <strong>{income_buyer}$</strong> per person.
+            Country A is a medium-sized nation with an average annual income of {income_seller}$ per person.
+            Country B is a medium-sized country with an average annual income of {income_buyer}$ per person.
             Country B generates a substantial volume of consumer-product waste. 
             Country B and Country A come to the following agreement: Country A will pay Country B to take some of its hazardous waste for disposal and recycling.
         </div>
@@ -390,13 +403,13 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
         text = f'''
         <div style="display: flex; align-items: center; margin-bottom: 20px;">
             <div style="flex: 1; padding-right: 20px; text-align: justify;">
-                Coin collecting involves the search and acquisition of coins, often for numismatic value. 
-                The value of a coin is determined by rarity, condition, and demand. 
-                Coins are collected from different regions, time periods, and countries, with some collectors focusing on a specific theme.
+                Collecting items like coins is a popular hobby enjoyed by people worldwide. 
+                Some of these items, though not initially valuable, can increase in worth over time due to collector interest.
+                Online forums provide platforms for coin collectors to buy and sell coins and connect with others who share their passion.
             </div>
 
             <div style="flex: 0 0 40%; text-align: center;">
-                <img src="{vignette_picture}" alt="Coin Collector" style="max-width: 100%; height: 300px; margin-left: 0px;">
+                <img src="{vignette_picture}" alt="Coin Collector" style="max-width: 100%; height: 200px; margin-left: 0px;">
             </div>
         </div>
 
@@ -404,11 +417,11 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Alice is a 30-year-old woman. She collects rare, valuable coins and has made her passion her profession. 
-            Her annual income is <strong>{income_seller}$</strong>.
-            Oscar is a 40-year-old man who also has a keen interest in coin collecting. His annual income is <strong>{income_buyer}$</strong>.
-            Alice possesses a rare, highly sought-after coin that Oscar is willing to purchase. 
-            They agree to a fair price, and Alice sells the coin to Oscar as part of their mutual interest in the hobby.
+            Samuel is a 40-year-old man who works at a regional company, earning an annual income of {income_seller}$.
+            In addition to his job, he enjoys collecting coins as a hobby. One day, he decides to sell part of his coin collection and posts it on an online forum for coin enthusiasts.
+            Brian is a 32-year-old man. He lives and works at a nearby city. His annual income is {income_buyer}$ and Brian also collects coins. 
+            When Brian comes across Samuel's offer on the online platform, he finds it particularly interesting. 
+            After a brief exchange of messages, they agree that Samuel will sell his collection to Brian at the listed price.
         </div>
         '''
 
@@ -419,8 +432,9 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
         text = f'''
         <div style="display: flex; align-items: center; margin-bottom: 20px;">
             <div style="flex: 1; padding-right: 20px; text-align: justify;">
-                Apple selling is a trade practice where sellers offer apples at markets or online. 
-                Sellers may focus on rare varieties or those grown in specific conditions, increasing the appeal to collectors and enthusiasts.
+                <strong>The market for apples</strong> is a global industry that involves the production, distribution, and consumption of apples.
+                Among the best-known apple types are Fuji, Gala, and Granny Smith, each catering to different consumer preferences. 
+                Apples are sold through various channels, including supermarkets, farmers' markets, and export trade. 
             </div>
 
             <div style="flex: 0 0 40%; text-align: center;">
@@ -432,10 +446,11 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             <div style="text-align: center;">
                 <h5>Scenario</h5>
             </div>
-            Heather is a 33-year-old woman. She runs a small, organic apple farm. Her annual income from selling apples is <strong>{income_seller}$</strong>.
-            Susan is a 40-year-old woman who runs a bakery. She uses apples for her signature pies. Her annual income is <strong>{income_buyer}$</strong>.
-            Heather offers a rare variety of apples that are particularly prized for their flavor and texture. 
-            Susan, seeking to use these special apples in her pies, purchases a large order from Heather, negotiating a price based on the volume she buys.
+            Hilary is a 35-year-old woman who earns an annual income of {income_seller}$ from her self-employed business. She also owns a small orchard with five apple trees.
+            Barbara is a 40-year-old woman who works at a large company, earning {income_buyer}$ annually.
+            Hilary and Barbara meet at a party, where Hilary mentions her orchard. 
+            Barbara expresses interest in buying some of Hilary's apples to make juice. 
+            They agree that Hilary will sell 100kg of apples to Barbara at an agreed price. Hilary pays taxes on the transaction.
         </div>
         '''
 
@@ -482,17 +497,19 @@ def variables_for_template(player, Page_number, Attention_check=False, moral=Fal
         return {'Instructions': C.Instructions_path,
                 'Vignette': current_vignette,
                 'Vignette_text': vignette_text,
+                'formfield_ban': f"{current_vignette}_ban",
                 'vignette_name': vignette_name,
                 }
     
     
 
-def get_form_fields_userdef(player, Page_number, sob=False):
+def get_form_fields_userdef(player, Page_number,): # sob=False):
     current_vignette = player.participant.Vignette_order[Page_number]
-    if sob:
-        return [f"{current_vignette}_beliefs"]
-    else:
-        return [f"{current_vignette}_ban"]
+    return [f"{current_vignette}_ban", f"{current_vignette}_beliefs"]
+    # if sob:
+    #     return [f"{current_vignette}_beliefs"]
+    # else:
+    #     return [f"{current_vignette}_ban"]
 
   
 #%% 
@@ -527,7 +544,7 @@ class BasePage(Page):
 
     @staticmethod
     def get_form_fields(player, number, sob):
-        return get_form_fields_userdef(player, number, sob)
+        return get_form_fields_userdef(player, number)
 
     @staticmethod
     def vars_for_template(player: Player, number):
@@ -552,7 +569,6 @@ def create_pages():
         # Main page
         main_page_attrs = {
             'number': i,
-            'sob': False,
             'get_form_fields': lambda player, i=i: BasePage.get_form_fields(player, i, False),
             'vars_for_template': lambda player, i=i: BasePage.vars_for_template(player, i),
             'js_vars': lambda player, i=i: BasePage.js_vars(player, i),
@@ -561,15 +577,16 @@ def create_pages():
         pages.append(main_page_class)
 
         # _sob page
-        sob_page_attrs = {
-            'number': i,
-            'sob': True,
-            'get_form_fields': lambda player, i=i: BasePage.get_form_fields(player, i, True),
-            'vars_for_template': lambda player, i=i: BasePage.vars_for_template(player, i),
-            'js_vars': lambda player, i=i: BasePage.js_vars(player, i),
-        }
-        sob_page_class = type(f"Page{i + 1}_sob", (BasePage,), sob_page_attrs)
-        pages.append(sob_page_class)
+        # sob_page_attrs = {
+        #     'number': i,
+        #     'sob': True,
+        #     'get_form_fields': lambda player, i=i: BasePage.get_form_fields(player, i, True),
+        #     'vars_for_template': lambda player, i=i: BasePage.vars_for_template(player, i),
+        #     'js_vars': lambda player, i=i: BasePage.js_vars(player, i),
+        # }
+        # sob_page_class = type(f"Page{i + 1}_sob", (BasePage,), sob_page_attrs)
+        # pages.append(sob_page_class)
+    
     return pages
 
 

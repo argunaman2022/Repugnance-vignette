@@ -6,16 +6,17 @@
 <script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
-<!-- TODO: remove comment -->
 
-Comment: How to deal with the fact that the bonus payment is not a very relevant factor i.e. it shows up only in a few pages wheresobs are guessed?
 {{ include Instructions}}
 
-    {{ formfields }}
 
-    <div class="buttons-container">
-        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
-    </div>
+
+
+  <div class="buttons-container">
+      <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+      <button id="submit_button"  onclick="next_button(attention_check = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</button>
+  </div>
+  
     
     
     <div id="myModal2" class="modal quit-modal">
@@ -34,5 +35,19 @@ Comment: How to deal with the fact that the bonus payment is not a very relevant
         </div>
         </div>
     </div>
+
+    <div id="myModal1" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h2>Instructions</h2>
+            <span class="close" onclick="span_click(1)">&times;</span>
+          </div>
+        <p style="padding: 0px">
+       {{include C.Instructions_path}}
+        </p>
+      </div>
+  </div>
+
+
 
 {{ endblock }}

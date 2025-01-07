@@ -1,5 +1,5 @@
 {{ block title }}
-Scenario 3: Your opinion
+Scenario 1: Your opinion
 {{ endblock }}
 
 {{ block content }}
@@ -21,24 +21,48 @@ Scenario 3: Your opinion
 
 <br>
 
-<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
-        To continue, you must answer all questions by moving each slider.
-</div>
 
+
+<!-- 
 <div class="centered">
     <div class="ban-container">
         <label for="yes_no_radio"><strong>In your opinion, should this transaction be prevented?</strong></label>
       <div style="display: flex;  justify-content: space-evenly; padding: 10px;">
         <p>
-            <a id="myBtn"  onclick="ban_button(0)"  class="otree-btn-next btn btn-primary">No</a>
+            <a id="myBtn"  onclick="ban_button(0, next=false)"  class="otree-btn-next btn btn-primary">No</a>
             </p>
             <p>
-            <a id="myBtn"  onclick="ban_button(1)"  class="otree-btn-next btn btn-primary">Yes</a>
+            <a id="myBtn"  onclick="ban_button(1, next=false)"  class="otree-btn-next btn btn-primary">Yes</a>
             </p>
       </div>
     </div>
 </div>
+ -->
+<div style="text-align: center;">
+    {{formfield formfield_ban}}
+</div>
 
+<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
+    To continue, you must answer all questions. Move the slider below to answer the question.
+</div>
+
+<div class="slider-parent">
+    <div class="slider-container" id="ban-div"> 
+        <label class="slider-question" for="equality">
+            What percentage of participants, do you believe, will answer <strong>"Yes"</strong> to the question above? <br>
+            <!-- <i>"In your opinion, should this transaction be prevented?"</i> -->
+        </label>
+        <div class="slider-range-labels">
+            <div class="label-percentage">0%</div>
+            <div class="label-percentage">25%</div>
+            <div class="label-percentage">50%</div>
+            <div class="label-percentage">75%</div>
+            <div class="label-percentage">100%</div>
+        </div>
+        <input type="range" id="equality" min="0" max="100" value="50" step="1" class="form-range" oninput="percentsliderChange(ban=true, equality)"> 
+        <div id="equality_answer" class="percentage_answer_box"></div>
+     </div>
+</div>
 
 </div>    
     <div style="display: none;"> 
@@ -48,10 +72,12 @@ Scenario 3: Your opinion
     <br><br>
     <div class="buttons-container">
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+        <button type="button" onclick="next_button(attention_check = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</button>
     </div>
     <div style="display:none">
-        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+        <button id="submit_button" class="otree-btn-next btn btn-primary">Next</button>
     </div>
+    
     
  
     

@@ -259,39 +259,39 @@ function percentsliderChange(ban=false, dimension){
   const sliderValue = parseFloat(val);
   // const thresholds = [-7.15, -4.3, -0.95, 0.95, 3.43, 6.7, 10]; // Adjust these thresholds as needed
   // get the element whose id is "version1answer" and set its value to the val
-  displayVal = 'Your answer: ' + val + "% of participants chose 'Yes'";
+  displayVal = 'Your answer: ' + val + "% of participants will choose 'Yes'";
   tag = dimension.id + "_answer"
   document.getElementById(tag).textContent = displayVal;
 }
 
-function ban_button(answer, SOB=false, next=true){
-  let vignette = js_vars.vignette;
+// function ban_button(answer, SOB=false, next=true){
+//   let vignette = js_vars.vignette;
   
-  if (SOB==true){
-    var formField = "id_SOB_" + vignette + "_ban";
-  }
-  else{
-    var formField = "id_" + vignette + "_ban";
-  }
+//   if (SOB==true){
+//     var formField = "id_SOB_" + vignette + "_ban";
+//   }
+//   else{
+//     var formField = "id_" + vignette + "_ban";
+//   }
 
-  // if answer equals yes input one
-  if (answer == 1){
-    document.getElementById(formField).value = 1;
-  }
-  else if (answer == 0){
-    document.getElementById(formField).value = 0;
-  }
+//   // if answer equals yes input one
+//   if (answer == 1){
+//     document.getElementById(formField).value = 1;
+//   }
+//   else if (answer == 0){
+//     document.getElementById(formField).value = 0;
+//   }
 
-  if (next==true){
-    document.getElementById("NextButton").click();
-  }
-  else{
+//   if (next==true){
+//     document.getElementById("NextButton").click();
+//   }
+//   else{
 
-  var initiallyHidden = document.querySelectorAll('.hidden'); // Get all the elements that are hidden
-  var banContainer = document.querySelector('.ban-container'); // Get the container that holds the ban button
-  // Remove the hidden class from all the elements that are hidden and add the hidden class to the ban container
-  initiallyHidden.forEach(function(element) {
-    element.classList.remove('hidden');});
-  banContainer.classList.add('hidden');
-}
-}
+//   var initiallyHidden = document.querySelectorAll('.hidden'); // Get all the elements that are hidden
+//   var banContainer = document.querySelector('.ban-container'); // Get the container that holds the ban button
+//   // Remove the hidden class from all the elements that are hidden and add the hidden class to the ban container
+//   initiallyHidden.forEach(function(element) {
+//     element.classList.remove('hidden');});
+//   banContainer.classList.add('hidden');
+// }
+// }

@@ -12,6 +12,7 @@ class C(BaseConstants):
     
     Max_bonus = 'PALCEHOLDER' #TODO: adjust
     Base_payment = 'PALCEHOLDER' #TODO: adjust
+    Bonus = 'Placeholder' #TODO: adjust
     
     # Prolific links:
     Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
@@ -140,74 +141,80 @@ class Instructions(Page):
     def vars_for_template(self):
         return {'Instructions': C.Instructions_path}
     
-class Comprehension_check_1(Page):
-    form_model = 'player'
-    form_fields = ['Comprehension_question_1', 'Comprehension_question_2', 'Comprehension_question_3']
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return {'Instructions': C.Instructions_path}
-
     @staticmethod   
     def before_next_page(player: Player, timeout_happened=False):
-        player_passed_comprehension = player.Comprehension_question_1 and player.Comprehension_question_2 and player.Comprehension_question_3
-        # if player has answered a question wrong then I save it in a string
-        wrong_answers = ''
-        if not player.Comprehension_question_1:
-            player.Comprehension_question_1 = None #reset player answer so it doesnt show up in the next page
-            wrong_answers+= 'first question'
-        if not player.Comprehension_question_2:
-            if not wrong_answers =='': wrong_answers += ', '
-            player.Comprehension_question_2 = None
-            wrong_answers+= 'second question'
-        if not player.Comprehension_question_3:
-            if not wrong_answers =='': wrong_answers += ', '
-            player.Comprehension_question_3 = None
-            wrong_answers+= 'third question'
-        
-        player.Comprehension_wrong_answers = wrong_answers
-        player.Comprehension_1 = player_passed_comprehension
-        # save at the participant level
-        if player_passed_comprehension:
-            player.participant.vars['Comprehension_passed'] = True
-            player.participant.vars['Allowed']=True
-        else: 
-            player.participant.vars['Allowed']=False
-        
-class Comprehension_check_2(Page):
-    form_model = 'player'
-    form_fields = ['Comprehension_question_1', 'Comprehension_question_2', 'Comprehension_question_3']
+        player.participant.vars['Allowed']=True
     
-    @staticmethod
-    def vars_for_template(player: Player):
-        return {'Instructions': C.Instructions_path}
-    
-    @staticmethod
-    def is_displayed(player: Player):
-        return not player.Comprehension_1  #display only if player failed on first try
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        return {'Comprehension_wrong_answers':  player.Comprehension_wrong_answers,
-                'Instructions': C.Instructions_path}
+# TODO: since we have dropped comprehension check, i think it'd be good to have more attention checks.
 
-    @staticmethod   
-    def before_next_page(player: Player, timeout_happened=False):
-        player_passed_comprehension = (player.Comprehension_question_1 and
-                                       player.Comprehension_question_2 and player.Comprehension_question_3)
-        #failing two compr. checks player is not allowed to continue
-        player.participant.Allowed = player_passed_comprehension
-        player.Comprehension_2 = player_passed_comprehension
-        # save at the participant level if they passed
-        if player_passed_comprehension:
-            player.participant.vars['Comprehension_passed'] = True
-            player.participant.vars['Allowed']=True
-        else:
-            player.participant.vars['Allowed']=False
-            player.participant.vars['Comprehension_passed'] = False
+    
+# class Comprehension_check_1(Page):
+#     form_model = 'player'
+#     form_fields = ['Comprehension_question_1', 'Comprehension_question_2', 'Comprehension_question_3']
+    
+#     @staticmethod
+#     def vars_for_template(player: Player):
+#         return {'Instructions': C.Instructions_path}
+
+#     @staticmethod   
+#     def before_next_page(player: Player, timeout_happened=False):
+#         player_passed_comprehension = player.Comprehension_question_1 and player.Comprehension_question_2 and player.Comprehension_question_3
+#         # if player has answered a question wrong then I save it in a string
+#         wrong_answers = ''
+#         if not player.Comprehension_question_1:
+#             player.Comprehension_question_1 = None #reset player answer so it doesnt show up in the next page
+#             wrong_answers+= 'first question'
+#         if not player.Comprehension_question_2:
+#             if not wrong_answers =='': wrong_answers += ', '
+#             player.Comprehension_question_2 = None
+#             wrong_answers+= 'second question'
+#         if not player.Comprehension_question_3:
+#             if not wrong_answers =='': wrong_answers += ', '
+#             player.Comprehension_question_3 = None
+#             wrong_answers+= 'third question'
+        
+#         player.Comprehension_wrong_answers = wrong_answers
+#         player.Comprehension_1 = player_passed_comprehension
+#         # save at the participant level
+#         if player_passed_comprehension:
+#             player.participant.vars['Comprehension_passed'] = True
+#             player.participant.vars['Allowed']=True
+#         else: 
+#             player.participant.vars['Allowed']=False
+        
+# class Comprehension_check_2(Page):
+#     form_model = 'player'
+#     form_fields = ['Comprehension_question_1', 'Comprehension_question_2', 'Comprehension_question_3']
+    
+#     @staticmethod
+#     def vars_for_template(player: Player):
+#         return {'Instructions': C.Instructions_path}
+    
+#     @staticmethod
+#     def is_displayed(player: Player):
+#         return not player.Comprehension_1  #display only if player failed on first try
+    
+#     @staticmethod
+#     def vars_for_template(player: Player):
+#         return {'Comprehension_wrong_answers':  player.Comprehension_wrong_answers,
+#                 'Instructions': C.Instructions_path}
+
+#     @staticmethod   
+#     def before_next_page(player: Player, timeout_happened=False):
+#         player_passed_comprehension = (player.Comprehension_question_1 and
+#                                        player.Comprehension_question_2 and player.Comprehension_question_3)
+#         #failing two compr. checks player is not allowed to continue
+#         player.participant.Allowed = player_passed_comprehension
+#         player.Comprehension_2 = player_passed_comprehension
+#         # save at the participant level if they passed
+#         if player_passed_comprehension:
+#             player.participant.vars['Comprehension_passed'] = True
+#             player.participant.vars['Allowed']=True
+#         else:
+#             player.participant.vars['Allowed']=False
+#             player.participant.vars['Comprehension_passed'] = False
 
 
 
 page_sequence = [Consent, Instructions,
-                 Comprehension_check_1, Comprehension_check_2,
                  ]
