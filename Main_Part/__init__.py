@@ -65,13 +65,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):   
-    Attention_2 = models.BooleanField(label='What do you think: In which range is the proportion located?',
-                                      choices=[[False, '0-20%'],
-                                        [True,'21-40%'], 
-                                        [False, '41-60%'],
-                                        [False, '61-80%'],
-                                        [False, '81-100%'],],
-                                      widget=widgets.RadioSelectHorizontal)
+    attention_check_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
+    attention_check_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
                                         
     # Player answers
     ## ban and beliefs
@@ -112,7 +108,8 @@ class Player(BasePlayer):
     kidney_harm = models.FloatField(blank=True, min=-10) 
     
     ## Imagined
-    kidney_imagined_price = models.FloatField(blank=False, min=0, label='In this scenario, what do you imagine the agreed-upon price to be (in dollars)?')
+    kidney_imagined_price = models.FloatField(blank=False, min=0, label='In this scenario, what do you imagine the agreed-upon price to be (in dollars)?',
+                                               errors={'required': 'Please enter a number between 0 and 1000asd'})
     kidney_imagined_health = models.FloatField(blank=True, min=-10) 
     
     
@@ -381,7 +378,7 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             </div>
 
             <div style="flex: 0 0 40%; text-align: center;">
-                <img src="{vignette_picture}" alt="Waste Trade" style="max-width: 100%; height: 300px; margin-left: 0px;">
+                <img src="{vignette_picture}" alt="Waste Trade" style="max-width: 100%; height: 250px; margin-left: 0px;">
             </div>
         </div>
 
@@ -483,7 +480,7 @@ def variables_for_template(player, Page_number, Attention_check=False, moral=Fal
     
     if Attention_check:
         return {'Instructions': C.Instructions_path,
-                'Vignette_text': C.Attention_check,
+                'formfield_ban': f"attention_check_ban",
                 }
     elif moral:
         return {'Instructions': C.Instructions_path,
@@ -516,7 +513,7 @@ def get_form_fields_userdef(player, Page_number,): # sob=False):
 # Pages
 class Attention_check_2(Page):         
     form_model = 'player'
-    form_fields = ['Attention_2']
+    form_fields = [ 'attention_check_ban', 'attention_check_beliefs']
     
     @staticmethod
     def is_displayed(player: Player):
@@ -527,13 +524,21 @@ class Attention_check_2(Page):
         return variables_for_template(player, 0, Attention_check=True)
     
     def before_next_page(player: Player, timeout_happened=False):
-        if (not player.Attention_2 and not player.participant.vars['Attention_1']):
+        if not (player.attention_check_ban == 'Yes' and player.attention_check_beliefs == 73):
+            Attention_2 = False
+        else:
+            Attention_2 = True
+            
+        player.participant.Attention_2 = False
+        
+        if (not Attention_2 and not player.participant.vars['Attention_1']):
             player.participant.vars['Allowed'] = False
             player.participant.vars['Attention_passed'] = False
 
     @staticmethod
-    def js_vars(player):
-        return dict(vignette=player.participant.Vignette_order[0],)
+    def js_vars(player: Player,):
+        return dict(vignette='attention_check')
+    
   
 class BasePage(Page):
     form_model = 'player'
@@ -543,7 +548,7 @@ class BasePage(Page):
         return player.participant.Allowed == True
 
     @staticmethod
-    def get_form_fields(player, number, sob):
+    def get_form_fields(player, number,):
         return get_form_fields_userdef(player, number)
 
     @staticmethod
@@ -569,7 +574,7 @@ def create_pages():
         # Main page
         main_page_attrs = {
             'number': i,
-            'get_form_fields': lambda player, i=i: BasePage.get_form_fields(player, i, False),
+            'get_form_fields': lambda player, i=i: BasePage.get_form_fields(player, i,),
             'vars_for_template': lambda player, i=i: BasePage.vars_for_template(player, i),
             'js_vars': lambda player, i=i: BasePage.js_vars(player, i),
         }
@@ -595,7 +600,9 @@ generated_pages = create_pages()
 
 
 class PartII_instructions(Page):
-    pass
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
 
 class Page_moral(Page):
     form_model = 'player'
@@ -693,6 +700,7 @@ class BasePage_Table_2(Page):
         return {'Instructions': C.Instructions_path,
                 'Vignette': current_vignette,
                 'Vignette_text': vignette_text,
+                'Vignette_text_inequality': vignette_text,
                 'vignette_name': vignette_name,
                 'label': label,
                 'Slider_labels': labels_for_sliders,
@@ -701,6 +709,7 @@ class BasePage_Table_2(Page):
 class Page11_imagined(BasePage_Table):
     extra_fields = ['kidney_imagined_health','kidney_imagined_price'] 
     form_fields = BasePage_Table.form_fields + extra_fields
+
 
 
 class Part_IV_table_1(BasePage_Table_2):
@@ -714,7 +723,7 @@ class Part_IV_table_2(BasePage_Table_2):
     extra_fields = ['scenario_rich_1_ban', 'scenario_rich_2_ban']
     form_fields = BasePage_Table.form_fields + extra_fields
     
-class Part_IV_table_3(BasePage_Table):
+class Part_IV_table_3(BasePage_Table_2):
     extra_fields = ['scenario_equality_1_ban', 'scenario_equality_2_ban']
     form_fields = BasePage_Table.form_fields + extra_fields
 
@@ -726,6 +735,7 @@ class Part_IV_table_5(BasePage_Table):
                     'scenario_donation_1_realism', 'scenario_donation_2_realism']
     form_fields = BasePage_Table.form_fields + extra_fields
 
-        
-page_sequence = generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
+
+# TODO: Uncomment below
+page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]

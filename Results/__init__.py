@@ -45,23 +45,6 @@ class Results(Page):
         return {'Instructions': C.Instructions_path}
     
 
-class Failed_screening(Page):
-    'This page is displayed if the player failed the comprehension checks'
-    @staticmethod
-    def is_displayed(player: Player):
-        # You can set another failure condition here and message below
-        return not player.participant.Comprehension_passed 
-    
-    @staticmethod
-    def vars_for_template(player: Player):
-        failure_message = 'Unfortunately you did not successfuly pass the comprehension check.'
-        return {'failure_message': failure_message}
-    
-    @staticmethod
-    def js_vars(player):
-        return dict(
-            completion_link = C.Return_redirect
-        )
 
 class Failed_attention(Page):
     @staticmethod
@@ -73,4 +56,4 @@ class Failed_attention(Page):
             completion_link = C.Failure_redirect
         )
 
-page_sequence = [Results, Failed_screening, Failed_attention]
+page_sequence = [Results, Failed_attention]

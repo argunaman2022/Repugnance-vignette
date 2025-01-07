@@ -22,7 +22,9 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 PARTICIPANT_FIELDS = [
-    'Allowed', 'Comprehension_passed', 'Attention_passed',
+    'Allowed',
+    'Attention_1', 'Attention_2', 'Attention_3',
+    'Attention_passed',
     'Treatment', 'Vignette_order',
 ]
 SESSION_FIELDS = {

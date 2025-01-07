@@ -111,16 +111,23 @@ function next_button_2(){
     let vignette = js_vars.vignette;
     var slider1 = document.getElementById("id_" + vignette + "_imagined_health").value;
     var slider2 = document.getElementById("id_" + vignette + "_imagined_price").value;
+    var targetDiv = document.getElementById("alert-move-sliders");
+    var targetDiv_2 = document.getElementById("alert-move-sliders_2");
     if (slider1 == "" || slider2 == ""){
             // get the alert div and display it              
-            var targetDiv = document.getElementById("alert-move-sliders");
             move_to_alert(targetDiv)
+    } else if (isNaN(slider2)) {
+      move_to_alert(targetDiv_2)
+      console.log("slider2 contains non-numeric characters");
     }
-    else{
+    else {
       document.getElementById("true_next_button").click();
-      console.log('submit')
+      console.log('submit');
     }
-}
+    }
+
+
+
 function next_button_3(){
     let vignette = js_vars.vignette;
     var slider1 = document.querySelector('input[name="scenario_directionality_1_ban"]:checked');
@@ -240,7 +247,7 @@ function sliderChange_2(dimension){
     }
 }
 
-function percentsliderChange(ban=false, dimension){
+function percentsliderChange(ban=false, dimension, attention_check=false){
   let vignette = js_vars.vignette;
   let current_vignette = js_vars.current_vignette;
 
@@ -260,6 +267,11 @@ function percentsliderChange(ban=false, dimension){
   // const thresholds = [-7.15, -4.3, -0.95, 0.95, 3.43, 6.7, 10]; // Adjust these thresholds as needed
   // get the element whose id is "version1answer" and set its value to the val
   displayVal = 'Your answer: ' + val + "% of participants will choose 'Yes'";
+  
+  if (attention_check==true){
+    displayVal = 'Your answer: ' + val + "%";
+  }
+
   tag = dimension.id + "_answer"
   document.getElementById(tag).textContent = displayVal;
 }

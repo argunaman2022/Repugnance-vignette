@@ -9,6 +9,7 @@ class C(BaseConstants):
     
     Max_bonus = 'PALCEHOLDER' #TODO: adjust
     Base_payment = 'PALCEHOLDER' #TODO: adjust
+    Bonus = 'Placeholder' #TODO: adjust
     
     # Prolific links:
     Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
@@ -44,12 +45,12 @@ class Player(BasePlayer):
     gender = models.StringField(label='Gender at birth',
                                 choices=['Male', 'Female', 'Other/Prefer not to say'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
     education = models.StringField(label = 'Education level',
-                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
+                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate', 'Other'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
     # education = models.StringField(label = 'Education level',
     #                                choices=['High school or lower','Bachelors degree','Masters degree','PhD','Other'], widget=widgets.RadioSelect) 
     
     employment = models.StringField(label='Employment status',
-                                    choices=['Employed full-time', 'Employed part-time', 'Independent, or business owner', 'Out of work, or seeking work',
+                                    choices=['Employed full-time', 'Employed part-time', 'Self-employed', 'Out of work, or seeking work',
                                              'Student', 'Out of labor force (e.g. retired or parent raising one or more children)'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
     
     income = models.StringField(label='Approximately, what was your <strong>total household income</strong> in the last year, before taxes?',
@@ -86,6 +87,21 @@ class Player(BasePlayer):
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
     
+    # Attention checks
+    #TODO: change this:
+    Attention_3 =  models.BooleanField(choices=[
+            [False, 'USA'],
+            [False, 'Canada'],
+            [False, 'Mexico'],
+            [False, 'Austria'],
+            [False, 'Germany'],
+            [False, 'Switzerland'],
+            [False, 'Russia'], 
+            [True, 'India'], ],
+        label='Choose the country that was described in the instructions.',
+        widget=widgets.RadioSelect,
+        initial=True) #TODO: remove initial=True)
+    
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', 'employment', 'income']
@@ -97,13 +113,21 @@ class Demographics(Page):
 class Political_leaning(Page):
     form_model = 'player'
     form_fields = ['Politics_social', 'Politics_economic', 'Politics_inequality']
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
 class Religiosity(Page):
     form_model = 'player'
     form_fields = ['Religion_category', 'Religion_intensity']
     
-class Attention_check_1(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+class Attention_check_3(Page):
     form_model = 'player'
-    form_fields = ['Attention_1']
+    form_fields = ['Attention_3']
     
     @staticmethod
     def is_displayed(player: Player):
@@ -116,6 +140,15 @@ class Attention_check_1(Page):
     #save at  the participant level
     @staticmethod   
     def before_next_page(player: Player, timeout_happened=False):
-        player.participant.vars['Attention_1'] = player.Attention_1
+        player.participant.vars['Attention_3'] = player.Attention_3
+        count = 0
+        for x in ['Attention_1', 'Attention_2']:
+            if player.participant.vars[x] == False:
+                count += 1
+        if player.Attention_3 == False:
+            count += 1
+        if count > 1:
+            player.participant.Allowed = False
+            player.participant.Attention_passed = False
 
-page_sequence = [ Political_leaning, Religiosity, Demographics, Attention_check_1]
+page_sequence = [ Political_leaning, Religiosity, Demographics, Attention_check_3]

@@ -1,5 +1,5 @@
 {{ block title }}
-    Page 10
+    Scenario 10
 {{ endblock }}
 
 {{ block content }}
@@ -8,31 +8,74 @@
 <script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
+
+
 <div class="attention-box">
-    <div style="text-align: center;">
+
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+        <div style="flex: 1; padding-right: 20px; text-align: justify;">
+            In order to analyze your attitudes and opinions, data quality is very important. 
+            Often researchers have to employ the so called attention checks to ensure the quality of the data collected. 
+            
+        </div>
+        <div style="flex: 0 0 40%; text-align: center;">
+            <img src="{{C.waste_trade_picture}}" alt="WasteTradePic" style="max-width: 100%; height: 200px; margin-left: 0px;">
+        </div>
     </div>
-    Please answer the following final question. <br>
-    The subsequent part is about the following:: <br>
-    In order to analyze your attitudes and opinions, data quality is very important. 
-    We would thus like to know whether you are still paying attention and reading the text, rather than just checking one of the options and clicking "Next".
-    If you are still paying attention, please in the question below choose the second option from the left (twenty-one to forty percent), and ignore the question below.
+
+    <div style="text-align: justify; margin-top: 20px;">
+        <div style="text-align: center;">
+            <h5>Scenario</h5>
+        </div>
+        We would thus like to know whether you are still paying attention and reading the text, rather than just checking one of the options and clicking "Next".
+        If you are still paying attention, please in the first question below choose "Yes" and in the question below input exactly 73 percent to continue.
+    </div>
+
+
+    
 </div>
-    <p>
-       
-    </p>
-    
-    {{ formfields }}
+<div style="text-align: center;">
+    {{formfield formfield_ban}}
+</div>
 
-    
+<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
+    To continue, you must answer all questions. Move the slider below to answer the question.
+</div>
+
+<div class="slider-parent">
+    <div class="slider-container" id="ban-div"> 
+        <label class="slider-question" for="equality">
+            What do you think: in which range is there a proportion?
+            <!-- <i>"In your opinion, should this transaction be prevented?"</i> -->
+        </label>
+        <div class="slider-range-labels">
+            <div class="label-percentage">0%</div>
+            <div class="label-percentage">25%</div>
+            <div class="label-percentage">50%</div>
+            <div class="label-percentage">75%</div>
+            <div class="label-percentage">100%</div>
+        </div>
+        <input type="range" id="equality" min="0" max="100" value="50" step="1" class="form-range" oninput="percentsliderChange(ban=true, equality, attention=true)"> 
+        <div id="equality_answer" class="percentage_answer_box"></div>
+     </div>
+</div>
+
+</div>    
+    <div style="display: none;"> 
+        {{ formfields }}
+    </div>
+
     <br><br>
-
     <div class="buttons-container">
         <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        <button id="NextButton" class="otree-btn-next btn btn-primary">Next</button>
+        <button type="button" onclick="next_button(attention_check = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</button>
+    </div>
+    <div style="display:none">
+        <button id="submit_button" class="otree-btn-next btn btn-primary">Next</button>
     </div>
     
     
-
+ 
     
     <div id="myModal1" class="modal">
         <div class="modal-content">
@@ -48,5 +91,3 @@
 
     <br><br>
 {{ endblock }}
-
-

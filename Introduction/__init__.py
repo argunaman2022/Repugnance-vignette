@@ -144,6 +144,21 @@ class Instructions(Page):
     @staticmethod   
     def before_next_page(player: Player, timeout_happened=False):
         player.participant.vars['Allowed']=True
+        
+class Attention_1(Page):
+    form_model = 'player'
+    form_fields = ['Attention_1']
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        return {'Instructions': C.Instructions_path}
+    
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened=False):
+        if not player.Attention_1:
+            player.participant.vars['Attention_1'] = False
+        else:
+            player.participant.vars['Attention_1'] = True
     
 # TODO: since we have dropped comprehension check, i think it'd be good to have more attention checks.
 
@@ -216,5 +231,5 @@ class Instructions(Page):
 
 
 
-page_sequence = [Consent, Instructions,
+page_sequence = [Consent, Instructions, Attention_1,
                  ]
