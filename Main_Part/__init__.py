@@ -736,8 +736,7 @@ class Part_IV_table_5(BasePage_Table):
     form_fields = BasePage_Table.form_fields + extra_fields
 
 
-# TODO: Uncomment below
-# page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
-#                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
-page_sequence =   [Attention_check_2,PartII_instructions, Page_moral, 
+page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
+# page_sequence =   [Attention_check_2,PartII_instructions, Page_moral, 
+#                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
