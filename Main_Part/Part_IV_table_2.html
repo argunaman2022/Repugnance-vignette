@@ -1,5 +1,5 @@
 {{ block title }}
-Part II. Page 1/XXX
+Part II. (Page 3/6)
 {{ endblock }}
 
 {{ block content }}
@@ -23,7 +23,6 @@ Part II. Page 1/XXX
 
 
 
-
 <div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
     To continue, you must answer all questions.
 </div>
@@ -32,18 +31,10 @@ Part II. Page 1/XXX
 
 <table class="scenario-table">
     <tr>
-        <th colspan="2" class="merged-header">Scenarios</th>
+        <th colspan="2" class="merged-header">Scenario</th>
     </tr>
     <tr>
-        <td>Suppose that Sam makes 1.000.000$ and Bob makes 100.000$</td>
-        <td>Suppose that Sam makes 100.000$ and Bob makes 30.000$</td>
-    </tr>
-    <tr>
-        <th colspan="2" class="merged-header"> In your opinion, should this transaction be prevented? </th>
-    </tr>
-    <tr>
-        <td>        {{formfield 'scenario_rich_1_ban'}}        </td>
-        <td>        {{formfield 'scenario_rich_2_ban'}}        </td>
+        <td>Suppose that Sam makes 1.000.000$ and Bob makes 100.000$ <br><br>{{formfield 'scenario_rich_1_ban'}}    </td>
     </tr>
     
 

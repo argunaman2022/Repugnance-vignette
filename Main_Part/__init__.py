@@ -125,8 +125,8 @@ class Player(BasePlayer):
     
     scenario_rich_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_rich_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
-                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
+    # scenario_rich_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    #                                                    choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     
     scenario_equality_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
@@ -720,7 +720,7 @@ class Part_IV_table_1(BasePage_Table_2):
     
     
 class Part_IV_table_2(BasePage_Table_2):
-    extra_fields = ['scenario_rich_1_ban', 'scenario_rich_2_ban']
+    extra_fields = ['scenario_rich_1_ban',]
     form_fields = BasePage_Table.form_fields + extra_fields
     
 class Part_IV_table_3(BasePage_Table_2):
@@ -737,5 +737,7 @@ class Part_IV_table_5(BasePage_Table):
 
 
 # TODO: Uncomment below
-page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
+# page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
+#                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
+page_sequence =   [Attention_check_2,PartII_instructions, Page_moral, 
                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]

@@ -1,3 +1,15 @@
+<script>
+    function button_clicked() {
+      console.log("button clicked")
+      // TODO: change placeholder to the actual number of questions
+      alert('There are PLACEHOLDER questions with correct answers. One of these will be randomly chosen by the computer to determine your bonus.\n\n If your answer to the randomly chosen question is within 10% of the correct value, then you will earn the ${{C.Max_bonus}} bonus');
+      var element = document.getElementById("id_Payment_button");
+      if (element) {
+        element.value = "1";
+      }
+    }
+</script>
+
 <style>
   .center {
     text-align: center;
@@ -42,11 +54,11 @@
     Your payment consists of two parts: A completion fee of {{C.Base_payment}}$ and a bonus payment of up to {{C.Max_bonus}}$. 
     <br> <br>
     
-    Some of the questions in this survey have a correct answer. 
-    If your answer on these questions is close enough to the correct value, you will receive a bonus payment.
-     For each correct answer you receive {{C.Bonus}}$. 
-     It is in your best interest to give honest responses to maximize your bonus payment.
-
+    Some questions in this study relate to personal opinions, while some questions have an actual correct answer. 
+    Your bonus payment depends on how well you perform in the questions with correct answers. 
+    To maximize your bonus, you should try to answer these questions as accurately as possible. 
+    (Optional: Click <button type='button' onclick="button_clicked()" class="btn btn-info btn-sm">Here</button> to see how exactly the bonus is determined)
+    
 <br><br>
 	  Note that these instructions will always be available to you at the bottom of the screen via the "Instructions" button.
 

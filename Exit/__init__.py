@@ -51,7 +51,7 @@ class Player(BasePlayer):
     
     employment = models.StringField(label='Employment status',
                                     choices=['Employed full-time', 'Employed part-time', 'Self-employed', 'Out of work, or seeking work',
-                                             'Student', 'Out of labor force (e.g. retired or parent raising one or more children)'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
+                                             'Student', 'Out of labor force (e.g. retired or parent raising one or more children)', 'Other'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
     
     income = models.StringField(label='Approximately, what was your <strong>total household income</strong> in the last year, before taxes?',
                             choices=['$0-$10.000', '$10.000-$20.000','$20.000-$30.000','$30.000-$40.000','$40.000-$50.000','$50.000-$60.000',

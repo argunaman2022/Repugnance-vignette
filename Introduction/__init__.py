@@ -4,7 +4,6 @@ import random
 
 
 
-
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'
     PLAYERS_PER_GROUP = None
@@ -13,6 +12,8 @@ class C(BaseConstants):
     Max_bonus = 'PALCEHOLDER' #TODO: adjust
     Base_payment = 'PALCEHOLDER' #TODO: adjust
     Bonus = 'Placeholder' #TODO: adjust
+    
+    #TODO: do bonus calculation codes.
     
     # Prolific links:
     Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
@@ -87,6 +88,13 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect,
         initial=True) #TODO: remove initial=True)
     
+    Honesty = models.StringField(choices=['Yes', 'No', 'I cannot promise'],
+        label = f'Do you <strong>agree</strong> to be careful and provide your best answers?',
+        widget=widgets.RadioSelect,
+        initial=True)
+    
+    Payment_button = models.IntegerField(initial=0)
+    
     Attention_1 = models.BooleanField(choices=[
             [False, 'USA'],
             [False, 'Canada'],
@@ -137,6 +145,8 @@ class Consent(Page):
     
 
 class Instructions(Page):
+    form_model = 'player'
+    form_fields = ['Payment_button']
     @staticmethod
     def vars_for_template(self):
         return {'Instructions': C.Instructions_path}
@@ -144,6 +154,14 @@ class Instructions(Page):
     @staticmethod   
     def before_next_page(player: Player, timeout_happened=False):
         player.participant.vars['Allowed']=True
+        
+class Honesty(Page):
+    form_model = 'player'
+    form_fields = ['Honesty']
+    @staticmethod
+    def vars_for_template(self):
+        return {'Instructions': C.Instructions_path}
+
         
 class Attention_1(Page):
     form_model = 'player'
@@ -160,7 +178,6 @@ class Attention_1(Page):
         else:
             player.participant.vars['Attention_1'] = True
     
-# TODO: since we have dropped comprehension check, i think it'd be good to have more attention checks.
 
     
 # class Comprehension_check_1(Page):
@@ -231,5 +248,5 @@ class Attention_1(Page):
 
 
 
-page_sequence = [Consent, Instructions, Attention_1,
+page_sequence = [Consent, Instructions, Honesty, Attention_1,
                  ]
