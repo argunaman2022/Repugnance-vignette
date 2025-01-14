@@ -120,8 +120,8 @@ class Player(BasePlayer):
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_directionality_1_realism = models.FloatField( min=-10) 
     scenario_directionality_2_realism = models.FloatField( min=-10) 
-    scenario_directionality_1_realism_free_text = models.LongStringField(label='(Please write 2 sentences)',) 
-    scenario_directionality_2_realism_free_text = models.LongStringField(label='(Please write 2 sentences)',) 
+    scenario_directionality_1_realism_free_text = models.LongStringField(blank=True, label='(Please write 2 sentences)',) 
+    scenario_directionality_2_realism_free_text = models.LongStringField(blank=True, label='(Please write 2 sentences)',) 
     
     scenario_rich_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
@@ -735,7 +735,7 @@ class Part_IV_table_5(BasePage_Table):
                     'scenario_donation_1_realism', 'scenario_donation_2_realism']
     form_fields = BasePage_Table.form_fields + extra_fields
 
-
+# TODO: Fix error in morality: human dignity question
 page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
 # page_sequence =   [Attention_check_2,PartII_instructions, Page_moral, 

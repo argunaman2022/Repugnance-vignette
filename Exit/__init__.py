@@ -73,7 +73,7 @@ class Player(BasePlayer):
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
 
-    Politics_inequality = models.StringField(label='To what extend do you agree that income inequality is an important social issue?',
+    Politics_inequality = models.StringField(label='To what extent do you agree that income inequality is an important social issue?',
                                           choices=['Strongly agree','Somewhat agree', 'Moderately agree', 'Neutral', 'Moderately disagree','Somewhat agree', "Strongly disagree"
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
