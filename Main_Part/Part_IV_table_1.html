@@ -1,5 +1,5 @@
 {{ block title }}
-Part II. (Page 2/6)
+Part II. Page 3/7
 {{ endblock }}
 {{ block content }}
 
@@ -10,16 +10,13 @@ Part II. (Page 2/6)
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
 
-<p>
-    Please answer the questions below. <br><br>
-</p>
 
-<div class="attention-box">
+<!-- <div class="attention-box">
     <div style="text-align: center;">
         <h5>Background: Kidney transplant</h5>
     </div>
     {{Vignette_text}}
-</div>
+</div> -->
 
 
 
@@ -34,13 +31,10 @@ Part II. (Page 2/6)
 </div>
 
 <table class="scenario-table">
-    <!-- <tr>
-        <th colspan="2" class="merged-header">Buyer: Bob, Seller: Sam </th>
-    </tr> -->
-    <!-- TODO: use the second alternative, everywhere -->
-    <!-- <tr>
-        <th colspan="2" class="merged-header">Bob buys Sam's kidney: Scenarios</th>
-    </tr> -->
+
+    <tr>
+        <th colspan="2" class="merged-header">Bob buys Sam's kidney</th>
+    </tr>
     <tr>
         <th colspan="2" class="merged-header">Scenarios</th>
     </tr>
@@ -49,11 +43,12 @@ Part II. (Page 2/6)
         <td>Suppose that Sam makes 30.400$ and Bob makes 100.700$</td>
     </tr>
     <tr>
-        <th colspan="2" class="merged-header"> In your opinion, should this transaction be prevented? </th>
+        <th colspan="2" class="merged-header"> In your opinion, should society prevent this transaction? </th>
     </tr>
+    <!-- TODO: remove the label of the question, also for others -->
     <tr>
-        <td>        {{formfield 'scenario_directionality_1_ban'}}        </td>
-        <td>        {{formfield 'scenario_directionality_2_ban'}}        </td>
+        <td>        {{formfield 'scenario_directionality_1_ban' label='' }}        </td>
+        <td>        {{formfield 'scenario_directionality_2_ban' label='' }}        </td>
     </tr>
     <tr>
         <th colspan="2" class="merged-header"> How realistic is this scenario? </th>
@@ -95,7 +90,7 @@ Part II. (Page 2/6)
         </td>
     </tr>
     <tr>
-        <th colspan="2" class="merged-header"> Why do you think so? </th>
+        <th colspan="2" class="merged-header"> Why do you think the scenario is realistic/unrealistic? </th>
     </tr>
     <tr>
         <td>        {{formfield 'scenario_directionality_1_realism_free_text'}}        </td>
@@ -110,13 +105,19 @@ Part II. (Page 2/6)
     
 
 
-    <br><br>
 
     <br><br>
     <div class="buttons-container">
-        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        <button id="submit_button" type="button" onclick="next_button_3()"  class="otree-btn-next btn btn-primary">Next</button>
+        <div class="instructions-box">
+            <p class="instructions-title">Instruction Buttons</p> 
+            <div class="Instructions">
+                <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+                <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Kidney transplant</a>                
+            </div>
+        </div>         
+        <button id="submit_button"   class="otree-btn-next btn btn-primary">Next</button>
     </div>
+
 
     <div style="display:none;">
         <button id='true_next_button'>True button</button>
@@ -132,6 +133,23 @@ Part II. (Page 2/6)
             </div>
           <p style="padding: 0px">
          {{include C.Instructions_path}}
+          </p>
+        </div>
+    </div>
+
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Kidney transplant</h2>
+              <span class="close" onclick="span_click(2)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+            <div class="attention-box">
+                <div style="text-align: center;">
+                    <h5>Background: {{vignette_name}}</h5>
+                </div>
+                {{Vignette_text}}
+            </div>
           </p>
         </div>
     </div>

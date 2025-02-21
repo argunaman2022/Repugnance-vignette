@@ -65,39 +65,42 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):   
-    attention_check_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    attention_check_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     attention_check_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
                                         
     # Player answers
     ## ban and beliefs
-    kidney_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    kidney_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     kidney_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    surrogate_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    surrogate_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     surrogate_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    queue_jump_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    queue_jump_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     queue_jump_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    prostitute_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    prostitute_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     prostitute_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    dwarf_tossing_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    dwarf_tossing_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     dwarf_tossing_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    waste_trade_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    waste_trade_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     waste_trade_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    coin_collector_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    coin_collector_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     coin_collector_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    loan_shark_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    loan_shark_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     loan_shark_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban
-    apple_seller_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    apple_seller_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     apple_seller_beliefs = models.FloatField(blank=True) #1 yes/ban 0 no/dont ban     
+    
+    # Open question why did you choose prevent/not prevent
+    kidney_ban_free_text = models.LongStringField(blank=True, label='',)
     
     ## moral dims
     kidney_exploit = models.FloatField(blank=True, min=-10)
@@ -114,33 +117,33 @@ class Player(BasePlayer):
     
     
     ## Scenarios
-    scenario_directionality_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_directionality_1_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_directionality_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_directionality_2_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_directionality_1_realism = models.FloatField( min=-10) 
     scenario_directionality_2_realism = models.FloatField( min=-10) 
-    scenario_directionality_1_realism_free_text = models.LongStringField(blank=True, label='(Please write 2 sentences)',) 
-    scenario_directionality_2_realism_free_text = models.LongStringField(blank=True, label='(Please write 2 sentences)',) 
+    scenario_directionality_1_realism_free_text = models.LongStringField(blank=True, label='(Please write 1-2 sentences)',) 
+    scenario_directionality_2_realism_free_text = models.LongStringField(blank=True, label='(Please write 1-2 sentences)',) 
     
-    scenario_rich_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_rich_1_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    # scenario_rich_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    # scenario_rich_2_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
     #                                                    choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     
-    scenario_equality_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_equality_1_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_equality_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
-                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    
-    scenario_price_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
-                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_price_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_equality_2_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     
-    scenario_donation_1_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_price_1_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_donation_2_ban = models.StringField(label='<strong>In your opinion, should this transaction be prevented?</strong>',
+    scenario_price_2_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
+    
+    scenario_donation_1_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
+                                                       choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
+    scenario_donation_2_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_donation_1_realism = models.FloatField(min=-10)
     scenario_donation_2_realism = models.FloatField(min=-10)
@@ -604,6 +607,38 @@ class PartII_instructions(Page):
     def is_displayed(player: Player):
         return player.participant.Allowed == True
 
+class ReasonsPrevent(Page):
+    form_model = 'player'
+    form_fields = ['kidney_ban_free_text']
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        current_vignette = 'kidney'
+        
+        label = current_vignette+'_'+player.participant.Treatment
+        vignette_text, vignette_name= return_vignette(current_vignette, player.participant.Treatment)
+
+        if player.kidney_ban == 'Yes':
+            choice_text_part =  '<strong>should prevent</strong> the kidney transaction.'
+        elif player.kidney_ban == 'No':
+            choice_text_part = '<strong>should not prevent</strong> the kidney transaction.'
+        
+        choice_text = f'In the previous Part, you said that you think the society {choice_text_part}. Please write 1-2 sentences explaining why you think so.'
+    
+
+        return {'Instructions': C.Instructions_path,
+                'Vignette': current_vignette,
+                'Vignette_text': vignette_text,
+                'vignette_name': vignette_name,
+                'label': label,
+                'choice_text': choice_text
+                }
+    
+
 class Page_moral(Page):
     form_model = 'player'
     form_fields = ['kidney_exploit', 'kidney_autonomy', 'kidney_coercion', 'kidney_fairA', 'kidney_dignity', 'kidney_harm']
@@ -735,8 +770,6 @@ class Part_IV_table_5(BasePage_Table):
                     'scenario_donation_1_realism', 'scenario_donation_2_realism']
     form_fields = BasePage_Table.form_fields + extra_fields
 
-# TODO: Fix error in morality: human dignity question
-page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, Page_moral, 
-                                   Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
-# page_sequence =   [Attention_check_2,PartII_instructions, Page_moral, 
-#                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]
+page_sequence =  generated_pages + [Attention_check_2,PartII_instructions, ReasonsPrevent,
+                                    Page_moral, 
+                                    Page11_imagined, Part_IV_table_1, Part_IV_table_2, Part_IV_table_3, Part_IV_table_4, Part_IV_table_5]

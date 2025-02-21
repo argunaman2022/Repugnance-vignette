@@ -29,15 +29,15 @@ Here we employ a conjoined design.
  - Note: the reason we do not employ a conjoined design in part I is the worry of experimenter demand effect. 
    In the second part since we are incentivizing subjects, this worry is not as strong as an issue.
 An example randomized order:
-15. Introduction to Part II: Second order beliefs.
+15. Introduction to Part II.Second order beliefs.
 16. Vignette 1 both versions double-conjoined. Second-order belief measures.
 17. Vignette 2 both versions double-conjoined. Second-order belief measures.
 18. Vignette 3 both versions double-conjoined. Second-order belief measures.
 19. Vignette 4 both versions double-conjoined. Second-order belief measures.
 
-After this participants move to "Part II: Repugnance of potential lab experiments". Here participants judge the repugnance of 
+After this participants move to "Part II.Repugnance of potential lab experiments". Here participants judge the repugnance of 
 some hypothetical lab experiment transactions:
-20. Introduction to Part II: Repugnance of potential lab experiments
+20. Introduction to Part II.Repugnance of potential lab experiments
 21. Lab experiment transaction 1
 22. Lab experiment transaction 2
 23. Lab experiment transaction 3

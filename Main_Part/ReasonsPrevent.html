@@ -1,14 +1,12 @@
 {{ block title }}
-Part II. Page 5/7
+Part II. Reasons.
 {{ endblock }}
 
 {{ block content }}
 <link rel="stylesheet" href="{{static 'css/css.css'}}">
 <link rel="stylesheet" href="{{static 'css/modal.css'}}">
-<link rel="stylesheet" href="{{static 'css/css_table.css'}}">
 <script type="text/javascript" src="{{ static 'js/Scripts.js' }}"></script>
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
-
 
 
 <!-- <div class="attention-box">
@@ -18,37 +16,19 @@ Part II. Page 5/7
     {{Vignette_text}}
 </div> -->
 
+<!-- TODO: put in the scenario button. -->
+
+
+<p>
+   {{choice_text}} 
+</p>
+    {{formfields}}
+
+
+<br>
 
 
 
-<div id="alert-move-sliders" class="alert-move-sliders" style="display: none;">
-    To continue, you must answer all questions.
-</div>
-
-
-
-<table class="scenario-table">
-    <tr>
-        <th colspan="2" class="merged-header">Bob buys Sam's kidney</th>
-    </tr>
-    <tr>
-        <th colspan="2" class="merged-header">Scenarios</th>
-    </tr>
-    <tr>
-        <td>Suppose that Bob and Sam live in a society with high income inequality</td>
-        <td>Suppose that Bob and Sam live in a society with low income inequality</td>
-    </tr>
-    <tr>
-        <th colspan="2" class="merged-header"> In your opinion, should society prevent this transaction? </th>
-    </tr>
-    <tr>
-        <td>        {{formfield 'scenario_equality_1_ban' label='' }}        </td>
-        <td>        {{formfield 'scenario_equality_2_ban' label='' }}        </td>
-    </tr>
-    
-
-</table>
- 
 
     <br><br>
     <div class="buttons-container">
@@ -59,8 +39,15 @@ Part II. Page 5/7
                 <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Kidney transplant</a>                
             </div>
         </div>         
-        <button id="submit_button" class="otree-btn-next btn btn-primary">Next</button>
+        <button id="submit_button"   class="otree-btn-next btn btn-primary">Next</button>
     </div>
+
+
+    <div style="display:none;">
+        <button id='true_next_button'>True button</button>
+    </div>
+
+
     
     <div id="myModal1" class="modal">
         <div class="modal-content">
@@ -73,7 +60,7 @@ Part II. Page 5/7
           </p>
         </div>
     </div>
-
+    
     <div id="myModal2" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -90,7 +77,6 @@ Part II. Page 5/7
           </p>
         </div>
     </div>
-    
     <br><br>
 {{ endblock }}
 

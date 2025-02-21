@@ -73,10 +73,16 @@ class Player(BasePlayer):
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
 
-    Politics_inequality = models.StringField(label='To what extent do you agree that income inequality is an important social issue?',
+    Politics_inequality = models.StringField(label='To what extent do you agree that <strong>income inequality</strong> is an important social issue?',
                                           choices=['Strongly agree','Somewhat agree', 'Moderately agree', 'Neutral', 'Moderately disagree','Somewhat agree', "Strongly disagree"
                                         ], widget=widgets.RadioSelect,
                             blank=True) #TODO: remove blank=True
+    
+    Politics_redistribution = models.StringField(label='To what extent do you agree that <strong>there should be more redistribution?</strong>',
+                                          choices=["Don't know what 'redistribution' means", 'Strongly agree','Somewhat agree', 'Moderately agree', 'Neutral', 'Moderately disagree','Somewhat agree', "Strongly disagree", 
+                                        ], widget=widgets.RadioSelect,
+                            blank=True) #TODO: remove blank=True
+    
     # Religion
     Religion_category = models.StringField(label='What is your religion?',
                                           choices=['Atheist/Agnostic', 'Christian', 'Jewish', 'Muslim', 'Other'
@@ -112,7 +118,14 @@ class Demographics(Page):
 
 class Political_leaning(Page):
     form_model = 'player'
-    form_fields = ['Politics_social', 'Politics_economic', 'Politics_inequality']
+    form_fields = ['Politics_social', 'Politics_economic',]
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.participant.Allowed == True
+class Political_leaning_2(Page):
+    form_model = 'player'
+    form_fields = ['Politics_inequality', 'Politics_redistribution']
     
     @staticmethod
     def is_displayed(player: Player):
@@ -151,4 +164,4 @@ class Attention_check_3(Page):
             player.participant.Allowed = False
             player.participant.Attention_passed = False
 
-page_sequence = [ Political_leaning, Religiosity, Demographics, Attention_check_3]
+page_sequence = [ Political_leaning,Political_leaning_2, Religiosity, Demographics, Attention_check_3]

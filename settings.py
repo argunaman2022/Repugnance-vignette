@@ -3,7 +3,7 @@ from os import environ
 SESSION_CONFIGS = [
     dict(name='Study',
          app_sequence=['Introduction', 'Main_Part','Exit', 'Results'], 
-         num_demo_participants=200,
+         num_demo_participants=10,
          completionlink='prolific completion link!!!!!!'),
 ]
 

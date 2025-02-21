@@ -45,8 +45,8 @@
 <div class="slider-parent">
     <div class="slider-container" id="ban-div"> 
         <label class="slider-question" for="equality">
-            What do you think: in which range is there a proportion?
-            <!-- <i>"In your opinion, should this transaction be prevented?"</i> -->
+            What do you think: in which range is the proportion?
+            <!-- <i>"In your opinion, should society prevent this transaction?"</i> -->
         </label>
         <div class="slider-range-labels">
             <div class="label-percentage">0%</div>
@@ -66,13 +66,23 @@
     </div>
 
     <br><br>
+
     <div class="buttons-container">
-        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+        <div class="instructions-box">
+            <p class="instructions-title">Instruction Buttons</p> 
+            <div class="Instructions">
+                <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+                <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Kidney transplant</a>                
+            </div>
+        </div>         
         <button type="button" onclick="next_button(attention_check = false, SOB=true)"  class="otree-btn-next btn btn-primary">Next</button>
     </div>
-    <div style="display:none">
-        <button id="submit_button" class="otree-btn-next btn btn-primary">Next</button>
+
+
+    <div style="display:none;">
+        <button id='true_next_button'>True button</button>
     </div>
+
     
     
  

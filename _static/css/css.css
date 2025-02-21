@@ -1,3 +1,25 @@
+
+.instructions-box {
+  border: 1px solid #ccc; /* Light gray border */
+  padding: 16px;          /* Adds space inside the box */
+  border-radius: 8px;     /* Rounds the corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.instructions-title {
+  font-weight: bold;
+  margin-bottom: 8px; /* Space between the title and buttons */
+  color: #333; /* Darker color for emphasis */
+}
+
+.Instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns items to the start of the container */
+  gap: 8px; /* Adds space between buttons */
+}
+
 .attention-box {
   border: 2px solid lightblue; /* Light blue border */
   padding: 12px; /* Space inside the border */

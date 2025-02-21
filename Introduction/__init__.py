@@ -2,7 +2,7 @@ from otree.api import *
 import random
 
 
-
+#TODO: make sure there are no quotas. We'll create two experiments in prolific
 
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'
@@ -89,7 +89,7 @@ class Player(BasePlayer):
         initial=True) #TODO: remove initial=True)
     
     Honesty = models.StringField(choices=['Yes', 'No', 'I cannot promise'],
-        label = f'Do you <strong>agree</strong> to be careful and provide your best answers?',
+        label = f'Do you <strong>agree</strong> to be careful and provide your best answers? <br>Please be honest. Your answer will not affect your payment. ',
         widget=widgets.RadioSelect,
         initial=True)
     

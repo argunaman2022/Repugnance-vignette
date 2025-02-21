@@ -1,5 +1,5 @@
 {{ block title }}
- Moral dimensions 
+Part II. Moral dimensions (Page 1/7)
 {{ endblock }}
 
 {{ block content }}
@@ -9,12 +9,14 @@
 <script type="text/javascript" src="{{ static 'js/Script_modal.js' }}"></script>
 
 
-<div class="attention-box">
+<!-- <div class="attention-box">
     <div style="text-align: center;">
         <h5>Background: {{vignette_name}}</h5>
     </div>
     {{Vignette_text}}
-</div>
+</div> -->
+
+<!-- TODO: put in the scenario button. -->
 
 <div style='display:none;'>
     {{formfields}}
@@ -29,6 +31,9 @@
 
 
 <p>
+    Please answer the following questions about the <strong>"Kidney transplant"</strong> scenario. 
+    If you want to review the "Kidney transplant" scenario, please click on the button at the bottom of the screen.
+    <br><br>
     Please answer the questions below by moving the sliders. <br>
 </p>
 
@@ -136,9 +141,16 @@
 
     <br><br>
     <div class="buttons-container">
-        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
-        <button id="submit_button" type="button" onclick="next_button(attention_check = false, SOB=false)"  class="otree-btn-next btn btn-primary">Next</button>
+        <div class="instructions-box">
+            <p class="instructions-title">Instruction Buttons</p> 
+            <div class="Instructions">
+                <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+                <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Kidney transplant</a>                
+            </div>
+        </div>         
+        <button id="submit_button"   class="otree-btn-next btn btn-primary">Next</button>
     </div>
+
 
     <div style="display:none;">
         <button id='true_next_button'>True button</button>
@@ -157,7 +169,23 @@
           </p>
         </div>
     </div>
-
+    
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Kidney transplant</h2>
+              <span class="close" onclick="span_click(2)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+            <div class="attention-box">
+                <div style="text-align: center;">
+                    <h5>Background: {{vignette_name}}</h5>
+                </div>
+                {{Vignette_text}}
+            </div>
+          </p>
+        </div>
+    </div>
     <br><br>
 {{ endblock }}
 

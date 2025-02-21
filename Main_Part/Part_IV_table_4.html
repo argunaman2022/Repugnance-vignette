@@ -1,5 +1,5 @@
 {{ block title }}
-Part II. (Page 5/6)
+Part II. Page 6/7
 {{ endblock }}
 
 {{ block content }}
@@ -14,12 +14,12 @@ Part II. (Page 5/6)
     Please answer the questions below. <br><br>
 </p>
 
-<div class="attention-box">
+<!-- <div class="attention-box">
     <div style="text-align: center;">
         <h5>Background: {{vignette_name}}</h5>
     </div>
     {{Vignette_text}}
-</div>
+</div> -->
 
 
 
@@ -32,6 +32,9 @@ Part II. (Page 5/6)
 
 <table class="scenario-table">
     <tr>
+        <th colspan="2" class="merged-header">Bob buys Sam's kidney</th>
+    </tr>
+    <tr>
         <th colspan="2" class="merged-header">Scenarios</th>
     </tr>
     <tr>
@@ -39,11 +42,11 @@ Part II. (Page 5/6)
         <td>Suppose that the agreed-upon price is 150.000$</td>
     </tr>
     <tr>
-        <th colspan="2" class="merged-header"> In your opinion, should this transaction be prevented? </th>
+        <th colspan="2" class="merged-header"> In your opinion, should society prevent this transaction? </th>
     </tr>
     <tr>
-        <td>        {{formfield 'scenario_price_1_ban'}}        </td>
-        <td>        {{formfield 'scenario_price_2_ban'}}        </td>
+        <td>        {{formfield 'scenario_price_1_ban' label='' }}        </td>
+        <td>        {{formfield 'scenario_price_2_ban' label='' }}        </td>
     </tr>
     
 
@@ -52,7 +55,13 @@ Part II. (Page 5/6)
 
     <br><br>
     <div class="buttons-container">
-        <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+        <div class="instructions-box">
+            <p class="instructions-title">Instruction Buttons</p> 
+            <div class="Instructions">
+                <a id="myBtn" onclick="open_modal(1)"  class="otree-btn-next btn btn-primary">Instructions</a>
+                <a id="myBtn" onclick="open_modal(2)"  class="otree-btn-next btn btn-primary">Kidney transplant</a>                
+            </div>
+        </div>         
         <button id="submit_button" class="otree-btn-next btn btn-primary">Next</button>
     </div>
 
@@ -65,6 +74,23 @@ Part II. (Page 5/6)
             </div>
           <p style="padding: 0px">
          {{include C.Instructions_path}}
+          </p>
+        </div>
+    </div>
+
+    <div id="myModal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h2>Kidney transplant</h2>
+              <span class="close" onclick="span_click(2)">&times;</span>
+            </div>
+          <p style="padding: 0px">
+            <div class="attention-box">
+                <div style="text-align: center;">
+                    <h5>Background: {{vignette_name}}</h5>
+                </div>
+                {{Vignette_text}}
+            </div>
           </p>
         </div>
     </div>
