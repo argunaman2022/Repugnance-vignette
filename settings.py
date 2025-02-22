@@ -2,9 +2,10 @@ from os import environ
 #TODO: add the prolific completion link here
 SESSION_CONFIGS = [
     dict(name='Study',
-         app_sequence=['Introduction', 'Main_Part','Exit', 'Results'], 
+         #TODO: AFTER PILOT, REMOVE THE PILOT FROM THE APPSEQUENCE
+         app_sequence=['Introduction', 'Main_Part','Exit', 'Pilot','Results'], 
          num_demo_participants=10,
-         completionlink='prolific completion link!!!!!!'),
+         completionlink='https://app.prolific.com/submissions/complete?cc=CCNA4C97'),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

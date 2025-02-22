@@ -7,14 +7,14 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Max_bonus = 'PALCEHOLDER' #TODO: adjust
-    Base_payment = 'PALCEHOLDER' #TODO: adjust
+    Max_bonus = 2 
+    Base_payment = 3.4 
     Bonus = 'Placeholder' #TODO: adjust
     
     # Prolific links:
-    Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
-    Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust
-    Return_redirect = "https://www.wikipedia.org/" #TODO: adjust
+    Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CCNA4C97" 
+    Reject_redirect = "https://app.prolific.com/submissions/complete?cc=CSTFIICD" 
+    
     
     
     Instructions_path = "_templates/global/Instructions.html"
@@ -41,23 +41,23 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # Demographics
-    age = models.IntegerField(label="Age", min=18, max=100, blank=True) #TODO: remove blank=True
+    age = models.IntegerField(label="Age", min=18, max=100, blank=False) 
     gender = models.StringField(label='Gender at birth',
-                                choices=['Male', 'Female', 'Other/Prefer not to say'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
+                                choices=['Male', 'Female', 'Other/Prefer not to say'], widget=widgets.RadioSelect,)
     education = models.StringField(label = 'Education level',
-                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate', 'Other'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
+                                   choices=['Haven’t graduated high school','GED','High school graduate','Bachelors','Masters','Professional degree (JD, MD, MBA)','Doctorate', 'Other'], widget=widgets.RadioSelect, )
     # education = models.StringField(label = 'Education level',
     #                                choices=['High school or lower','Bachelors degree','Masters degree','PhD','Other'], widget=widgets.RadioSelect) 
     
     employment = models.StringField(label='Employment status',
                                     choices=['Employed full-time', 'Employed part-time', 'Self-employed', 'Out of work, or seeking work',
-                                             'Student', 'Out of labor force (e.g. retired or parent raising one or more children)', 'Other'], widget=widgets.RadioSelect, blank=True) #TODO: remove blank=True
+                                             'Student', 'Out of labor force (e.g. retired or parent raising one or more children)', 'Other'], widget=widgets.RadioSelect, )
     
     income = models.StringField(label='Approximately, what was your <strong>total household income</strong> in the last year, before taxes?',
                             choices=['$0-$10.000', '$10.000-$20.000','$20.000-$30.000','$30.000-$40.000','$40.000-$50.000','$50.000-$60.000',
                                      '$50.000-$75.000', '$75.000-$100.000', '$100.000-$150.000', '$150.000-$200.000', '$200.000+', 'Prefer not to answer',
                                      ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False) 
 
    # Politics
     Politics_social = models.StringField(label='How liberal (left-wing) or conservative (right-wing) are you on <strong>SOCIAL</strong> issues?',
@@ -65,36 +65,35 @@ class Player(BasePlayer):
                                         'Slightly Conservative', 'Conservative', 'Very Conservative', 
                                         "Don't know/not political", 'Libertarian', 'Other'
                                         ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False) 
     Politics_economic = models.StringField(label='How liberal (left-wing) or conservative (right-wing) are you on <strong>ECONOMIC</strong> issues?',
                                           choices=['Very Liberal', 'Liberal', 'Slightly Liberal', 'Moderate/middle-of-the-road', 
                                         'Slightly Conservative', 'Conservative', 'Very Conservative', 
                                         "Don't know/not political", 'Libertarian', 'Other'
                                         ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False)
 
     Politics_inequality = models.StringField(label='To what extent do you agree that <strong>income inequality</strong> is an important social issue?',
                                           choices=['Strongly agree','Somewhat agree', 'Moderately agree', 'Neutral', 'Moderately disagree','Somewhat agree', "Strongly disagree"
                                         ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False) 
     
     Politics_redistribution = models.StringField(label='To what extent do you agree that <strong>there should be more redistribution?</strong>',
                                           choices=["Don't know what 'redistribution' means", 'Strongly agree','Somewhat agree', 'Moderately agree', 'Neutral', 'Moderately disagree','Somewhat agree', "Strongly disagree", 
                                         ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False) 
     
     # Religion
     Religion_category = models.StringField(label='What is your religion?',
                                           choices=['Atheist/Agnostic', 'Christian', 'Jewish', 'Muslim', 'Other'
                                         ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False) 
     Religion_intensity = models.StringField(label='How religious are you?',
                                           choices=['Very religious', 'Somewhat religious', 'Slightly religious', 'Not religious at all', "Don't want to answer"
                                         ], widget=widgets.RadioSelect,
-                            blank=True) #TODO: remove blank=True
+                            blank=False)
     
     # Attention checks
-    #TODO: change this:
     Attention_3 =  models.BooleanField(choices=[
             [False, 'USA'],
             [False, 'Canada'],
@@ -105,9 +104,8 @@ class Player(BasePlayer):
             [False, 'Russia'], 
             [True, 'India'], ],
         label='Choose the country that was described in the instructions.',
-        widget=widgets.RadioSelect,
-        initial=True) #TODO: remove initial=True)
-    
+        widget=widgets.RadioSelect,)
+        
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'education', 'employment', 'income']

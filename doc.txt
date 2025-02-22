@@ -7,10 +7,10 @@ Participants go through the following pages:
 4. Attention check 1.
 
 Then they move to Part I: Vignettes first order beliefs. 
-Here each participant sees 4 vignettes in a random order.
+Here each participant sees vignettes in a random order.
     Each vignette has 2 versions and participants first see the first or
-    second versions of the 4 vignettes depending on their treatment
-    And then the other version of the 4 vignettes.
+    second versions of the vignettes depending on their treatment
+    And then the other version of the vignettes.
 An example order:
 5. Introductio nto Part I: First order beliefs. 
 6. Vignette 1 (version depending on treatment) repugnance measures

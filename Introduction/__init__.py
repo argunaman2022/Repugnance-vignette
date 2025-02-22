@@ -3,22 +3,28 @@ import random
 
 
 #TODO: make sure there are no quotas. We'll create two experiments in prolific
+#TODO: Pilot: check treatment balance
+#TODO: create a pilot app. 
+    #1. Study was too long
+    #2. study is boring
+    #3. I understood well what my task was
+    #3. Other comments
 
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Max_bonus = 'PALCEHOLDER' #TODO: adjust
-    Base_payment = 'PALCEHOLDER' #TODO: adjust
+    Max_bonus = 2 
+    Base_payment = 3.4 
     Bonus = 'Placeholder' #TODO: adjust
     
     #TODO: do bonus calculation codes.
     
     # Prolific links:
-    Completion_redirect = "https://www.wikipedia.org/" #TODO: adjust
-    Reject_redirect = "https://www.wikipedia.org/" #TODO: adjust
-    Return_redirect = "https://www.wikipedia.org/" #TODO: adjust
+    Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CCNA4C97" 
+    Reject_redirect = "https://app.prolific.com/submissions/complete?cc=CSTFIICD" 
+    
     
     
     Instructions_path = "_templates/global/Instructions.html"
@@ -71,27 +77,25 @@ class Player(BasePlayer):
             [False, f'I will receive a fixed payment of {C.Base_payment} and a bonus payment that will be determined by my answers in Part I and Part II.'],
             [False, f'I will receive a fixed payment of {C.Base_payment} only. '],],
         label = 'How is your <strong>Payment</strong> determined?',
-        widget=widgets.RadioSelect,
-        initial=True) #TODO: remove initial=True
+        widget=widgets.RadioSelect,)
+        
     Comprehension_question_2 = models.BooleanField(choices=[
             [False, 'In Part I, there are correct and incorrect answers. My bonus in this part depends on the correctness of my answer.'],
             [True,'In Part I, there is no right or wrong answer. I need to answer with my honest opinions. '], 
             [False, 'In Part I, there are correct and incorrect answers. My bonus in this part does not depend on correctness of my answer.'],],
         label = f'Which of the following is true for <strong>Part I</strong>?',
-        widget=widgets.RadioSelect,
-        initial=True) #TODO: remove initial=True)
+        widget=widgets.RadioSelect,)
+
     Comprehension_question_3 = models.BooleanField(choices=[
             [True,'In Part II, I will see the same situations as in Part I. Here my bonus is determined by the correctness  of my answer.'], 
             [False, 'In Part II, there is no right or wrong answer. I need to answer with my honest opinions. '],
             [False, 'In Part II, I will see situations I have not seen in Part I. My bonus in this part depends on the correctness of my answers.'],],
         label = f'Which of the following is true for <strong>Part II</strong>?',
-        widget=widgets.RadioSelect,
-        initial=True) #TODO: remove initial=True)
+        widget=widgets.RadioSelect,)
     
     Honesty = models.StringField(choices=['Yes', 'No', 'I cannot promise'],
         label = f'Do you <strong>agree</strong> to be careful and provide your best answers? <br>Please be honest. Your answer will not affect your payment. ',
-        widget=widgets.RadioSelect,
-        initial=True)
+        widget=widgets.RadioSelect,)
     
     Payment_button = models.IntegerField(initial=0)
     
@@ -105,8 +109,7 @@ class Player(BasePlayer):
             [True, 'Russia'], 
             [False, 'India'], ],
         label='Choose the country that was described in the instructions.',
-        widget=widgets.RadioSelect,
-        initial=True) #TODO: remove initial=True)
+        widget=widgets.RadioSelect,)
     
 #%% Functions
 def treatment_assignment(player):

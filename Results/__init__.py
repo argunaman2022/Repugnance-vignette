@@ -9,13 +9,13 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     
-    Max_bonus = 'PALCEHOLDER' #TODO: adjust
-    Base_payment = 'PALCEHOLDER' #TODO: adjust
+    Max_bonus = 2 
+    Base_payment = 3.4 
     
     # Prolific links, gotten from the study page on prolific
-    Completion_redirect = 'https://www.wikipedia.org/' #TODO: change these
-    Failure_redirect = 'https://www.wikipedia.org/'
-    Return_redirect = 'https://www.wikipedia.org/'
+    Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CCNA4C97" 
+    Failure_redirect = "https://app.prolific.com/submissions/complete?cc=CSTFIICD" 
+    
 
     Instructions_path = "_templates/global/Instructions.html"
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
