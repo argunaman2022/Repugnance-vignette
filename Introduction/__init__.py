@@ -4,11 +4,6 @@ import random
 
 #TODO: make sure there are no quotas. We'll create two experiments in prolific
 #TODO: Pilot: check treatment balance
-#TODO: create a pilot app. 
-    #1. Study was too long
-    #2. study is boring
-    #3. I understood well what my task was
-    #3. Other comments
 
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'

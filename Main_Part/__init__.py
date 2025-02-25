@@ -122,7 +122,7 @@ class Player(BasePlayer):
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_directionality_1_realism = models.FloatField( min=-10) 
     scenario_directionality_2_realism = models.FloatField( min=-10) 
-    #TODO: mention to jakob that these two are not blank=True
+
     scenario_directionality_1_realism_free_text = models.LongStringField(blank=False, label='(Please write 1-2 sentences)',) 
     scenario_directionality_2_realism_free_text = models.LongStringField(blank=False, label='(Please write 1-2 sentences)',) 
     
@@ -198,7 +198,7 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             While surgery offers a chance to save his life, it must be performed immediately.
             The only available surgeon capable of performing the procedure on short notice requires an upfront payment.
             After selling all the assets he can liquidate, Paul still falls $100,000 short.
-            Traditional banks, which offer weekly interest rates of 5%, are not an option due to their lengthy processing times.
+            Traditional banks, which offer yearly interest rates of 5%, are not an option due to their lengthy processing times.
             Paul and Peter come to the following agreement: 
             Peter will lend Paul the remaining amount for one month at an interest rate of 25%.
         </div>
@@ -419,7 +419,7 @@ def return_vignette(vignette, treatment, income_seller=False, income_buyer=False
             </div>
             Samuel is a 40-year-old man who works at a regional company, earning an annual income of ${income_seller}.
             In addition to his job, he enjoys collecting coins as a hobby. One day, he decides to sell part of his coin collection and posts it on an online forum for coin enthusiasts.
-            Brian is a 32-year-old man. He lives and works at a nearby city. His annual income is ${income_buyer} and Brian also collects coins. 
+            Brian is a 32-year-old man. He lives and works in a nearby city. His annual income is ${income_buyer} and Brian also collects coins. 
             When Brian comes across Samuel's offer on the online platform, he finds it particularly interesting. 
             After a brief exchange of messages, they agree that Samuel will sell his collection to Brian at the listed price.
         </div>

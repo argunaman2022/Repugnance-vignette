@@ -15,10 +15,13 @@
   
   /* The Close Button */
   .close {
-    color: red;
+    color:red;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    border: 2px solid #003366;
+    background: transparent;
+    cursor: pointer;
   }
   
   .close:hover,
@@ -31,7 +34,7 @@
    /* Modal Header */
   .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: #0275d8;
     color: white;
   }
   
