@@ -37,10 +37,10 @@ class C(BaseConstants):
     
     
     # slider labels    
-    Slider_label_exploit = f'What do you think about the following statement: "<strong>this transaction exploits Sam</strong>"?'
+    Slider_label_exploit = f'What do you think about the following statement: "<strong>this transaction exploits Sam (seller)</strong>"?'
     Slider_label_autonomy = 'In your opinion, does this transaction <strong>respect or limit individual autonomy (i.e. self-determination)</strong>?'
-    Slider_label_coercion = 'In your opinion, does this transaction allow the Sam <strong> to make fully informed choices or does it exert undue influence</strong>?'
-    Slider_label_fairA = f'In your opinion, is this transaction <strong>fair or unfair to Sam</strong>?'
+    Slider_label_coercion = 'In your opinion, does this transaction allow Sam (seller)<strong> to make fully informed choices or does it exert undue influence</strong>?'
+    Slider_label_fairA = f'In your opinion, is this transaction <strong>fair or unfair to Sam (seller)</strong>?'
     Slider_label_dignity = 'In your opinion, does this transaction <strong>promote or violate human dignity</strong>?'
     Slider_label_harm = 'What do you think about the following statement: <strong>"allowing such transactions would harm society in the long run"</strong>?'
 
