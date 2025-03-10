@@ -1,5 +1,4 @@
 from os import environ
-#TODO: add the prolific completion link here
 SESSION_CONFIGS = [
     dict(name='Study',
          #TODO: AFTER PILOT, REMOVE THE PILOT FROM THE APPSEQUENCE

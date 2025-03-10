@@ -2,7 +2,7 @@ from otree.api import *
 import random
 
 
-#TODO: make sure there are no quotas. We'll create two experiments in prolific
+
 #TODO: Pilot: check treatment balance
 
 class C(BaseConstants):
@@ -11,7 +11,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Max_bonus = 2 
-    Base_payment = 3.4 
+    Base_payment = 3.5 
     Bonus = 'Placeholder' #TODO: adjust
     
     #TODO: do bonus calculation codes.

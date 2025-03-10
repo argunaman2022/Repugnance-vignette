@@ -19,8 +19,8 @@ class C(BaseConstants):
     Quit_study_text_path = "_templates/global/Quit_study_text.html"
     
     Max_bonus = 2 
-    Base_payment = 3.4 
-    Bonus = 'Placeholder' #TODO: adjust
+    Base_payment = 3.5
+    Bonus = 'Placeholder' 
     
     all_vignettes = ['loan_shark', 'kidney', 'surrogate', 'queue_jump', 'prostitute', 'dwarf_tossing', 'waste_trade', 'coin_collector', 'apple_seller']
     

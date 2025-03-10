@@ -10,7 +10,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Max_bonus = 2 
-    Base_payment = 3.4 
+    Base_payment = 3.5 
     
     # Prolific links, gotten from the study page on prolific
     Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CCNA4C97" 

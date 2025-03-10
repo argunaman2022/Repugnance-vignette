@@ -8,8 +8,8 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Max_bonus = 2 
-    Base_payment = 3.4 
-    Bonus = 'Placeholder' #TODO: adjust
+    Base_payment = 3.5
+    Bonus = 'Placeholder' 
     
     # Prolific links:
     Completion_redirect = "https://app.prolific.com/submissions/complete?cc=CCNA4C97" 
