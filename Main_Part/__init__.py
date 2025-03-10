@@ -120,8 +120,8 @@ class Player(BasePlayer):
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
     scenario_directionality_2_ban = models.StringField(label='<strong>In your opinion, should society prevent this transaction?</strong>',
                                                        choices=['Yes','No'], widget=widgets.RadioSelectHorizontal ) #1 yes/ban 0 no/dont ban
-    scenario_directionality_1_realism = models.FloatField( min=-10) 
-    scenario_directionality_2_realism = models.FloatField( min=-10) 
+    scenario_directionality_1_realism = models.FloatField(blank=True, min=-10) 
+    scenario_directionality_2_realism = models.FloatField(blank=True, min=-10) 
 
     scenario_directionality_1_realism_free_text = models.LongStringField(blank=False, label='(Please write 1-2 sentences)',) 
     scenario_directionality_2_realism_free_text = models.LongStringField(blank=False, label='(Please write 1-2 sentences)',) 
@@ -532,7 +532,7 @@ class Attention_check_2(Page):
         else:
             Attention_2 = True
             
-        player.participant.Attention_2 = False
+        player.participant.Attention_2 = Attention_2
         
         if (not Attention_2 and not player.participant.vars['Attention_1']):
             player.participant.vars['Allowed'] = False

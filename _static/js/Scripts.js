@@ -138,14 +138,16 @@ function next_button_3(){
     var slider5 = document.getElementById("id_scenario_directionality_1_realism_free_text").value;
     var slider6 = document.getElementById("id_scenario_directionality_2_realism_free_text").value;
     
+    console.log(slider3, slider4)
     
 
-    if (slider1 == "" || slider2 == "", slider3 == "" || slider4 == "", slider5 == "" || slider6 == ""){
+    if (slider1 == "" || slider2 == "" || slider3 == "" || slider4 == "" || slider5 == "" || slider6 == ""){
             // get the alert div and display it              
             var targetDiv = document.getElementById("alert-move-sliders");
             move_to_alert(targetDiv)
     }
     else{
+      console.log('Next')
       document.getElementById("true_next_button").click();
       console.log('submit')
     }

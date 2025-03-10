@@ -130,7 +130,7 @@ def treatment_assignment(player):
     random.shuffle(vignette_labels_order)
     player.participant.vars['Vignette_order'] = ['kidney'] + vignette_labels_order
     
-    print(f"Player {player.id_in_group} is assigned to {treatment} treatment, his vignette order is {player.participant.vars['Vignette_order']}")
+    # print(f"Player {player.id_in_group} is assigned to {treatment} treatment, his vignette order is {player.participant.vars['Vignette_order']}")
 
             
 #%% PAGES
