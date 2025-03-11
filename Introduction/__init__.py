@@ -3,7 +3,6 @@ import random
 
 
 
-#TODO: Pilot: check treatment balance
 
 class C(BaseConstants):
     NAME_IN_URL = 'Introduction'
@@ -11,8 +10,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Max_bonus = 2 
-    Base_payment = 3.5 
-    Bonus = 'Placeholder' #TODO: adjust
+    Base_payment = 4 
     
     #TODO: do bonus calculation codes.
     

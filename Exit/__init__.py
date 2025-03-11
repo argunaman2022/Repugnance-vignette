@@ -8,7 +8,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     
     Max_bonus = 2 
-    Base_payment = 3.5
+    Base_payment = 4
     Bonus = 'Placeholder' 
     
     # Prolific links:

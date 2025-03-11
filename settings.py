@@ -1,8 +1,7 @@
 from os import environ
 SESSION_CONFIGS = [
     dict(name='Study',
-         #TODO: AFTER PILOT, REMOVE THE PILOT FROM THE APPSEQUENCE
-         app_sequence=['Introduction', 'Main_Part','Exit', 'Pilot','Results'], 
+         app_sequence=['Introduction', 'Main_Part','Exit','Results'], 
          num_demo_participants=10,
          completionlink='https://app.prolific.com/submissions/complete?cc=CCNA4C97'),
 ]
